@@ -20,3 +20,9 @@ overflow-y: scroll;
     border: 3px solid #2F2F37;
     border-radius: 6px;
 }
+
+.totalPrice{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
