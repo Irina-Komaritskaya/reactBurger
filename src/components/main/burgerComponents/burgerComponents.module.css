@@ -1,0 +1,22 @@
+.backetPanel{
+    width: 600px;
+}
+
+.componentList{
+overflow-y: scroll;
+    height: 292px;
+    scrollbar-color: #696969 #8585AD;
+    scrollbar-width: thin;
+}
+
+.componentList::-webkit-scrollbar {
+    width: 12px;
+}
+.componentList::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+.componentList::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border: 3px solid #2F2F37;
+    border-radius: 6px;
+}

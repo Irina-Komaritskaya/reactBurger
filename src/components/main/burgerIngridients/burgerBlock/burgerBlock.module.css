@@ -1,5 +1,14 @@
 .burgerBlock{
-    margin: 0;
     width: 272px;
-    height: 208px;
+}
+
+.burgerBlock img{
+    width: 240px;
+    height: 120px;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

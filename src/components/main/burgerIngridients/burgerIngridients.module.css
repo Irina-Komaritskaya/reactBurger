@@ -1,16 +1,16 @@
 .productPanel{
     width: 600px;
-    margin: 50px;
+}
+
+.productPanel h1, h2{
+    text-align: start;
 }
 .ingridients{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    
+    justify-content: space-around;  
 }
-
 .productList{
     overflow-y: scroll;
     height: 500px;
@@ -23,6 +23,7 @@
 }
 .productList::-webkit-scrollbar-track {
     background: #2F2F37;
+    margin-top: 40px;
 }
 .productList::-webkit-scrollbar-thumb {
     background: #8585AD;
