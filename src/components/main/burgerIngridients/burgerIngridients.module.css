@@ -1,0 +1,31 @@
+.productPanel{
+    width: 600px;
+    margin: 50px;
+}
+.ingridients{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.productList{
+    overflow-y: scroll;
+    height: 500px;
+    scrollbar-color: #696969 #8585AD;
+    scrollbar-width: thin;
+}
+
+.productList::-webkit-scrollbar {
+    width: 12px;
+}
+.productList::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+.productList::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border: 3px solid #2F2F37;
+    border-radius: 6px;
+}
