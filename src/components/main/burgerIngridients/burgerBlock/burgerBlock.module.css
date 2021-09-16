@@ -1,5 +1,6 @@
 .burgerBlock{
     width: 272px;
+    position: relative;
 }
 
 .burgerBlock img{

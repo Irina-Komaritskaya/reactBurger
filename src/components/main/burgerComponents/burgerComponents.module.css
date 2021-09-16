@@ -3,8 +3,8 @@
 }
 
 .componentList{
-overflow-y: scroll;
-    height: 292px;
+    overflow-y: scroll;
+    height: 280px;
     scrollbar-color: #696969 #8585AD;
     scrollbar-width: thin;
 }
@@ -21,6 +21,9 @@ overflow-y: scroll;
     border-radius: 6px;
 }
 
+.fullWidht > div{
+    width: 100%;
+}
 .totalPrice{
     display: flex;
     align-items: center;

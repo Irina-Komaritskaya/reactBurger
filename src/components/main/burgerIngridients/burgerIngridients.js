@@ -12,7 +12,6 @@ function BurgerIngridients({data, setBascet}){
     return (
     <div className={burgerIngridientsStyles.productPanel}>
         <h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
-        {/* не вынести ли таб отдельно? */}
         <div style={{ display: 'flex' }}>
             <Tab value="one" active={current === 'one'} onClick={setCurrent}>
                 Булки
@@ -27,15 +26,15 @@ function BurgerIngridients({data, setBascet}){
         <div className={burgerIngridientsStyles.productList}>
             <h2 className='mt-10 mb-6'>Булки</h2> 
             <div className={burgerIngridientsStyles.ingridients}>
-                {buns.map(x => (<BurgerBlock setBascet={setBascet} data={x}/>))}
+                {buns.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x}/>))}
             </div>
             <h2 className='mt-10 mb-6'>Соусы</h2>
             <div className={burgerIngridientsStyles.ingridients}>
-                {sauces.map(x => (<BurgerBlock setBascet={setBascet} data={x}/>))}
+                {sauces.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x}/>))}
             </div>
             <h2 className='mt-10 mb-6'>Начинки</h2>
             <div className={burgerIngridientsStyles.ingridients}>
-                {mains.map(x => (<BurgerBlock setBascet={setBascet} data={x}/>))}
+                {mains.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x}/>))}
             </div> 
         </div>
     </div>
