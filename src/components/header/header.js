@@ -1,4 +1,3 @@
-import React from 'react';
 import headerStyles from './header.module.css';
 import {
     Logo, 
@@ -7,11 +6,9 @@ import {
     ProfileIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-
 function Header(){
     return (
     <header className={headerStyles.header}>
-
         <nav className={headerStyles.nav}> 
             <a href='#' className={`pl-5 mr-2 text text_type_main-default ${headerStyles.text_color_active} ${headerStyles.iconText}`}>
                 <BurgerIcon type="primary" />
@@ -26,10 +23,8 @@ function Header(){
         <a href='#' className={`text text_type_main-default text_color_inactive ${headerStyles.iconText}`}>
             <ProfileIcon type="secondary" />
             <span className="pl-2">Личный кабинет</span>
-         </a>
-
+        </a>
     </header>
-    
     )}
 
 export default Header;

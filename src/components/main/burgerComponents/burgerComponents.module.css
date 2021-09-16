@@ -3,18 +3,34 @@
 }
 
 .componentList{
+    list-style: none;
     overflow-y: scroll;
     height: 280px;
     scrollbar-color: #696969 #8585AD;
     scrollbar-width: thin;
+    width: 100%;
+    padding: 0;
+}
+
+.componentList > li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.componentList > li > svg{
+   padding-right: 10px;
 }
 
 .componentList::-webkit-scrollbar {
     width: 12px;
 }
+
 .componentList::-webkit-scrollbar-track {
     background: #2F2F37;
 }
+
 .componentList::-webkit-scrollbar-thumb {
     background: #8585AD;
     border: 3px solid #2F2F37;
@@ -24,8 +40,15 @@
 .fullWidht > div{
     width: 100%;
 }
+
 .totalPrice{
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+@media screen and (min-height: 768px) {
+    .componentList{
+        height: 50vh;
+    }
 }
