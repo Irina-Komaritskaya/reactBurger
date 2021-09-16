@@ -1,10 +1,10 @@
 import React from 'react';
 import style from './main.module.css';
 import BurgerIngridients from './burgerIngridients/burgerIngridients'
-import BurgerComponents from './burgerComponents/burgerComonents'
+import BurgerBascet from './burgerBascet/burgerBascet'
 import PropTypes from 'prop-types';
-import data from '../../utils/data';
 
+//Main - главная страница состоит из двух частей: панель ингредиентов и корзина
 function Main(props){
 
 		const [bascet, setBascet] = React.useState([]);
@@ -12,7 +12,7 @@ function Main(props){
 		return (
 				<main className={`mb-6 ${style.main}`}>
 						<BurgerIngridients setBascet={setBascet} data={props.data}/>
-						<BurgerComponents data={props.data}/>
+						<BurgerBascet data={props.data}/>
 				</main>
 		)
 }
@@ -35,4 +35,5 @@ const dataItemProps = PropTypes.shape({
 Main.propTypes={
 		data: PropTypes.arrayOf(dataItemProps.isRequired).isRequired
 } 
+
 export default Main;

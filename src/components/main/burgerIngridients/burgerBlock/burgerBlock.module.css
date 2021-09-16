@@ -1,14 +1,14 @@
-.burgerBlock{
+.burgerBlock {
     width: 272px;
     position: relative;
 }
 
-.burgerBlock img{
+.burgerBlock img {
     width: 240px;
     height: 120px;
 }
 
-.price{
+.price {
     display: flex;
     align-items: center;
     justify-content: center;

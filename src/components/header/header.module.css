@@ -7,7 +7,7 @@
     box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
   }
 
-  .nav, .iconText, .logo{
+  .nav, .iconText, .logo {
     display: flex;
     align-items: center;
   }
@@ -16,6 +16,6 @@
     text-decoration: none;
   }
 
-  .text_color_active{
-      color: white;
+  .text_color_active {
+    color: white;
   }

@@ -1,8 +1,8 @@
-.backetPanel{
+.backetPanel {
     width: 600px;
 }
 
-.componentList{
+.componentList {
     list-style: none;
     overflow-y: scroll;
     height: 280px;
@@ -12,14 +12,14 @@
     padding: 0;
 }
 
-.componentList > li{
+.componentList > li {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.componentList > li > svg{
+.componentList > li > svg {
    padding-right: 10px;
 }
 
@@ -37,11 +37,11 @@
     border-radius: 6px;
 }
 
-.fullWidht > div{
+.fullWidht > div {
     width: 100%;
 }
 
-.totalPrice{
+.totalPrice {
     display: flex;
     align-items: center;
     justify-content: flex-end;

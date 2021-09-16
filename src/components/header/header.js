@@ -1,4 +1,4 @@
-import headerStyles from './header.module.css';
+import style from './header.module.css';
 import {
 		Logo, 
 		BurgerIcon, 
@@ -8,19 +8,19 @@ import {
 
 function Header(){
 		return (
-		<header className={headerStyles.header}>
-				<nav className={headerStyles.nav}> 
-						<a href='#' className={`pl-5 mr-2 text text_type_main-default ${headerStyles.text_color_active} ${headerStyles.iconText}`}>
+		<header className={style.header}>
+				<nav className={style.nav}> 
+						<a href='#' className={`pl-5 mr-2 text text_type_main-default ${style.text_color_active} ${style.iconText}`}>
 								<BurgerIcon type="primary" />
 								<span className="pl-2">Конструктор</span>
 						</a>
-						<a href='#' className={`pl-5 text text_type_main-default text_color_inactive ${headerStyles.iconText}`}>
+						<a href='#' className={`pl-5 text text_type_main-default text_color_inactive ${style.iconText}`}>
 								<ListIcon type="secondary" />
 								<span className="pl-2">Лента заказов</span>
 						</a>
 				</nav>
-				<span className={headerStyles.logo}><Logo /></span>
-				<a href='#' className={`text text_type_main-default text_color_inactive ${headerStyles.iconText}`}>
+				<span className={style.logo}><Logo /></span>
+				<a href='#' className={`text text_type_main-default text_color_inactive ${style.iconText}`}>
 						<ProfileIcon type="secondary" />
 						<span className="pl-2">Личный кабинет</span>
 				</a>

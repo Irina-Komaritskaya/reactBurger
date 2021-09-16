@@ -3,6 +3,7 @@ import style from './burgerIngridients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import BurgerBlock from './burgerBlock/burgerBlock'
 
+//BurgerIngridients - компонент для панели ингредиентов бургера
 function BurgerIngridients({ data, setBascet }) {
 
 		const [current, setCurrent] = React.useState('one');
@@ -21,19 +22,19 @@ function BurgerIngridients({ data, setBascet }) {
 						<h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
 
 						<div style={{ display: 'flex' }}>
-								<Tab value="one" active={current === 'one'} onClick={e => {
+								<Tab value="bun" active={current === 'one'} onClick={e => {
 										setCurrent(e);
 										bunsAncor.current.scrollIntoView({behavior: "smooth"});
 								}}>
 										Булки
 								</Tab>
-								<Tab value="two" active={current === 'two'} onClick={e => {
+								<Tab value="sauces" active={current === 'two'} onClick={e => {
 										setCurrent(e);
 										saucesAncor.current.scrollIntoView({behavior: "smooth"});
 								}}>
 										Соусы
 								</Tab>
-								<Tab value="three" active={current === 'three'} onClick={e => {
+								<Tab value="main" active={current === 'three'} onClick={e => {
 										setCurrent(e);
 										mainsAncor.current.scrollIntoView({behavior: "smooth"});
 								}}>
