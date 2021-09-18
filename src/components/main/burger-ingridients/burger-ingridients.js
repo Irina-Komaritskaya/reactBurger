@@ -2,6 +2,8 @@ import React from 'react';
 import style from './burger-ingridients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import BurgerBlock from './burger-block/burger-block'
+import dataItemProps from '../../../types/types';
+import PropTypes from 'prop-types';
 
 //BurgerIngridients - компонент для панели ингредиентов бургера
 function BurgerIngridients({ data, setBascet }) {
@@ -63,4 +65,10 @@ function BurgerIngridients({ data, setBascet }) {
 
 		)
 }
+
+BurgerIngridients.propTypes={
+  data: PropTypes.arrayOf(dataItemProps.isRequired).isRequired,
+  setBascet: PropTypes.func
+}
+
 export default BurgerIngridients;
