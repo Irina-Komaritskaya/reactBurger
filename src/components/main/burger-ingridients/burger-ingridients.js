@@ -1,12 +1,12 @@
 import React from 'react';
-import style from './burgerIngridients.module.css'
+import style from './burger-ingridients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import BurgerBlock from './burgerBlock/burgerBlock'
+import BurgerBlock from './burger-block/burger-block'
 
 //BurgerIngridients - компонент для панели ингредиентов бургера
 function BurgerIngridients({ data, setBascet }) {
 
-		const [current, setCurrent] = React.useState('one');
+		const [current, setCurrent] = React.useState('bun');
 
 		const buns = data.filter((x) => x.type === "bun");
 		const mains = data.filter((x) => x.type === "main");
@@ -22,19 +22,19 @@ function BurgerIngridients({ data, setBascet }) {
 						<h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
 
 						<div style={{ display: 'flex' }}>
-								<Tab value="bun" active={current === 'one'} onClick={e => {
+								<Tab value="bun" active={current === 'bun'} onClick={e => {
 										setCurrent(e);
 										bunsAncor.current.scrollIntoView({behavior: "smooth"});
 								}}>
 										Булки
 								</Tab>
-								<Tab value="sauces" active={current === 'two'} onClick={e => {
+								<Tab value="sauces" active={current === 'sauces'} onClick={e => {
 										setCurrent(e);
 										saucesAncor.current.scrollIntoView({behavior: "smooth"});
 								}}>
 										Соусы
 								</Tab>
-								<Tab value="main" active={current === 'three'} onClick={e => {
+								<Tab value="main" active={current === 'main'} onClick={e => {
 										setCurrent(e);
 										mainsAncor.current.scrollIntoView({behavior: "smooth"});
 								}}>

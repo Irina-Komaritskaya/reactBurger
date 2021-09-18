@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './main.module.css';
-import BurgerIngridients from './burgerIngridients/burgerIngridients'
-import BurgerBascet from './burgerBascet/burgerBascet'
+import BurgerIngridients from './burger-ingridients/burger-ingridients'
+import BurgerComponents from './burger-components/burger-components'
 import PropTypes from 'prop-types';
 
 //Main - главная страница состоит из двух частей: панель ингредиентов и корзина
@@ -12,7 +12,7 @@ function Main(props){
 		return (
 				<main className={`mb-6 ${style.main}`}>
 						<BurgerIngridients setBascet={setBascet} data={props.data}/>
-						<BurgerBascet data={props.data}/>
+						<BurgerComponents data={props.data}/>
 				</main>
 		)
 }

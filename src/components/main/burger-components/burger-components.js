@@ -1,4 +1,4 @@
-import styles from './burgerComponents.module.css';
+import styles from './burger-components.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { 
       DragIcon,
@@ -6,7 +6,7 @@ import {
       CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
       //BurgerBascet - компонент для корзины заказа
-function BurgerBascet({ data }) {
+function BurgerComponents({ data }) {
 
 		const bun = data.find((x) => x._id === '60666c42cc7b410027a1a9b1');
 		const totalSum = data.reduce((sum, cur) => sum + cur.price, bun.price * 2);
@@ -50,4 +50,4 @@ function BurgerBascet({ data }) {
 				</div>
 		);
 }
-export default BurgerBascet;
+export default BurgerComponents;

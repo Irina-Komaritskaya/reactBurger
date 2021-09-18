@@ -1,4 +1,4 @@
-import style from './burgerBlock.module.css'
+import style from './burger-block.module.css'
 import { CurrencyIcon,
          Counter}  from '@ya.praktikum/react-developer-burger-ui-components';
 
