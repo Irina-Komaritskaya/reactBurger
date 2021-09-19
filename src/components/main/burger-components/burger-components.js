@@ -10,7 +10,8 @@ import {
       //BurgerBascet - компонент для корзины заказа
 function BurgerComponents({ data }) {
 
-		const bun = data.find((x) => x._id === '60666c42cc7b410027a1a9b1');
+		const bun = data.find((x) => x._id === "60d3b41abdacab0026a733c6"); 
+    console.log(data);
 		const totalSum = data.reduce((sum, cur) => sum + cur.price, bun.price * 2);
     const arrayNotBun = data.filter((x) => x.type !== 'bun')
 

@@ -8,7 +8,7 @@ import { CurrencyIcon,
 function BurgerBlock({ data, setBascet, className }) {
 		return (
 				<section className={`ml-4 ${style.burgerBlock} ${className}`}>
-						{(data._id === '60666c42cc7b410027a1a9b1' || data._id === '60666c42cc7b410027a1a9b9')
+						{(data._id === '60d3b41abdacab0026a733c6')
 								&& <Counter count={1} size="default" />
 						}
 						<p><img className="mb-1 ml-4" src={data.image} alt={data.name}/></p>
