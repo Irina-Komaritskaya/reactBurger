@@ -1,3 +1,5 @@
+import { useState} from 'react';
+import ModalOverlay from '../../modalOverlay/modalOverlay';
 import styles from './burger-components.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import dataItemProps from '../../../types/types';
@@ -7,8 +9,14 @@ import {
       Button,
       CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-      //BurgerBascet - компонент для корзины заказа
+    //BurgerComponents- компонент для корзины заказа
 function BurgerComponents({ data }) {
+  
+    const[isOpenModal, setIsOpenModal] = useState(false);
+
+    const handleClick = () =>{
+      setIsOpenModal(false);
+    }
 
 		const bun = data.find((x) => x._id === "60d3b41abdacab0026a733c6"); 
     console.log(data);
@@ -16,6 +24,7 @@ function BurgerComponents({ data }) {
     const arrayNotBun = data.filter((x) => x.type !== 'bun')
 
 		return (
+      <>
 				<div className={`mt-25 ${styles.backetPanel}`}>
 						<ConstructorElement
 								type="top"
@@ -49,10 +58,20 @@ function BurgerComponents({ data }) {
 								<span className="text text_type_digits-medium mr-10">
 										{totalSum} <CurrencyIcon type="primary" />
 								</span>
-								<Button type="primary" size="large">Оформить заказ</Button>
+								<Button onClick={()=> setIsOpenModal(true)} type="primary" size="large">Оформить заказ</Button>
 						</section>
 				</div>
-		);
+        <ModalOverlay 
+          isOpen={isOpenModal} 
+          onClick={handleClick} 
+          title={""}
+          onCloseClick={handleClick}
+        >
+          aaaa
+
+        </ModalOverlay>
+		</>
+    );
 }
 
 BurgerComponents.propTypes={

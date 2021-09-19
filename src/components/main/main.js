@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 //Main - главная страница состоит из двух частей: панель ингредиентов и корзина
 function Main({isLoading, hasError, data}){
 
-		const [bascet, setBascet] = React.useState([]);
+		const [addBurgerComponent, setAddBurgerComponent] = React.useState([]);
 		
 		return (
 				<main className={`mb-6 ${style.main}`}>
@@ -18,7 +18,7 @@ function Main({isLoading, hasError, data}){
            !hasError &&
            data.length &&
             <>
-            <BurgerIngridients setBascet={setBascet} data={data}/>
+            <BurgerIngridients addBurgerComponent={setAddBurgerComponent} data={data}/>
 						<BurgerComponents data={data}/>
             </>
           }

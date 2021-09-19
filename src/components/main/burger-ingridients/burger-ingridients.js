@@ -7,7 +7,8 @@ import dataItemProps from '../../../types/types';
 import PropTypes from 'prop-types';
 
 //BurgerIngridients - компонент для панели ингредиентов бургера
-function BurgerIngridients({ data, setBascet }) {
+// addBurgerComponent - для burgerBlock, передача выбранного компонента в корзину
+function BurgerIngridients({ data, addBurgerComponent }) {
 
 		const [current, setCurrent] = useState('bun');
 
@@ -20,11 +21,17 @@ function BurgerIngridients({ data, setBascet }) {
 		const saucesAncor = useRef(null);
 
     const[isOpenModal, setIsOpenModal] = useState(false);
+    
     const handleClick = () =>{
-     setIsOpenModal(!isOpenModal);
+     setIsOpenModal(false);
     }
 
     const[clickedBurger, setClickedBurger] = useState(null);
+
+    const showBurger = (burger) =>{
+      setClickedBurger(burger);
+      setIsOpenModal(true);
+    }
 		return (
       <>
 				<div className={style.productPanel}>
@@ -56,17 +63,17 @@ function BurgerIngridients({ data, setBascet }) {
 
 								<h2 className='mt-10 mb-6' ref={bunsAncor}>Булки</h2>
 								<div className={style.ingridients}>
-										{buns.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} onClick={handleClick}/>))}
+										{buns.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger}/>))}
 								</div>
 
 								<h2 className='mt-10 mb-6' ref={saucesAncor}>Соусы</h2>
 								<div className={style.ingridients}>
-										{sauces.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} onClick={handleClick}/>))}
+										{sauces.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger}/>))}
 								</div>
 								
 								<h2 className='mt-10 mb-6' ref={mainsAncor}>Начинки</h2>
 								<div className={style.ingridients}>
-										{mains.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} onClick={handleClick} />))}
+										{mains.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
 								</div>
 						</div>
 				</div>
@@ -76,15 +83,16 @@ function BurgerIngridients({ data, setBascet }) {
             title={"Детали ингридиента"}
             onCloseClick={handleClick}
           >
+            {clickedBurger.name}
+
           </ModalOverlay>
         </>
 		)
 }
 
-
 BurgerIngridients.propTypes={
   data: PropTypes.arrayOf(dataItemProps.isRequired).isRequired,
-  setBascet: PropTypes.func
+  addBurgerComponent: PropTypes.func
 }
 
 export default BurgerIngridients;

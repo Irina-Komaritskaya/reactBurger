@@ -8,7 +8,7 @@ import { CurrencyIcon,
 function BurgerBlock({ data, className, onClick}) {
   
   return (
-      <section onClick={onClick} className={`ml-4 ${style.burgerBlock} ${className}`}>
+      <section onClick={() => onClick(data)} className={`ml-4 ${style.burgerBlock} ${className}`}>
           {(data._id === '60d3b41abdacab0026a733c6')
               && <Counter count={1} size="default" />
           }
