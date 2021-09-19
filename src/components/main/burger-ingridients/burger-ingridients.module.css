@@ -31,6 +31,21 @@
     border-radius: 6px;
 }
 
+.close{
+  display: none;
+}
+
+.open{
+  display: flex;
+  position: fixed;
+  opacity: 1;
+  
+}
+
+.overlay{
+  background-color: rgba(0,0,0,0.5); 
+}
+
 @media screen and (min-height: 768px) {
     .productList{
         height: 50vh;

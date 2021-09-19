@@ -1,25 +1,33 @@
-import React from 'react';
-import style from './burger-ingridients.module.css'
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import BurgerBlock from './burger-block/burger-block'
+import { useState, useRef } from 'react';
+import style from './burger-ingridients.module.css';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import BurgerBlock from './burger-block/burger-block';
+import ModalOverlay from '../../modalOverlay/modalOverlay';
 import dataItemProps from '../../../types/types';
 import PropTypes from 'prop-types';
 
 //BurgerIngridients - компонент для панели ингредиентов бургера
 function BurgerIngridients({ data, setBascet }) {
 
-		const [current, setCurrent] = React.useState('bun');
+		const [current, setCurrent] = useState('bun');
 
 		const buns = data.filter((x) => x.type === "bun");
 		const mains = data.filter((x) => x.type === "main");
 		const sauces = data.filter((x) => x.type === "sauce");
 
-		const bunsAncor = React.useRef(null);
-		const mainsAncor = React.useRef(null);
-		const saucesAncor = React.useRef(null);
+		const bunsAncor = useRef(null);
+		const mainsAncor = useRef(null);
+		const saucesAncor = useRef(null);
 
+    const[isOpenModal, setIsOpenModal] = useState(false);
+    const handleClick = () =>{
+     setIsOpenModal(!isOpenModal);
+    }
+
+    const[clickedBurger, setClickedBurger] = useState(null);
 		return (
-				<div className={`${style.productPanel}`}>
+      <>
+				<div className={style.productPanel}>
 
 						<h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
 
@@ -48,23 +56,31 @@ function BurgerIngridients({ data, setBascet }) {
 
 								<h2 className='mt-10 mb-6' ref={bunsAncor}>Булки</h2>
 								<div className={style.ingridients}>
-										{buns.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} />))}
+										{buns.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} onClick={handleClick}/>))}
 								</div>
 
 								<h2 className='mt-10 mb-6' ref={saucesAncor}>Соусы</h2>
 								<div className={style.ingridients}>
-										{sauces.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} />))}
+										{sauces.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} onClick={handleClick}/>))}
 								</div>
 								
 								<h2 className='mt-10 mb-6' ref={mainsAncor}>Начинки</h2>
 								<div className={style.ingridients}>
-										{mains.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} />))}
+										{mains.map(x => (<BurgerBlock key={x._id} setBascet={setBascet} data={x} onClick={handleClick} />))}
 								</div>
 						</div>
 				</div>
-
+          <ModalOverlay 
+            isOpen={isOpenModal} 
+            onClick={handleClick} 
+            title={"Детали ингридиента"}
+            onCloseClick={handleClick}
+          >
+          </ModalOverlay>
+        </>
 		)
 }
+
 
 BurgerIngridients.propTypes={
   data: PropTypes.arrayOf(dataItemProps.isRequired).isRequired,

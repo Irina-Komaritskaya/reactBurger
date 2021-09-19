@@ -32,7 +32,6 @@ function App() {
 	return (
 		<div className={style.app}>
 			<Header />
-      
 			<Main data={data} isLoading={isLoading} hasError={hasError}/>
 		</div>
 	);

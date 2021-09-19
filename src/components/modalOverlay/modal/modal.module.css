@@ -1,0 +1,6 @@
+.modal{
+  
+  background: black;
+  display: flex;
+  overflow: hidden;
+}
