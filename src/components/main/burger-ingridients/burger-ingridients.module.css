@@ -31,17 +31,11 @@
     border-radius: 6px;
 }
 
-.close{
-  display: none;
-}
-
-.open{
+.energy{
   display: flex;
-  position: fixed;
-  opacity: 1;
-  
+  flex-direction: row;
+  justify-content: space-around;
 }
-
 .overlay{
   background-color: rgba(0,0,0,0.5); 
 }

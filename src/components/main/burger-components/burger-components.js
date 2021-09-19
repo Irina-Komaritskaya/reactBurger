@@ -67,7 +67,16 @@ function BurgerComponents({ data }) {
           title={""}
           onCloseClick={handleClick}
         >
-          aaaa
+          <section className='pb-15'> 
+            <p className={`text text_type_digits-large pt-15 ${styles.light}`} >034536</p>
+            <p className="text text_type_main-medium pt-8">идентификатор заказа</p>
+            <p><img src='/images/imageDone.gif' alt="done" className="pt-15 pb-15"/></p>
+            <p className="text text_type_main-small">Ваш заказ начали готовить</p>
+            <p className="text text_type_main-small text_color_inactive pt-2">
+              Дождитесь готовности на орбитальной станции
+            </p>
+          </section>
+          <p></p>
 
         </ModalOverlay>
 		</>
