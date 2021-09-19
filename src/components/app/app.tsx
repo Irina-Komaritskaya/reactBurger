@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import style from './app.module.css';
-import Header from '../header/header';
+import AppHeader from '../app-Header/app-Header';
 import Main from '../main/main';
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
 
 	return (
 		<div className={style.app}>
-			<Header />
+			<AppHeader />
 			<Main data={data} isLoading={isLoading} hasError={hasError}/>
 		</div>
 	);

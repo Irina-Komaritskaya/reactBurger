@@ -1,45 +1,8 @@
-.backetPanel {
+.panel {
     width: 600px;
 }
 
-.componentList {
-    list-style: none;
-    overflow-y: scroll;
-    height: 280px;
-    scrollbar-color: #696969 #8585AD;
-    scrollbar-width: thin;
-    width: 100%;
-    padding: 0;
-}
 
-.componentList > li {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.componentList > li > svg {
-   padding-right: 10px;
-}
-
-.componentList::-webkit-scrollbar {
-    width: 12px;
-}
-
-.componentList::-webkit-scrollbar-track {
-    background: #2F2F37;
-}
-
-.componentList::-webkit-scrollbar-thumb {
-    background: #8585AD;
-    border: 3px solid #2F2F37;
-    border-radius: 6px;
-}
-
-.fullWidht > div {
-    width: 100%;
-}
 
 .totalPrice {
     display: flex;

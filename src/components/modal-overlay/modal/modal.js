@@ -1,5 +1,5 @@
-import React from "react";
 import style from "./modal.module.css";
+import PropTypes from 'prop-types';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
 function Modal({children, title, onCloseClick}){
@@ -14,6 +14,12 @@ function Modal({children, title, onCloseClick}){
     </div>
   </div>
   )
+}
+
+Modal.propTypes={
+  title:PropTypes.string,
+  children:PropTypes.element,
+  onCloseClick:PropTypes.func
 }
 
 export default Modal;
