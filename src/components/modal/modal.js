@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import style from './modal-overlay.module.css'
+import style from './modal.module.css'
 import PropTypes from 'prop-types';
-import Modal from './modal/modal'
+import ModalOverlay from './modal-overlay/modal-overlay'
 import ReactDOM from 'react-dom';
 
-function ModalOverlay({isOpen, children, onClick, onCloseClick, title}){
+function Modal({isOpen, children, onClick, onCloseClick, title}){
   const onKeydown = ({ key }) => { 
     switch (key) { 
       case 'Escape': 
@@ -24,16 +24,16 @@ function ModalOverlay({isOpen, children, onClick, onCloseClick, title}){
 
   return ReactDOM.createPortal((
     <div onClick={onClick} className={style.overlay}>
-      <Modal onCloseClick={onCloseClick} title={title}>{children}</Modal>
+      <ModalOverlay onCloseClick={onCloseClick} title={title}>{children}</ModalOverlay>
     </div>
   ),document.body);
 }
 
-ModalOverlay.propTypes={
+Modal.propTypes={
   title:PropTypes.string,
   children:PropTypes.element,
   onCloseClick:PropTypes.func,
   onClick:PropTypes.func,
   isOpen:PropTypes.bool
 }
-export default ModalOverlay;
+export default Modal;

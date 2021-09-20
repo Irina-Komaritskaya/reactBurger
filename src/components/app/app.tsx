@@ -17,6 +17,9 @@ function App() {
       try{
         setState({...state, hasError: false, isLoading: true})
         const res = await fetch(url);
+        if(res.status !== 200){
+          throw new Error(res.statusText);
+        }
         const json = await res.json();
         setState({...state, data: json.data, isLoading: false});
       }

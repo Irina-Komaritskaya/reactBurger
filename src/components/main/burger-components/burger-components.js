@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import ModalOverlay from '../../modal-overlay/modal-overlay';
+import Modal from '../../modal/modal';
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
 import dataItemProps from '../../../types/types';
@@ -38,7 +38,7 @@ function BurgerComponents({ data }) {
         </section>
       </div>
 
-      <ModalOverlay 
+      <Modal
         isOpen={isOpenModal} 
         onClick={handleClick} 
         title={""}
@@ -53,7 +53,7 @@ function BurgerComponents({ data }) {
             Дождитесь готовности на орбитальной станции
           </p>
         </section>
-      </ModalOverlay>
+      </Modal>
     </>
     );
     }

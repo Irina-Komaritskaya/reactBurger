@@ -1,8 +1,8 @@
-import style from "./modal.module.css";
+import style from "./modal-overlay.module.css";
 import PropTypes from 'prop-types';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
-function Modal({children, title, onCloseClick}){
+function ModalOverlay({children, title, onCloseClick}){
   return(
   <div className={style.modal} onClick={(e) => e.stopPropagation()}>
     <span className={`pt-10 pl-10 pr-10 ${style.title}`}>
@@ -16,10 +16,10 @@ function Modal({children, title, onCloseClick}){
   )
 }
 
-Modal.propTypes={
+ModalOverlay.propTypes={
   title:PropTypes.string,
   children:PropTypes.element,
   onCloseClick:PropTypes.func
 }
 
-export default Modal;
+export default ModalOverlay;

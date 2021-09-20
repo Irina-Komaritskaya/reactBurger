@@ -2,9 +2,9 @@ import { useState, useRef } from 'react';
 import style from './burger-ingridients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerBlock from './burger-block/burger-block';
-import ModalOverlay from '../../modal-overlay/modal-overlay';
 import dataItemProps from '../../../types/types';
 import PropTypes from 'prop-types';
+import Modal from '../../modal/modal'
 import IngridientDetails from './ingridient-details/ingridient-details';
 
 //BurgerIngridients - компонент для панели ингредиентов бургера
@@ -79,7 +79,7 @@ function BurgerIngridients({ data, addBurgerComponent }) {
           </div>
 				</div>
 
-        <ModalOverlay 
+        <Modal
           isOpen={isOpenModal} 
           onClick={handleClick} 
           title={"Детали ингридиента"}
@@ -88,7 +88,7 @@ function BurgerIngridients({ data, addBurgerComponent }) {
         {clickedBurger && 
           <IngridientDetails clickedBurger={clickedBurger}/>
         }
-        </ModalOverlay>
+        </Modal>
       </>
 		)
 }
