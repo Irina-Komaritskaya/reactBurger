@@ -3,7 +3,7 @@ import style from './app.module.css';
 import AppHeader from '../app-Header/app-Header';
 import Main from '../main/main';
 
-function App() {
+  function App() {
   const url = 'https://norma.nomoreparties.space/api/ingredients'
 
   const [state, setState] = useState({
