@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
 import dataItemProps from '../../../types/types';
 import Modal from '../../modal/modal';
+import {ComponentContext} from '../../../services/main-context'
 import PropTypes from 'prop-types';
 import { 
   Button, 
@@ -12,31 +13,28 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
     //BurgerComponents- компонент для корзины заказа
-function BurgerComponents({ data }) {
+function BurgerComponents() {
+  const {bun, totalSum, ingridients, setConfirmOrder}  = useContext(ComponentContext);
   const[isOpenModal, setIsOpenModal] = useState(false);
 
   const handleClick = () =>{
     setIsOpenModal(false);
   }
-  console.log(isOpenModal)
-  const bunLocked = data.find((x) => x._id === "60d3b41abdacab0026a733c6"); 
-  const totalSum = data.reduce((sum, cur) => sum + cur.price, bunLocked.price * 2);
-  const arrayNotBun = data.filter((x) => x.type !== 'bun')
 
   return (
   <>
     <div className={`mt-25 ${styles.panel}`}>
-
-      <ConstructorElement
-        type="top"
-        isLocked={true}
-        text={`${bunLocked.name} (верх)`}
-        price={bunLocked.price}
-        thumbnail={bunLocked.image}
-      />
-
+      {bun &&
+        <ConstructorElement
+          type="top"
+          isLocked={true}
+          text={`${bun.name} (верх)`}
+          price={bun.price}
+          thumbnail={bun.image}
+        />
+      }
       <ul className={`pr-8 ${styles.componentList}`} >
-      {arrayNotBun.map(x => ( 
+      {ingridients.map(x => ( 
         <li key={x._id} className={`mb-4 ${styles.fullWidht}`}>
           {<DragIcon type="primary" />}
           <ConstructorElement
@@ -46,15 +44,15 @@ function BurgerComponents({ data }) {
           />
         </li>))}
       </ul>
-
-      <ConstructorElement
-        type="bottom"
-        isLocked={true}
-        text={`${bunLocked.name} (низ)`}
-        price={bunLocked.price}
-        thumbnail={bunLocked.image}
-      />
-
+      {bun &&
+        <ConstructorElement
+          type="bottom"
+          isLocked={true}
+          text={`${bun.name} (низ)`}
+          price={bun.price}
+          thumbnail={bun.image}
+        />
+      }
       <section className={`mt-5 ${styles.totalPrice}`}>
         <span className="text text_type_digits-medium mr-10">
           {totalSum} <CurrencyIcon type="primary" />
@@ -81,7 +79,4 @@ function BurgerComponents({ data }) {
   );
 }
 
-BurgerComponents.propTypes={
-data: PropTypes.arrayOf(dataItemProps.isRequired).isRequired
-}
 export default BurgerComponents;
