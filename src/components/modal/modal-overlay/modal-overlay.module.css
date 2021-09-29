@@ -1,0 +1,16 @@
+.modal{
+  background: black;
+  display: flex;
+  overflow: hidden;
+  text-align: center;
+  flex-direction: column;
+  border-radius: 40px;
+  background-color: #1C1C21;
+}
+
+.title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
