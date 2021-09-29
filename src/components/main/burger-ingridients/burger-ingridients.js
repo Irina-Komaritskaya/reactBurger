@@ -2,7 +2,7 @@ import { useState, useRef, useContext } from 'react';
 import style from './burger-ingridients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerBlock from './burger-block/burger-block';
-import dataItemProps from '../../../types/types';
+import {dataItemProps} from '../../../types/types';
 import PropTypes from 'prop-types';
 import Modal from '../../modal/modal'
 import IngridientDetails from './ingridient-details/ingridient-details';
@@ -11,8 +11,8 @@ import {ComponentContext} from '../../../services/main-context'
 //BurgerIngridients - компонент для панели ингредиентов бургера
 // addBurgerComponent - для burgerBlock, передача выбранного компонента в корзину
 function BurgerIngridients({ data }) {
-  const {order, setOrder}  = useContext(ComponentContext);
-  const [current, setCurrent] = useState('bun');
+  const {order, setOrder, totalSumDispatcher}  = useContext(ComponentContext);
+  const [current, setCurrent] = useState('bun'); //Tab
 
   const buns = data.filter((x) => x.type === "bun");
   const mains = data.filter((x) => x.type === "main");
@@ -27,7 +27,6 @@ function BurgerIngridients({ data }) {
   const handleClick = () =>{
     setIsOpenModal(false);
   }
-
  
   const[clickedBurger, setClickedBurger] = useState(null);
 
@@ -38,12 +37,14 @@ function BurgerIngridients({ data }) {
       setOrder({
         ...order,
         bun: burger
-      })
+      });
+      totalSumDispatcher({type: 'setBun', bun: burger})
     } else{
       setOrder({
         ...order,
         ingredients:[...order.ingredients, burger]
-      })
+      });
+      totalSumDispatcher({type: 'add', price: burger.price})
     }
   }
   return (

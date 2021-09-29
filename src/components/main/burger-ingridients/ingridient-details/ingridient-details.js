@@ -1,5 +1,5 @@
 import style from './ingridient-details.module.css';
-import dataItemProps from '../../../../types/types';
+import {dataItemProps} from '../../../../types/types';
 
 function IngridientDetails({clickedBurger}){
   return(

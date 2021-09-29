@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
-
 import Modal from '../../modal/modal';
 import {ComponentContext} from '../../../services/main-context'
+import { v4 as generateKey} from 'uuid';
 import PropTypes from 'prop-types';
 import { 
   Button, 
@@ -12,15 +12,16 @@ import {
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
+
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
-  const {order: {bun, totalSum, ingredients, setConfirmOrder}}  = useContext(ComponentContext);
+  const {totalSumState, totalSumDispatcher, order, setOrder}  = useContext(ComponentContext);
   const[isOpenModal, setIsOpenModal] = useState(false);
-
+  const {bun, ingredients, setConfirmOrder} = order
   const handleClick = () =>{
     setIsOpenModal(false);
   }
-
+    console.log(ingredients)
   return (
   <>
     <div className={`mt-25 ${styles.panel}`}>
@@ -31,19 +32,29 @@ function BurgerComponents() {
           price={bun ? bun.price : 0}
           thumbnail={bun ? bun.image : '/images/default-bun.svg'}
         />
-      {ingredients.length === 0 && <p className={`mb-4 ${styles.fullWidht}`}>Корзина пуста</p>}
+
       <ul className={`pr-8 ${styles.componentList}`} >
-      {ingredients.map(x => ( 
-        <li key={x._id} className={`mb-4 ${styles.fullWidht}`}>
+      {ingredients.map((x, index) => (
+        <li key={generateKey()} className={`mb-4 ${styles.fullWidht}`}>
           {<DragIcon type="primary" />}
           <ConstructorElement
             text={x.name}
             price={x.price}
             thumbnail={x.image}
+            handleClose={() => {
+              totalSumDispatcher({type: 'del', price: x.price})
+              let newIngredients = [...ingredients];
+              newIngredients.splice(index, 1);
+              setOrder({
+                ...order,
+                ingredients: newIngredients
+              })
+            }}
           />
-        </li>))}
+        </li>
+      ))}
       </ul>
-    
+            
         <ConstructorElement
           type="bottom"
           isLocked={true}
@@ -53,7 +64,7 @@ function BurgerComponents() {
         />
       <section className={`mt-5 ${styles.totalPrice}`}>
         <span className="text text_type_digits-medium mr-10">
-          {totalSum} <CurrencyIcon type="primary" />
+          {totalSumState.totalSum} <CurrencyIcon type="primary" />
         </span>
         <Button 
           onClick={()=> {

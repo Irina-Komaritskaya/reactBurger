@@ -1,5 +1,6 @@
 import {getIngredients, getOrder} from '../../services/api'
-import {useEffect, useState} from 'react';
+import {reducer} from '../../services/reducer'
+import {useEffect, useState, useReducer} from 'react';
 import style from './main.module.css';
 import BurgerIngridients from './burger-ingridients/burger-ingridients'
 import BurgerComponents from './burger-components/burger-components'
@@ -39,12 +40,8 @@ function Main(){
     isLoading: false,
     hasError: false
   })
-  useEffect(() =>{
-    setOrder({
-      ...order,
-      totalSum: order.ingredients.reduce((sum, cur) => sum + cur.price, order.bun ? order.bun.price * 2 : 0)
-    })
-  }, [order.ingredients.length, order.bun])
+
+  const [totalSumState, totalSumDispatcher] = useReducer(reducer, order);
 
   useEffect(() =>{
     if(confirmOrder){ 
@@ -76,7 +73,7 @@ function Main(){
         !ingredients.hasError &&
         ingredients.data.length &&
         <>
-          <ComponentContext.Provider value={{order, setOrder}}>
+          <ComponentContext.Provider value={{order, setOrder, totalSumState, totalSumDispatcher}}>
             <BurgerIngridients data={ingredients.data}/> 
             <BurgerComponents />
           </ComponentContext.Provider>
