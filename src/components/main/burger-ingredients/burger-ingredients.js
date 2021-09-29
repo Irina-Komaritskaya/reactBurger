@@ -1,16 +1,16 @@
 import { useState, useRef, useContext } from 'react';
-import style from './burger-ingridients.module.css';
+import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerBlock from './burger-block/burger-block';
-import {dataItemProps} from '../../../types/types';
+import {dataItemProps, orderItemProps} from '../../../types/types';
 import PropTypes from 'prop-types';
 import Modal from '../../modal/modal'
-import IngridientDetails from './ingridient-details/ingridient-details';
+import IngredientDetails from './ingredient-details/ingredient-details';
 import {ComponentContext} from '../../../services/main-context'
 
-//BurgerIngridients - компонент для панели ингредиентов бургера
-// addBurgerComponent - для burgerBlock, передача выбранного компонента в корзину
-function BurgerIngridients({ data }) {
+//BurgerIngredients - компонент для панели ингредиентов бургера
+
+function BurgerIngredients({ data }) {
   const {order, setOrder, totalSumDispatcher}  = useContext(ComponentContext);
   const [current, setCurrent] = useState('bun'); //Tab
 
@@ -32,7 +32,6 @@ function BurgerIngridients({ data }) {
 
   const showBurger = (burger) =>{
     setClickedBurger(burger);
-    // setIsOpenModal(true);
     if(burger.type === 'bun'){
       setOrder({
         ...order,
@@ -46,6 +45,7 @@ function BurgerIngridients({ data }) {
       });
       totalSumDispatcher({type: 'add', price: burger.price})
     }
+    setIsOpenModal(true);
   }
   return (
     <>
@@ -77,17 +77,17 @@ function BurgerIngridients({ data }) {
         <div className={`pr-3 ${style.productList}`}>
 
           <h2 className='mt-10 mb-6' ref={bunsAncor}>Булки</h2>
-          <div className={style.ingridients}>
+          <div className={style.ingredients}>
               {buns.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
           </div>
 
           <h2 className='mt-10 mb-6' ref={saucesAncor}>Соусы</h2>
-          <div className={style.ingridients}>
+          <div className={style.ingredients}>
               {sauces.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
           </div>
           
           <h2 className='mt-10 mb-6' ref={mainsAncor}>Начинки</h2>
-          <div className={style.ingridients}>
+          <div className={style.ingredients}>
               {mains.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
           </div>
         </div>
@@ -100,16 +100,20 @@ function BurgerIngridients({ data }) {
         onCloseClick={handleClick}
       >
       {clickedBurger && 
-        <IngridientDetails clickedBurger={clickedBurger}/>
+        <IngredientDetails clickedBurger={clickedBurger}/>
       }
       </Modal>
     </>
   )
 }
 
-BurgerIngridients.propTypes={
+BurgerIngredients.propTypes={
   data: PropTypes.arrayOf(dataItemProps.isRequired).isRequired,
-  addBurgerComponent: PropTypes.func
+  ComponentContext: PropTypes.shape({
+    order: orderItemProps.isRequired,
+    totalSumDispatcher: PropTypes.func.isRequired,
+    setOrder: PropTypes.func.isRequired
+    })
 }
 
-export default BurgerIngridients;
+export default BurgerIngredients;

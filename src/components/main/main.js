@@ -2,7 +2,7 @@ import {getIngredients, getOrder} from '../../services/api'
 import {reducer} from '../../services/reducer'
 import {useEffect, useState, useReducer} from 'react';
 import style from './main.module.css';
-import BurgerIngridients from './burger-ingridients/burger-ingridients'
+import BurgerIngredients from './burger-ingredients/burger-ingredients'
 import BurgerComponents from './burger-components/burger-components'
 import {ComponentContext} from '../../services/main-context'
 
@@ -17,13 +17,13 @@ function Main(){
 
   useEffect(()=>{
     try{
-      const fetchIngridients = async () => {
+      const fetchIngredients = async () => {
         const res = await getIngredients();
         setIngredients({...ingredients, data: res.data, isLoading: false});
         return res;
       }
       setIngredients({...ingredients, hasError: false, isLoading: true})
-      fetchIngridients();
+      fetchIngredients();
     }
     catch(e){
       setIngredients({...ingredients, hasError: true, isLoading: false})
@@ -47,10 +47,10 @@ function Main(){
     if(confirmOrder){ 
       try{
         const fetchOrder = async () => {
-          const idIngridients = order.ingredients.map((x) => x._id);
+          const idIngredients = order.ingredients.map((x) => x._id);
           const idBun = order.bun._id;
           
-          const res = await getOrder(idIngridients, idBun);
+          const res = await getOrder(idIngredients, idBun);
           setOrder({...order, numberOrder: res.order.number, isLoading: false, ingredients: [], bun: null });
           return res;
         }
@@ -74,7 +74,7 @@ function Main(){
         ingredients.data.length &&
         <>
           <ComponentContext.Provider value={{order, setOrder, totalSumState, totalSumDispatcher}}>
-            <BurgerIngridients data={ingredients.data}/> 
+            <BurgerIngredients data={ingredients.data}/> 
             <BurgerComponents />
           </ComponentContext.Provider>
         </>

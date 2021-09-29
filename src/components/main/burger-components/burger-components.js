@@ -5,6 +5,7 @@ import Modal from '../../modal/modal';
 import {ComponentContext} from '../../../services/main-context'
 import { v4 as generateKey} from 'uuid';
 import PropTypes from 'prop-types';
+import { orderItemProps } from '../../../types/types';
 import { 
   Button, 
   CurrencyIcon, 
@@ -96,4 +97,12 @@ function BurgerComponents() {
   );
 }
 
+BurgerComponents.propTypes={
+  ComponentContext: PropTypes.shape({
+    order: orderItemProps.isRequired,
+    totalSumState: orderItemProps.isRequired,
+    totalSumDispatcher: PropTypes.func.isRequired,
+    setOrder: PropTypes.func.isRequired
+    })
+}
 export default BurgerComponents;

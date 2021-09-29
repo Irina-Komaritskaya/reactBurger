@@ -1,7 +1,7 @@
-import style from './ingridient-details.module.css';
+import style from './ingredient-details.module.css';
 import {dataItemProps} from '../../../../types/types';
 
-function IngridientDetails({clickedBurger}){
+function IngredientDetails({clickedBurger}){
   return(
     <div className="pb-15">
       <img src={clickedBurger.image_large} alt={clickedBurger.name}/> 
@@ -28,7 +28,7 @@ function IngridientDetails({clickedBurger}){
   );
 }
 
-IngridientDetails.propTypes={
+IngredientDetails.propTypes={
   clickedBurger: dataItemProps.isRequired
 }
-export default IngridientDetails;
+export default IngredientDetails;

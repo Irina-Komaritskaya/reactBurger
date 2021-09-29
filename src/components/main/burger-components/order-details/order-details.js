@@ -21,4 +21,8 @@ function OrderDetails(){
   </>           
 )}
 
+OrderDetails.propTypes={
+  numberOrder: PropTypes.number,
+  isLoading:PropTypes.bool
+}
 export default OrderDetails;
