@@ -1,4 +1,4 @@
-import {getIngridients, getOrder} from '../../services/api'
+import {getIngredients, getOrder} from '../../services/api'
 import {useEffect, useState} from 'react';
 import style from './main.module.css';
 import BurgerIngridients from './burger-ingridients/burger-ingridients'
@@ -8,7 +8,7 @@ import {ComponentContext} from '../../services/main-context'
 
 function Main(){
 
-    const [ingridients, setIngridients] = useState({
+    const [ingredients, setIngredients] = useState({
       isLoading: false,
       hasError: false,
       data: []
@@ -17,43 +17,47 @@ function Main(){
   useEffect(()=>{
     try{
       const fetchIngridients = async () => {
-        console.log(1)
-        const res = await getIngridients();
-        setIngridients({...ingridients, data: res.data, isLoading: false});
+        const res = await getIngredients();
+        setIngredients({...ingredients, data: res.data, isLoading: false});
         return res;
-    }
-      setIngridients({...ingridients, hasError: false, isLoading: true})
+      }
+      setIngredients({...ingredients, hasError: false, isLoading: true})
       fetchIngridients();
     }
     catch(e){
-      console.log(2)
-      setIngridients({...ingridients, hasError: true, isLoading: false})
+      setIngredients({...ingredients, hasError: true, isLoading: false})
     }
-    }, []);
+  }, []);
 
   const [confirmOrder, setConfirmOrder] = useState(false);
   const [order, setOrder] = useState({
     totalSum: 0,
     numberOrder: 0,
     bun: null,
-    ingridients: [],
+    ingredients: [],
     setConfirmOrder: setConfirmOrder,
     isLoading: false,
     hasError: false
   })
+  useEffect(() =>{
+    setOrder({
+      ...order,
+      totalSum: order.ingredients.reduce((sum, cur) => sum + cur.price, order.bun ? order.bun.price * 2 : 0)
+    })
+  }, [order.ingredients.length, order.bun])
 
   useEffect(() =>{
     if(confirmOrder){ 
       try{
         const fetchOrder = async () => {
-          const idIngridients = order.ingridients.map((x) => x._id);
+          const idIngridients = order.ingredients.map((x) => x._id);
           const idBun = order.bun._id;
-          const totalSum = order.ingridients.reduce((sum, cur) => sum + cur.price, order.bun.price * 2);
-
+          
           const res = await getOrder(idIngridients, idBun);
-          setOrder({...order, numberOrder: res.order.number, totalSum: totalSum, isLoading: false});
+          setOrder({...order, numberOrder: res.order.number, isLoading: false, ingredients: [], bun: null });
           return res;
-      }
+        }
+        setConfirmOrder(false);
         setOrder({...order, hasError: false, isLoading: true})
         fetchOrder();
       }
@@ -66,14 +70,14 @@ function Main(){
 
   return (
     <main className={`mb-6 ${style.main}`}>
-      {ingridients.isLoading && 'Загрузка...'}
-      {ingridients.hasError && 'Произошла ошибка'}  
-      {!ingridients.isLoading &&
-        !ingridients.hasError &&
-        ingridients.data.length &&
+      {ingredients.isLoading && 'Загрузка...'}
+      {ingredients.hasError && 'Произошла ошибка'}  
+      {!ingredients.isLoading &&
+        !ingredients.hasError &&
+        ingredients.data.length &&
         <>
-          <ComponentContext.Provider value={order}>
-            <BurgerIngridients data={ingridients.data}/> 
+          <ComponentContext.Provider value={{order, setOrder}}>
+            <BurgerIngridients data={ingredients.data}/> 
             <BurgerComponents />
           </ComponentContext.Provider>
         </>
