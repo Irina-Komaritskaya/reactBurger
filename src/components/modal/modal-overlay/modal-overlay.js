@@ -12,7 +12,7 @@ function ModalOverlay({onClick, children}){
 
 ModalOverlay.propTypes={
   children:PropTypes.element,
-  onCloseClick:PropTypes.func
+  onClick:PropTypes.func
 }
 
 export default ModalOverlay;

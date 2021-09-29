@@ -22,7 +22,6 @@ function BurgerComponents() {
   const handleClick = () =>{
     setIsOpenModal(false);
   }
-    console.log(ingredients)
   return (
   <>
     <div className={`mt-25 ${styles.panel}`}>

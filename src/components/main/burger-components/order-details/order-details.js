@@ -22,7 +22,9 @@ function OrderDetails(){
 )}
 
 OrderDetails.propTypes={
+  ComponentContext: PropTypes.shape({
   numberOrder: PropTypes.number,
   isLoading:PropTypes.bool
+})
 }
 export default OrderDetails;

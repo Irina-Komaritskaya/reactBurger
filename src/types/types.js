@@ -16,11 +16,11 @@ export const dataItemProps = PropTypes.shape({
 });
 
 export const orderItemProps = PropTypes.shape({
-    totalSum: PropTypes.number,
+    totalSum: PropTypes.number.isRequired,
     numberOrder: PropTypes.number,
     bun: dataItemProps.isRequired,
     ingredients: PropTypes.arrayOf(dataItemProps.isRequired).isRequired,
-    setConfirmOrder: PropTypes.func,
+    setConfirmOrder: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
     hasError: PropTypes.bool
   });
