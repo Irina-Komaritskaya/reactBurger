@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerBlock from './burger-block/burger-block';
@@ -7,13 +7,14 @@ import {dataItemProps, orderItemProps} from '../../../types/types';
 import PropTypes from 'prop-types';
 import Modal from '../../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
-import {ComponentContext} from '../../../services/main-context'
+import { ADD_COMPONENT, ADD_PRICE_COMPONENT } from '../../../services/actions';
 
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
 function BurgerIngredients() {
-  const ingredients = useSelector(store => store.burger.ingredients)
-  
+  const ingredients = useSelector(store => store.burger.ingredients);
+  const dispatch = useDispatch();
+
   const [current, setCurrent] = useState('bun'); //Tab
 
   const buns = ingredients.filter((x) => x.type === "bun");
@@ -32,7 +33,15 @@ function BurgerIngredients() {
  
   const[clickedBurger, setClickedBurger] = useState(null);
 
-  const showBurger = (burger) =>{
+  const showBurger = (currentIngredient) =>{
+    dispatch({
+      type: ADD_PRICE_COMPONENT,
+      value: {price: currentIngredient.price, type: currentIngredient.type}
+    })
+    dispatch({
+      type: ADD_COMPONENT ,
+      value: currentIngredient
+    })
     // setClickedBurger(burger);
     // if(burger.type === 'bun'){
     //   setOrder({

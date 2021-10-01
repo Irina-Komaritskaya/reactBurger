@@ -6,7 +6,7 @@ import { CurrencyIcon,
 
          //BurgerBlock - компонент для карточки ингредиента
 function BurgerBlock({ data, className, onClick}) {
-  
+
   return (
       <section onClick={() => onClick(data)} className={`ml-4 ${style.burgerBlock} ${className}`}>
           {(data._id === '60d3b41abdacab0026a733c6')

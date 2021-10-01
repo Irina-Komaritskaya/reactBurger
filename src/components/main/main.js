@@ -11,61 +11,32 @@ import {loadIngredients} from '../../services/actions'
 function Main(){
 
   const [confirmOrder, setConfirmOrder] = useState(false);
-  const [order, setOrder] = useState({
-    totalSum: 0,
-    numberOrder: 0,
-    bun: null,
-    ingredients: [],
-    setConfirmOrder: setConfirmOrder,
-    isLoading: false,
-    hasError: false
-  })
+  // const [totalSumState, totalSumDispatcher] = useReducer(reducerSum, order);
 
-  const [totalSumState, totalSumDispatcher] = useReducer(reducerSum, order);
+  const isLoadingIngredient = useSelector(store => store.burger.isLoadingIngredient);
+  const hasErrorIngredient = useSelector(store => store.burger.hasErrorIngredient);
+  const ingredients = useSelector(store => store.burger.ingredients);
 
-  useEffect(() =>{
-    if(confirmOrder){ 
-      try{
-        const fetchOrder = async () => {
-          const idIngredients = order.ingredients.map((x) => x._id);
-          const idBun = order.bun._id;
-          
-          const res = await getOrder(idIngredients, idBun);
-          setOrder({...order, numberOrder: res.order.number, isLoading: false, ingredients: [], bun: null });
-          return res;
-        }
-        setConfirmOrder(false);
-        setOrder({...order, hasError: false, isLoading: true})
-        fetchOrder();
-      }
-      catch(e){
-        setOrder({...order, hasError: true, isLoading: false})
-      }
-    }
-  }, [confirmOrder])
-  
-const isLoadingIngredient = useSelector(store => store.burger.isLoadingIngredient); 
-const hasErrorIngredient = useSelector(store => store.burger.hasErrorIngredient);
-const ingredients = useSelector(store => store.burger.ingredients);
-
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 useEffect(() => {
   dispatch(loadIngredients())
+  console.log(ingredients)
 }, [dispatch])
+
 
   return (
     <main className={`mb-6 ${style.main}`}>
       {isLoadingIngredient && 'Загрузка...'}
-      {hasErrorIngredient && 'Произошла ошибка'}  
+      {hasErrorIngredient && 'Произошла ошибка'}
       {!isLoadingIngredient &&
         !hasErrorIngredient &&
         ingredients.length &&
         <>
-          <ComponentContext.Provider value={{order, setOrder, totalSumState, totalSumDispatcher}}>
-            <BurgerIngredients /> 
+
+            <BurgerIngredients />
             <BurgerComponents />
-          </ComponentContext.Provider>
+
         </>
       }
     </main>
