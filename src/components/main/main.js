@@ -1,34 +1,14 @@
-import {getIngredients, getOrder} from '../../services/api'
-import {reducer} from '../../services/reducer'
+import { getOrder} from '../../services/api'
+import { useSelector, useDispatch } from 'react-redux';
+import {reducerSum} from '../../services/reducers'
 import {useEffect, useState, useReducer} from 'react';
 import style from './main.module.css';
 import BurgerIngredients from './burger-ingredients/burger-ingredients'
 import BurgerComponents from './burger-components/burger-components'
 import {ComponentContext} from '../../services/main-context'
-
+import {loadIngredients} from '../../services/actions'
 
 function Main(){
-
-    const [ingredients, setIngredients] = useState({
-      isLoading: false,
-      hasError: false,
-      data: []
-    });
-
-  useEffect(()=>{
-    try{
-      const fetchIngredients = async () => {
-        const res = await getIngredients();
-        setIngredients({...ingredients, data: res.data, isLoading: false});
-        return res;
-      }
-      setIngredients({...ingredients, hasError: false, isLoading: true})
-      fetchIngredients();
-    }
-    catch(e){
-      setIngredients({...ingredients, hasError: true, isLoading: false})
-    }
-  }, []);
 
   const [confirmOrder, setConfirmOrder] = useState(false);
   const [order, setOrder] = useState({
@@ -41,7 +21,7 @@ function Main(){
     hasError: false
   })
 
-  const [totalSumState, totalSumDispatcher] = useReducer(reducer, order);
+  const [totalSumState, totalSumDispatcher] = useReducer(reducerSum, order);
 
   useEffect(() =>{
     if(confirmOrder){ 
@@ -64,17 +44,26 @@ function Main(){
     }
   }, [confirmOrder])
   
+const isLoadingIngredient = useSelector(store => store.burger.isLoadingIngredient); 
+const hasErrorIngredient = useSelector(store => store.burger.hasErrorIngredient);
+const ingredients = useSelector(store => store.burger.ingredients);
+
+const dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(loadIngredients())
+}, [dispatch])
 
   return (
     <main className={`mb-6 ${style.main}`}>
-      {ingredients.isLoading && 'Загрузка...'}
-      {ingredients.hasError && 'Произошла ошибка'}  
-      {!ingredients.isLoading &&
-        !ingredients.hasError &&
-        ingredients.data.length &&
+      {isLoadingIngredient && 'Загрузка...'}
+      {hasErrorIngredient && 'Произошла ошибка'}  
+      {!isLoadingIngredient &&
+        !hasErrorIngredient &&
+        ingredients.length &&
         <>
           <ComponentContext.Provider value={{order, setOrder, totalSumState, totalSumDispatcher}}>
-            <BurgerIngredients data={ingredients.data}/> 
+            <BurgerIngredients /> 
             <BurgerComponents />
           </ComponentContext.Provider>
         </>

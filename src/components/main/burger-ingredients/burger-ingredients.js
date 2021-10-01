@@ -1,4 +1,5 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef } from 'react';
+import { useSelector} from 'react-redux';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerBlock from './burger-block/burger-block';
@@ -10,13 +11,14 @@ import {ComponentContext} from '../../../services/main-context'
 
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
-function BurgerIngredients({ data }) {
-  const {order, setOrder, totalSumDispatcher}  = useContext(ComponentContext);
+function BurgerIngredients() {
+  const ingredients = useSelector(store => store.burger.ingredients)
+  
   const [current, setCurrent] = useState('bun'); //Tab
 
-  const buns = data.filter((x) => x.type === "bun");
-  const mains = data.filter((x) => x.type === "main");
-  const sauces = data.filter((x) => x.type === "sauce");
+  const buns = ingredients.filter((x) => x.type === "bun");
+  const mains = ingredients.filter((x) => x.type === "main");
+  const sauces = ingredients.filter((x) => x.type === "sauce");
 
   const bunsAncor = useRef(null);
   const mainsAncor = useRef(null);
@@ -31,21 +33,21 @@ function BurgerIngredients({ data }) {
   const[clickedBurger, setClickedBurger] = useState(null);
 
   const showBurger = (burger) =>{
-    setClickedBurger(burger);
-    if(burger.type === 'bun'){
-      setOrder({
-        ...order,
-        bun: burger
-      });
-      totalSumDispatcher({type: 'setBun', bun: burger})
-    } else{
-      setOrder({
-        ...order,
-        ingredients:[...order.ingredients, burger]
-      });
-      totalSumDispatcher({type: 'add', price: burger.price})
-    }
-    setIsOpenModal(true);
+    // setClickedBurger(burger);
+    // if(burger.type === 'bun'){
+    //   setOrder({
+    //     ...order,
+    //     bun: burger
+    //   });
+    //   totalSumDispatcher({type: 'setBun', bun: burger})
+    // } else{
+    //   setOrder({
+    //     ...order,
+    //     ingredients:[...order.ingredients, burger]
+    //   });
+    //   totalSumDispatcher({type: 'add', price: burger.price})
+    // }
+    // setIsOpenModal(true);
   }
   return (
     <>
