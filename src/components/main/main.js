@@ -21,7 +21,6 @@ function Main(){
 
 useEffect(() => {
   dispatch(loadIngredients())
-  console.log(ingredients)
 }, [dispatch])
 
 

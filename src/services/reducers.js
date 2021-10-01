@@ -8,7 +8,8 @@ import {
   GET_ORDER_FAILED,
   ADD_COMPONENT,
   ADD_PRICE_COMPONENT,
-  DEL_COMPONENT 
+  DEL_COMPONENT,
+  CONFIRM_ORDER 
 } from './actions'
 
 // const idIngredients = order.ingredients.map((x) => x._id);
@@ -45,7 +46,10 @@ export const burgerReducer = (state = initialState, action) => {
       return{
         ...state,
         order: action.value.order,
-        isLoadingOrder: false
+        isLoadingOrder: false,
+        components: [],
+        confirmOrder: false,
+        bun: null
       }
     }
     case GET_ORDER_REQUEST:{
@@ -60,6 +64,12 @@ export const burgerReducer = (state = initialState, action) => {
         ...state,
         hasErrorOrder: true,
         isLoadingOrder: false
+      }
+    }
+    case CONFIRM_ORDER:{
+      return{
+        ...state,
+        confirmOrder: action.value
       }
     }
     //#endregion

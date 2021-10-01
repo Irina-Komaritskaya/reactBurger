@@ -1,7 +1,7 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
-import { DEL_COMPONENT } from '../../../services/actions';
+import { DEL_COMPONENT, CONFIRM_ORDER } from '../../../services/actions';
 import Modal from '../../modal/modal';
 import { v4 as generateKey} from 'uuid';
 import PropTypes from 'prop-types';
@@ -13,6 +13,7 @@ import {
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
+import {loadOrder} from '../../../services/actions'
 
 
     //BurgerComponents- компонент для корзины заказа
@@ -20,11 +21,32 @@ function BurgerComponents() {
   const bun = useSelector(store => store.burger.bun)
   const components = useSelector(store => store.burger.components)
   const totalSum = useSelector(store => store.burger.totalSum)
+  const confirmOrder =useSelector(store => store.burger.confirmOrder)
   const dispatch = useDispatch();
   const[isOpenModal, setIsOpenModal] = useState(false);
 
   const handleClick = () =>{
     setIsOpenModal(false);
+  }
+
+  useEffect(() => {
+    if(confirmOrder){
+      const idIngredients = components.map((x) => x._id);
+      const idBun = bun._id;
+      dispatch(loadOrder(idIngredients, idBun))
+    }
+  }, [dispatch, confirmOrder])
+
+  const onClickOrder = () => {
+    if(!bun){
+      alert('Для оформления заказа выберите булку')
+    } else {
+     dispatch({
+       type: CONFIRM_ORDER,
+       value: true
+     })
+      setIsOpenModal(true);
+    }
   }
   return (
   <>
@@ -68,15 +90,7 @@ function BurgerComponents() {
         {totalSum} <CurrencyIcon type="primary" />
         </span>
         <Button 
-          onClick={()=> {
-            if(!bun){
-              alert('Для оформления заказа выберите булку')
-            } else {
-            // setConfirmOrder(true);
-            // setIsOpenModal(true);
-            }
-            
-          }} 
+          onClick={onClickOrder} 
           type="primary" 
           size="large"
         >

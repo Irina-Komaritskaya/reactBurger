@@ -7,9 +7,7 @@ export const initialState = {
   //#endregion
 
   //region order
-  order: {
-    numberOrder: 0
-  },
+  order: null,
   totalSum: 0,
   bun: null,
   components: [],

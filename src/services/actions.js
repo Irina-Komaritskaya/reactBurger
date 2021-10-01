@@ -8,8 +8,9 @@ export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
 
 export const ADD_COMPONENT = 'ADD_COMPONENT';
-export const ADD_PRICE_COMPONENT = 'ADD_PRICE_COMPONENT'
-export const DEL_COMPONENT ='DEL_PRICE_COMPONENT'
+export const ADD_PRICE_COMPONENT = 'ADD_PRICE_COMPONENT';
+export const DEL_COMPONENT ='DEL_PRICE_COMPONENT';
+export const CONFIRM_ORDER ='CONFIRM_ORDER';
 
 export function loadIngredients(){
   return function(dispatch){
@@ -42,7 +43,7 @@ export function loadOrder(idIngredients, idBun){
         const res = await getOrder(idIngredients, idBun);
         dispatch({
           type: GET_ORDER_SUCCESS,
-          value: {...res, idIngredients, idBun }
+          value: {order: res.order, idIngredients, idBun }
         })
         return res;
       }
