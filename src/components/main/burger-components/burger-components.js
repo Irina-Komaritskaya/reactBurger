@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
-import { DEL_COMPONENT, CONFIRM_ORDER } from '../../../services/actions';
+import { DEL_COMPONENT, CONFIRM_ORDER, ADD_COMPONENT } from '../../../services/actions';
 import Modal from '../../modal/modal';
 import { v4 as generateKey} from 'uuid';
 import PropTypes from 'prop-types';
@@ -14,7 +14,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import {loadOrder} from '../../../services/actions'
-
+import {useDrop} from 'react-dnd'
 
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
@@ -48,6 +48,16 @@ function BurgerComponents() {
       setIsOpenModal(true);
     }
   }
+
+  const [ {} ,dropRef] = useDrop({
+    accept: 'ingredient',
+    drop: (item) =>{
+      dispatch({
+        type: ADD_COMPONENT,
+        value: item
+      })
+    }
+  })
   return (
   <>
     <div className={`mt-25 ${styles.panel}`}>
@@ -59,7 +69,7 @@ function BurgerComponents() {
           thumbnail={bun ? bun.image : '/images/default-bun.svg'}
         />
 
-      <ul className={`pr-8 ${styles.componentList}`} >
+      <ul className={`pr-8 ${styles.componentList}`} ref={dropRef}>
       {components.map((x, index) => (
         <li key={generateKey()} className={`mb-4 ${styles.fullWidht}`}>
           {<DragIcon type="primary" />}

@@ -7,7 +7,6 @@ import {
   GET_ORDER_REQUEST,
   GET_ORDER_FAILED,
   ADD_COMPONENT,
-  ADD_PRICE_COMPONENT,
   DEL_COMPONENT,
   CONFIRM_ORDER,
   ADD_CURRENT_INGREDIENT
@@ -83,21 +82,15 @@ export const burgerReducer = (state = initialState, action) => {
       if(action.value.type ==='bun'){
         return{
           ...state,
-          bun: action.value
+          bun: action.value,
+          totalSum: state.totalSum -  (state.bun ? state.bun.price * 2 : 0) + (action.value.price * 2)
         }
       }else{
         return{
           ...state,
-          components: [...state.components, action.value]
+          components: [...state.components, action.value],
+          totalSum: state.totalSum + action.value.price
         }
-      }
-    }
-    case ADD_PRICE_COMPONENT:{
-      return{
-        ...state,
-        totalSum: action.value.type === 'bun' 
-          ? state.totalSum -  (state.bun ? state.bun.price * 2 : 0) + (action.value.price * 2)
-          : state.totalSum + action.value.price
       }
     }
     case DEL_COMPONENT:{

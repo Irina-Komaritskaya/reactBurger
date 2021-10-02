@@ -7,7 +7,7 @@ import {dataItemProps, orderItemProps} from '../../../types/types';
 import PropTypes from 'prop-types';
 import Modal from '../../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
-import { ADD_COMPONENT, ADD_PRICE_COMPONENT, ADD_CURRENT_INGREDIENT } from '../../../services/actions';
+import { ADD_CURRENT_INGREDIENT } from '../../../services/actions';
 
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
@@ -36,14 +36,6 @@ function BurgerIngredients() {
       type: ADD_CURRENT_INGREDIENT,
       value: currentIngredient
     })
-    // dispatch({
-    //   type: ADD_PRICE_COMPONENT,
-    //   value: {price: currentIngredient.price, type: currentIngredient.type}
-    // })
-    // dispatch({
-    //   type: ADD_COMPONENT ,
-    //   value: currentIngredient
-    // })
      setIsOpenModal(true);
   }
   
