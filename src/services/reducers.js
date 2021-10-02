@@ -9,11 +9,9 @@ import {
   ADD_COMPONENT,
   ADD_PRICE_COMPONENT,
   DEL_COMPONENT,
-  CONFIRM_ORDER 
+  CONFIRM_ORDER,
+  ADD_CURRENT_INGREDIENT
 } from './actions'
-
-// const idIngredients = order.ingredients.map((x) => x._id);
-// const idBun = order.bun._id;
 
 export const burgerReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -37,6 +35,12 @@ export const burgerReducer = (state = initialState, action) => {
         ...state,
         hasErrorIngredient: true,
         isLoadingIngredient: false
+      }
+    }
+    case ADD_CURRENT_INGREDIENT:{
+      return{
+        ...state,
+        currentIngredient: action.value
       }
     }
     //#endregion 
@@ -79,14 +83,12 @@ export const burgerReducer = (state = initialState, action) => {
       if(action.value.type ==='bun'){
         return{
           ...state,
-          bun: action.value,
-          currentIngredient: action.value
+          bun: action.value
         }
       }else{
         return{
           ...state,
-          components: [...state.components, action.value],
-          currentIngredient: action.value
+          components: [...state.components, action.value]
         }
       }
     }

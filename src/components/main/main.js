@@ -32,10 +32,8 @@ useEffect(() => {
         !hasErrorIngredient &&
         ingredients.length &&
         <>
-
             <BurgerIngredients />
             <BurgerComponents />
-
         </>
       }
     </main>

@@ -7,7 +7,7 @@ import {dataItemProps, orderItemProps} from '../../../types/types';
 import PropTypes from 'prop-types';
 import Modal from '../../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
-import { ADD_COMPONENT, ADD_PRICE_COMPONENT } from '../../../services/actions';
+import { ADD_COMPONENT, ADD_PRICE_COMPONENT, ADD_CURRENT_INGREDIENT } from '../../../services/actions';
 
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
@@ -30,34 +30,23 @@ function BurgerIngredients() {
   const handleClick = () =>{
     setIsOpenModal(false);
   }
- 
-  const[clickedBurger, setClickedBurger] = useState(null);
 
   const showBurger = (currentIngredient) =>{
     dispatch({
-      type: ADD_PRICE_COMPONENT,
-      value: {price: currentIngredient.price, type: currentIngredient.type}
-    })
-    dispatch({
-      type: ADD_COMPONENT ,
+      type: ADD_CURRENT_INGREDIENT,
       value: currentIngredient
     })
-    // setClickedBurger(burger);
-    // if(burger.type === 'bun'){
-    //   setOrder({
-    //     ...order,
-    //     bun: burger
-    //   });
-    //   totalSumDispatcher({type: 'setBun', bun: burger})
-    // } else{
-    //   setOrder({
-    //     ...order,
-    //     ingredients:[...order.ingredients, burger]
-    //   });
-    //   totalSumDispatcher({type: 'add', price: burger.price})
-    // }
-    // setIsOpenModal(true);
+    // dispatch({
+    //   type: ADD_PRICE_COMPONENT,
+    //   value: {price: currentIngredient.price, type: currentIngredient.type}
+    // })
+    // dispatch({
+    //   type: ADD_COMPONENT ,
+    //   value: currentIngredient
+    // })
+     setIsOpenModal(true);
   }
+  
   return (
     <>
       <div className={style.productPanel}>
@@ -94,7 +83,7 @@ function BurgerIngredients() {
 
           <h2 className='mt-10 mb-6' ref={saucesAncor}>Соусы</h2>
           <div className={style.ingredients}>
-              {sauces.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
+            {sauces.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
           </div>
           
           <h2 className='mt-10 mb-6' ref={mainsAncor}>Начинки</h2>
@@ -110,9 +99,7 @@ function BurgerIngredients() {
         title={"Детали ингридиента"}
         onCloseClick={handleClick}
       >
-      {clickedBurger && 
-        <IngredientDetails clickedBurger={clickedBurger}/>
-      }
+        <IngredientDetails/>
       </Modal>
     </>
   )
