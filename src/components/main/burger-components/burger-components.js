@@ -12,8 +12,6 @@ import {
   CurrencyIcon, 
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { orderItemProps } from '../../../types/types';
-import PropTypes from 'prop-types';
 
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
@@ -119,12 +117,4 @@ function BurgerComponents() {
   );
 }
 
-BurgerComponents.propTypes={
-  ComponentContext: PropTypes.shape({
-    order: orderItemProps.isRequired,
-    totalSumState: orderItemProps.isRequired,
-    totalSumDispatcher: PropTypes.func.isRequired,
-    setOrder: PropTypes.func.isRequired
-    })
-}
 export default BurgerComponents;

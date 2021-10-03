@@ -2,6 +2,8 @@ import { useDispatch } from 'react-redux';
 import {useDrop, useDrag} from 'react-dnd'
 import {useRef} from 'react'
 import { DEL_COMPONENT} from '../../../../services/actions';
+import PropTypes from 'prop-types';
+import { dataItemProps } from '../../../../types/types';
 import { 
   DragIcon, 
   ConstructorElement 
@@ -66,5 +68,11 @@ export function ComponentItem({item, index, moveListItem }){
         }}
         />
     </div>
-  ) 
+  )
+}
+
+ComponentItem.propTypes={
+  item: dataItemProps.isRequired,
+  index: PropTypes.number,
+  moveListItem: PropTypes.func
 }

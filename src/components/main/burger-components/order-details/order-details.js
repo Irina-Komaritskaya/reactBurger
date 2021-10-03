@@ -1,5 +1,4 @@
 import styles from './order-details.module.css';
-import PropTypes from 'prop-types';
 import { useSelector} from 'react-redux';
 
 function OrderDetails(){
@@ -19,12 +18,7 @@ function OrderDetails(){
         </p>
       </section>
   </>           
-)}
-
-OrderDetails.propTypes={
-  ComponentContext: PropTypes.shape({
-  numberOrder: PropTypes.number,
-  isLoading:PropTypes.bool
-})
+)
 }
+
 export default OrderDetails;
