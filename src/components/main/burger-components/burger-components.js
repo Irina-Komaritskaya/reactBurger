@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {useDrop} from 'react-dnd'
+import { CONFIRM_ORDER, ADD_COMPONENT, UPDATE_COMPONENT } from '../../../services/actions';
+import {loadOrder} from '../../../services/actions'
+
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
-import { DEL_COMPONENT, CONFIRM_ORDER, ADD_COMPONENT } from '../../../services/actions';
+import {ComponentItem} from './component-item'
 import Modal from '../../modal/modal';
-import { v4 as generateKey} from 'uuid';
-import PropTypes from 'prop-types';
-import { orderItemProps } from '../../../types/types';
 import { 
   Button, 
   CurrencyIcon, 
-  DragIcon, 
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
-import {loadOrder} from '../../../services/actions'
-import {useDrop} from 'react-dnd'
+import { orderItemProps } from '../../../types/types';
+import PropTypes from 'prop-types';
 
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
@@ -48,8 +48,8 @@ function BurgerComponents() {
       setIsOpenModal(true);
     }
   }
-
-  const [ {} ,dropRef] = useDrop({
+  
+  const [ ,ingredientRef] = useDrop({
     accept: 'ingredient',
     drop: (item) =>{
       dispatch({
@@ -57,10 +57,19 @@ function BurgerComponents() {
         value: item
       })
     }
-  })
+  });
+
+  const moveListItem = useCallback((dragIndex, hoverIndex) => {
+      dispatch({
+        type: UPDATE_COMPONENT,
+        value: { dragIndex, hoverIndex }
+      });
+  }, [components.length]);
+  
+
   return (
   <>
-    <div className={`mt-25 ${styles.panel}`}>
+    <div className={`mt-25 ${styles.panel}`} ref={ingredientRef}>
         <ConstructorElement
           type="top"
           isLocked={true}
@@ -69,23 +78,12 @@ function BurgerComponents() {
           thumbnail={bun ? bun.image : '/images/default-bun.svg'}
         />
 
-      <ul className={`pr-8 ${styles.componentList}`} ref={dropRef}>
-      {components.map((x, index) => (
-        <li key={generateKey()} className={`mb-4 ${styles.fullWidht}`}>
-          {<DragIcon type="primary" />}
-          <ConstructorElement
-            text={x.name}
-            price={x.price}
-            thumbnail={x.image}
-            handleClose={() => {
-              dispatch({
-                type: DEL_COMPONENT,
-                value: {price: x.price, index: index}
-              })
-            }}
-          />
-        </li>
-      ))}
+      <ul className={`pr-8 ${styles.componentList}`} >
+        {components.map((x, index) => {
+          return <li key={x.key} >
+            <ComponentItem item={x} index={index} moveListItem={moveListItem}/>
+          </li>
+      })}
       </ul>
             
         <ConstructorElement

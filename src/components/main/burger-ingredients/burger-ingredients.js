@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -7,7 +7,7 @@ import {dataItemProps, orderItemProps} from '../../../types/types';
 import PropTypes from 'prop-types';
 import Modal from '../../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
-import { ADD_CURRENT_INGREDIENT } from '../../../services/actions';
+import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../../services/actions';
 
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
@@ -25,10 +25,36 @@ function BurgerIngredients() {
   const mainsAncor = useRef(null);
   const saucesAncor = useRef(null);
 
+  const ingredientRef = useRef(null);
+
+  useEffect(() =>{
+    console.log(bunsAncor)
+    const handleScroll = () =>{
+      const positionScroll = ingredientRef.current.getBoundingClientRect().top;
+      const positionMains = mainsAncor.current.getBoundingClientRect().top - positionScroll;
+      const positionSauces = saucesAncor.current.getBoundingClientRect().top - positionScroll;
+      
+      if(positionMains < 0 ){
+        setCurrent('main')
+      } else if(positionSauces < 0){
+        setCurrent('sauces')
+      } else{
+        setCurrent('bun')
+      }
+    }
+    if (ingredientRef != null){
+      ingredientRef.current.addEventListener('scroll', handleScroll, {passive: true});
+    }
+    return () => { ingredientRef.current.removeEventListener('scroll', handleScroll);}
+  },[])
+
   const[isOpenModal, setIsOpenModal] = useState(false);
-  
+
   const handleClick = () =>{
     setIsOpenModal(false);
+    dispatch({
+      type: DEL_CURRENT_INGREDIENT
+    })
   }
 
   const showBurger = (currentIngredient) =>{
@@ -66,7 +92,7 @@ function BurgerIngredients() {
           </Tab>
         </div>
 
-        <div className={`pr-3 ${style.productList}`}>
+        <div className={`pr-3 ${style.productList}`} ref={ingredientRef}>
 
           <h2 className='mt-10 mb-6' ref={bunsAncor}>Булки</h2>
           <div className={style.ingredients}>

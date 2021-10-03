@@ -3,18 +3,20 @@ export const GET_INGREDIENT_SUCCESS = 'GET_INGREDIENT_SUCCESS';
 export const GET_INGREDIENT_REQUEST = 'GET_INGREDIENT_REQUEST';
 export const GET_INGREDIENT_FAILED = 'GET_INGREDIENT_FAILED';
 export const ADD_CURRENT_INGREDIENT = 'ADD_CURRENT_INGREDIENT';
+export const DEL_CURRENT_INGREDIENT ='DEL_CURRENT_INGREDIENT';
+
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
 export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
+export const CONFIRM_ORDER ='CONFIRM_ORDER';
 
 export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const DEL_COMPONENT ='DEL_PRICE_COMPONENT';
-export const CONFIRM_ORDER ='CONFIRM_ORDER';
+export const UPDATE_COMPONENT = 'UPDATE_COMPONENT';
 
 export function loadIngredients(){
   return function(dispatch){
     try{
-      console.log(1)
       const fetchIngredients = async () => {
         const res = await getIngredients();
         dispatch({

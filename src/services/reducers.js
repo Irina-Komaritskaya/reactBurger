@@ -1,4 +1,5 @@
 import {initialState} from './inital-data'
+import { v4 as generateKey} from 'uuid';
 import {
   GET_INGREDIENT_FAILED,
   GET_INGREDIENT_REQUEST,
@@ -9,7 +10,9 @@ import {
   ADD_COMPONENT,
   DEL_COMPONENT,
   CONFIRM_ORDER,
-  ADD_CURRENT_INGREDIENT
+  ADD_CURRENT_INGREDIENT,
+  DEL_CURRENT_INGREDIENT,
+  UPDATE_COMPONENT
 } from './actions'
 
 export const burgerReducer = (state = initialState, action) => {
@@ -40,6 +43,12 @@ export const burgerReducer = (state = initialState, action) => {
       return{
         ...state,
         currentIngredient: action.value
+      }
+    }
+    case DEL_CURRENT_INGREDIENT:{
+      return{
+        ...state,
+        currentIngredient: null
       }
     }
     //#endregion 
@@ -88,7 +97,10 @@ export const burgerReducer = (state = initialState, action) => {
       }else{
         return{
           ...state,
-          components: [...state.components, action.value],
+          components: [...state.components, {
+            ...action.value,
+            key: generateKey()
+          }],
           totalSum: state.totalSum + action.value.price
         }
       }
@@ -103,6 +115,19 @@ export const burgerReducer = (state = initialState, action) => {
         components: newComponents
       }
     }
+
+    case UPDATE_COMPONENT:{
+      const dragItem = state.components[action.value.dragIndex];
+      let newComponents = [...state.components];
+      newComponents.splice(action.value.dragIndex, 1);
+      newComponents.splice(action.value.hoverIndex, 0, dragItem)
+      console.log(newComponents)
+      return{
+        ...state,
+        components: newComponents
+      }
+    }
+
     //#endregion
     default: {
       return state;
