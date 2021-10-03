@@ -92,7 +92,7 @@ export const burgerReducer = (state = initialState, action) => {
         return{
           ...state,
           bun: action.value,
-          totalSum: state.totalSum -  (state.bun ? state.bun.price * 2 : 0) + (action.value.price * 2)
+          totalSum: state.totalSum - (state.bun ? state.bun.price * 2 : 0) + (action.value.price * 2)
         }
       }else{
         return{
@@ -121,13 +121,11 @@ export const burgerReducer = (state = initialState, action) => {
       let newComponents = [...state.components];
       newComponents.splice(action.value.dragIndex, 1);
       newComponents.splice(action.value.hoverIndex, 0, dragItem)
-      console.log(newComponents)
       return{
         ...state,
         components: newComponents
       }
     }
-
     //#endregion
     default: {
       return state;

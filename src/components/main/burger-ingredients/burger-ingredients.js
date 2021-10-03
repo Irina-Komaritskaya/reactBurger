@@ -26,7 +26,6 @@ function BurgerIngredients() {
   const ingredientRef = useRef(null);
 
   useEffect(() =>{
-    console.log(bunsAncor)
     const handleScroll = () =>{
       const positionScroll = ingredientRef.current.getBoundingClientRect().top;
       const positionMains = mainsAncor.current.getBoundingClientRect().top - positionScroll;

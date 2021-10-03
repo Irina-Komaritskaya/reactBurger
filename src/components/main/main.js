@@ -14,7 +14,7 @@ function Main(){
   const dispatch = useDispatch();
 
 useEffect(() => {
-  dispatch(loadIngredients())
+  dispatch(loadIngredients());
 }, [dispatch])
 
 
@@ -24,7 +24,7 @@ useEffect(() => {
       {hasErrorIngredient && 'Произошла ошибка'}
       {!isLoadingIngredient &&
         !hasErrorIngredient &&
-        ingredients.length &&
+        ingredients.length > 0 &&
         <>
             <BurgerIngredients />
             <BurgerComponents />
