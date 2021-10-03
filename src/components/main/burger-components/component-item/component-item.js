@@ -1,12 +1,11 @@
+import { useDispatch } from 'react-redux';
+import {useDrop, useDrag} from 'react-dnd'
+import {useRef} from 'react'
+import { DEL_COMPONENT} from '../../../../services/actions';
 import { 
   DragIcon, 
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { DEL_COMPONENT, UPDATE_COMPONENT } from '../../../services/actions';
-import { useDispatch } from 'react-redux';
-import {useDrop, useDrag} from 'react-dnd'
-import {useCallback, useRef, useState} from 'react'
-
 
 export function ComponentItem({item, index, moveListItem }){
   const dispatch = useDispatch();
@@ -18,7 +17,6 @@ export function ComponentItem({item, index, moveListItem }){
       isDragging: monitor.isDragging()
     }),
   });
-
  
   const [ ,dropRef] = useDrop({
     accept: 'item',
@@ -46,28 +44,7 @@ export function ComponentItem({item, index, moveListItem }){
       item.index = hoverIndex;
     }
   })
-  // const [components, setPets] = useState(components)
-  // const updateComponents = useCallback(
-  //   (dragIndex, hoverIndex) => {
-  //     const dragItem = components[dragIndex]
-  //     const hoverItem = components[hoverIndex]
-  //     // Swap places of dragItem and hoverItem in the pets array
-  //     setPets(pets => {
-  //         const updatedPets = [...components]
-  //         updatedPets[dragIndex] = hoverItem
-  //         updatedPets[hoverIndex] = dragItem
-  //         return updatedPets
-  //     })
-  // },
-  // [components],
-    // (dragIndex, hoverIndex) => {
-    //   dispatch({
-    //     type: UPDATE_COMPONENT,
-    //     dragIndex: dragIndex,
-    //     hoverIndex: hoverIndex
-    //   })
-  //}
-  // ) 
+ 
   const ref = useRef(null)
   dragRef(dropRef(ref))
   const opacity = isDragging ? 0 : 1;

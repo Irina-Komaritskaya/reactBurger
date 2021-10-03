@@ -1,5 +1,4 @@
 import style from './ingredient-details.module.css';
-import {dataItemProps} from '../../../../types/types';
 import { useSelector } from 'react-redux';
 
 function IngredientDetails(){
@@ -30,7 +29,4 @@ function IngredientDetails(){
   );
 }
 
-IngredientDetails.propTypes={
-  clickedBurger: dataItemProps.isRequired
-}
 export default IngredientDetails;

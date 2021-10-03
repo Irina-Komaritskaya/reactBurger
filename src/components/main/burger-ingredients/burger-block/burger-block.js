@@ -39,7 +39,6 @@ function BurgerBlock({ data, onClick}) {
 
 BurgerBlock.propTypes={
   data:dataItemProps.isRequired,
-  setBascet: PropTypes.func,
-  className: PropTypes.string
+  onClick: PropTypes.func,
 }
 export default BurgerBlock;

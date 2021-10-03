@@ -1,12 +1,11 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useDrop} from 'react-dnd'
 import { CONFIRM_ORDER, ADD_COMPONENT, UPDATE_COMPONENT } from '../../../services/actions';
 import {loadOrder} from '../../../services/actions'
-
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
-import {ComponentItem} from './component-item'
+import {ComponentItem} from './component-item/component-item'
 import Modal from '../../modal/modal';
 import { 
   Button, 
@@ -85,7 +84,7 @@ function BurgerComponents() {
           </li>
       })}
       </ul>
-            
+
         <ConstructorElement
           type="bottom"
           isLocked={true}
@@ -106,6 +105,7 @@ function BurgerComponents() {
         </Button>
       </section>
     </div>
+    
     <Modal
       isOpen={isOpenModal} 
       onClick={handleClick} 

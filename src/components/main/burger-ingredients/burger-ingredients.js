@@ -1,13 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import style from './burger-ingredients.module.css';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../../services/actions';
 import BurgerBlock from './burger-block/burger-block';
-import {dataItemProps, orderItemProps} from '../../../types/types';
-import PropTypes from 'prop-types';
 import Modal from '../../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
-import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../../services/actions';
+import style from './burger-ingredients.module.css';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
@@ -33,7 +31,7 @@ function BurgerIngredients() {
       const positionScroll = ingredientRef.current.getBoundingClientRect().top;
       const positionMains = mainsAncor.current.getBoundingClientRect().top - positionScroll;
       const positionSauces = saucesAncor.current.getBoundingClientRect().top - positionScroll;
-      
+
       if(positionMains < 0 ){
         setCurrent('main')
       } else if(positionSauces < 0){
@@ -45,7 +43,7 @@ function BurgerIngredients() {
     if (ingredientRef != null){
       ingredientRef.current.addEventListener('scroll', handleScroll, {passive: true});
     }
-    return () => { ingredientRef.current.removeEventListener('scroll', handleScroll);}
+    return () => { ingredientRef?.current?.removeEventListener('scroll', handleScroll);}
   },[])
 
   const[isOpenModal, setIsOpenModal] = useState(false);
@@ -121,15 +119,6 @@ function BurgerIngredients() {
       </Modal>
     </>
   )
-}
-
-BurgerIngredients.propTypes={
-  data: PropTypes.arrayOf(dataItemProps.isRequired).isRequired,
-  ComponentContext: PropTypes.shape({
-    order: orderItemProps.isRequired,
-    totalSumDispatcher: PropTypes.func.isRequired,
-    setOrder: PropTypes.func.isRequired
-    })
 }
 
 export default BurgerIngredients;

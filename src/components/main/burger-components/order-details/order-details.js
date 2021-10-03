@@ -1,8 +1,6 @@
-import { useContext } from 'react';
 import styles from './order-details.module.css';
 import PropTypes from 'prop-types';
 import { useSelector} from 'react-redux';
-
 
 function OrderDetails(){
   const {order,isLoadingOrder} = useSelector(store => store.burger);
