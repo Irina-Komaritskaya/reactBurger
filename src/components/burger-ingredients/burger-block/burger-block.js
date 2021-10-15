@@ -1,5 +1,5 @@
 import style from './burger-block.module.css'
-import {dataItemProps} from '../../../../types/types';
+import {dataItemProps} from '../../../types/types';
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd'
 import PropTypes from 'prop-types';

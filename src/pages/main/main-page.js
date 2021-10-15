@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import {useEffect} from 'react';
 import style from './main.module.css';
-import BurgerIngredients from './burger-ingredients/burger-ingredients'
-import BurgerComponents from './burger-components/burger-components'
+import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients'
+import BurgerComponents from '../../components/burger-components/burger-components'
 import {loadIngredients} from '../../services/actions'
 
-function Main(){
+function MainPage(){
 
   const isLoadingIngredient = useSelector(store => store.burger.isLoadingIngredient);
   const hasErrorIngredient = useSelector(store => store.burger.hasErrorIngredient);
@@ -34,4 +34,4 @@ useEffect(() => {
   )
 }
 
-export default Main;
+export default MainPage;

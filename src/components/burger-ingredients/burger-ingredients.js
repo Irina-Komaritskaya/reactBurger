@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../../services/actions';
+import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../services/actions';
 import BurgerBlock from './burger-block/burger-block';
-import Modal from '../../modal/modal'
+import Modal from '../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
