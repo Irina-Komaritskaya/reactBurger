@@ -39,10 +39,10 @@ export function RegistrationPage() {
         icon={'ShowIcon'}
       />
       <Button type="primary" size="large">Зарегистрироваться</Button>
-      <span className='mt-20 text text_type_main-defoult text_color_inactive'>
-        Уже зарегистрированы? 
-        <Link to='/signin' className='text_color_accent'>
-           Войти
+      <span className='mt-20 text text_type_main-default text_color_inactive'>
+        Уже зарегистрированы?
+        <Link to='/login' className='text_color_accent'>
+        &nbsp;Войти
         </Link>
       </span>
   </form>

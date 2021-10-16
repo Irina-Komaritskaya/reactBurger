@@ -1,9 +1,9 @@
-import styles from './sign-in.module.css'
+import styles from './login.module.css'
 import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export function SignInPage() {
+export function LoginPage() {
   const [value, setValue] = useState('')
   
   const onChange = e => {
@@ -32,12 +32,12 @@ export function SignInPage() {
         icon={'ShowIcon'}
       />
       <Button type="primary" size="large">Войти</Button>
-      <p className='mt-20 text text_type_main-defoult text_color_inactive'>
+      <p className='mt-20 text text_type_main-default text_color_inactive'>
         Вы - новый пользователь? 
-        <Link to='/register' className='text_color_accent'> Зарегистрироватся</Link>
+        <Link to='/register' className='text_color_accent'> Зарегистрироваться</Link>
       </p>
-      <p className='mt-4 text text_type_main-defoult text_color_inactive'>
-        Забыли пароль? Восстановить пароль
+      <p className='mt-4 text text_type_main-default text_color_inactive'>
+        Забыли пароль? <Link to='/forgot-password' className='text_color_accent'>Восстановить пароль</Link>
       </p>
   </form>
   </div>
