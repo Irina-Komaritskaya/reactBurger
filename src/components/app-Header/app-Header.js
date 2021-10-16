@@ -1,4 +1,5 @@
 import style from './header.module.css';
+import { Link } from 'react-router-dom';
 import {
 		Logo, 
 		BurgerIcon, 
@@ -20,10 +21,10 @@ function AppHeader(){
 						</a>
 				</nav>
 				<span className={style.logo}><Logo /></span>
-				<a href='#' className={`text text_type_main-default text_color_inactive ${style.iconText}`}>
+				<Link to='/register' className={`text text_type_main-default text_color_inactive ${style.iconText}`}>
 						<ProfileIcon type="secondary" />
 						<span className="pl-2">Личный кабинет</span>
-				</a>
+        </Link>
 		</header>
 		)}
 
