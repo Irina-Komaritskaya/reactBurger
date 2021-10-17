@@ -1,4 +1,5 @@
 import {initialState} from './inital-data'
+import { setCookie } from '../utils/cookie';
 import { v4 as generateKey} from 'uuid';
 import {
   GET_INGREDIENT_FAILED,
@@ -12,7 +13,10 @@ import {
   CONFIRM_ORDER,
   ADD_CURRENT_INGREDIENT,
   DEL_CURRENT_INGREDIENT,
-  UPDATE_COMPONENT
+  UPDATE_COMPONENT,
+  GET_REG_SUCCESS,
+  GET_REG_REQUEST,
+  GET_REG_FAILED
 } from './actions'
 
 export const burgerReducer = (state = initialState, action) => {
@@ -127,6 +131,18 @@ export const burgerReducer = (state = initialState, action) => {
       }
     }
     //#endregion
+
+    case GET_REG_SUCCESS:{
+      const {accessToken, refreshToken} = action.value;
+      setCookie('accessToken', accessToken, {expires: 20*60});
+      setCookie('refreshToken', refreshToken, {expires: 30*24*60});
+      alert('Вы успешно зарегистрировались');
+      return state;
+    }
+    case GET_REG_FAILED:{
+      alert('Что-то пошло не так, регистрация не успешна');
+      return state;
+    }
     default: {
       return state;
     }

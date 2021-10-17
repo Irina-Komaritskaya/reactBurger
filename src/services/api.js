@@ -30,3 +30,16 @@ export const getOrder = async (idIngredients, idBun) => {
   });
   return result;
 }
+
+export const registration = async (name, email, password) => {
+  const urlReg = 'https://norma.nomoreparties.space/api/auth/register'
+  const result = await getData( urlReg, {
+    method: 'POST',
+    body: new URLSearchParams({
+      'email': email, 
+      'password': password, 
+      'name': name 
+    })
+  })
+  return result;
+}

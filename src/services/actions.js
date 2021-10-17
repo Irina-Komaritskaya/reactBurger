@@ -1,4 +1,4 @@
-import {getIngredients, getOrder} from './api'
+import {getIngredients, getOrder, registration} from './api'
 export const GET_INGREDIENT_SUCCESS = 'GET_INGREDIENT_SUCCESS';
 export const GET_INGREDIENT_REQUEST = 'GET_INGREDIENT_REQUEST';
 export const GET_INGREDIENT_FAILED = 'GET_INGREDIENT_FAILED';
@@ -13,6 +13,10 @@ export const CONFIRM_ORDER ='CONFIRM_ORDER';
 export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const DEL_COMPONENT ='DEL_PRICE_COMPONENT';
 export const UPDATE_COMPONENT = 'UPDATE_COMPONENT';
+
+export const GET_REG_SUCCESS= 'GET_REG_SUCCESS';
+export const GET_REG_REQUEST= 'GET_REG_REQUEST';
+export const GET_REG_FAILED= 'GET_REG_FAILED';
 
 export function loadIngredients(){
   return function(dispatch){
@@ -57,6 +61,28 @@ export function loadOrder(idIngredients, idBun){
     catch(e){
       dispatch({
         type: GET_ORDER_FAILED
+      })
+    }
+  }
+}
+
+export function registrationUser (name, email, password){
+  return function (dispatch){
+    try{
+      const fetchReg = async () => {
+        const res = await registration(name, email, password);
+        const accessToken = res.accessToken.split(' ')[1];
+        dispatch({
+          type: GET_REG_SUCCESS,
+          value: {accessToken, refreshToken: res.refreshToken}
+        })
+        return res;
+      }
+      fetchReg();
+    }
+    catch(e){
+      dispatch({
+        type: GET_REG_FAILED
       })
     }
   }

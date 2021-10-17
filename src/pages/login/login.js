@@ -39,6 +39,7 @@ export function LoginPage() {
       <p className='mt-4 text text_type_main-default text_color_inactive'>
         Забыли пароль? <Link to='/forgot-password' className='text_color_accent'>Восстановить пароль</Link>
       </p>
+      <Link to='/profile'> Profile </Link>
   </form>
   </div>
   );

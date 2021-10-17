@@ -1,0 +1,13 @@
+.wrapper{
+  display: flex;
+  justify-content: flex-start; 
+}
+
+.itemsProfile{
+  text-align: start;
+  max-width: 320px;
+}
+
+.form > div{
+  margin-top: calc(var(--offset-base-size)  * 4);
+}
