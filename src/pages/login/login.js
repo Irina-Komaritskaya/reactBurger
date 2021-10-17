@@ -10,8 +10,7 @@ export function LoginPage() {
   const [value, setValue] = useState({ password: '', email: ''})
   const user = useSelector(store => store.burger.user)
   const isResetPassword = useSelector(store => store.burger.isResetPassword)
-   console.log(isResetPassword)
-
+  
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }

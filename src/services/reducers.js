@@ -25,7 +25,9 @@ import {
   RESET_SUCCESS,
   RESET_FAILED,
   CLEAR_RESET_PASSWORD,
-  GET_USER_FROM_COOKIES
+  GET_USER_FROM_COOKIES,
+  UPDATE_PROFILE_FAILED,
+  UPDATE_PROFILE_SUCCESS
 } from './actions'
 
 export const burgerReducer = (state = initialState, action) => {
@@ -141,7 +143,7 @@ export const burgerReducer = (state = initialState, action) => {
       }
     }
     //#endregion
-
+    //#region reg
     case GET_REG_SUCCESS:{
       const {accessToken, refreshToken} = action.value;
       setCookie('accessToken', accessToken, {expires: 20*60});
@@ -159,7 +161,9 @@ export const burgerReducer = (state = initialState, action) => {
       alert('Что-то пошло не так, регистрация не успешна');
       return state;
     }
+    //#endregion
 
+    //#region auth
     case GET_AUTH_SUCCESS:{
       const {accessToken, refreshToken} = action.value;
       setCookie('accessToken', accessToken, {expires: 20*60});
@@ -194,7 +198,9 @@ export const burgerReducer = (state = initialState, action) => {
       alert('Что-то пошло не так, выйти не удалось');
       return state;
     }
-
+    //#endregion
+    
+    //#region password
     case FORGOT_SUCCESS:{
       return {
         ...state,
@@ -224,11 +230,27 @@ export const burgerReducer = (state = initialState, action) => {
         isResetPassword: false
       }
     }
+    //#endregion
     case GET_USER_FROM_COOKIES:{
       return{
         ...state,
         user: action.user
       }
+    }
+
+    case UPDATE_PROFILE_SUCCESS:{
+      const user = action.user
+      console.log(action.user)
+      setCookie('user', JSON.stringify(user));
+      return{
+        ...state,
+        user: action.user
+      }
+    }
+
+    case UPDATE_PROFILE_FAILED:{
+      alert('Обновить не удалось');
+      return state;
     }
     default: {
       return state;

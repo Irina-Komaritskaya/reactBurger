@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from './profile.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getCookie } from '../../utils/cookie';
-import {logOutUser} from '../../services/actions';
+import {logOutUser, updateProfileUser} from '../../services/actions';
 import { Redirect } from 'react-router-dom';
 
 export function ProfilePage() {
@@ -11,7 +11,26 @@ export function ProfilePage() {
   const user = useSelector(store => store.burger.user)
   const [value, setValue] = useState({name: user.name, email: user.email, password: ''})
   const [disabled, setDisabled] = useState({name: true, email: true, password: true})
-  
+ 
+  const onClickSave = (e) => {
+    e.preventDefault();
+    const newValue = {}
+    if (user.name !== value.name){
+      newValue['name'] = value.name;
+    } 
+    if (user.email !== value.email){
+      newValue['email'] = value.email;
+    }
+    if (value.password !== ''){
+      newValue['password'] = value.password;
+    }
+    const token = getCookie('accessToken')
+    dispatch(updateProfileUser( newValue, token))
+  }
+
+  const onClickCancel = () => {
+    setValue({name: user.name, email: user.email, password: ''})
+  }
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
@@ -30,7 +49,7 @@ export function ProfilePage() {
     const onIconClickName = () =>  setDisabled({...disabled, name: !disabled.name});
     const onIconClickEmail = () => setDisabled({...disabled, email: !disabled.email});
     const onIconClickPassword = () =>  setDisabled({...disabled, password: !disabled.password});
-
+    
   return(
     <div className={`mt-25 ml-5 ${styles.wrapper}`}>
     <div className={`mr-15 text text_type_main-medium ${styles.itemsProfile}`}>
@@ -74,20 +93,16 @@ export function ProfilePage() {
         icon={'EditIcon'}
         onIconClick={onIconClickPassword}
       />
-      {
-        !disabled.password || !disabled.email || !disabled.name
-        ? (
+      
           <div>
-          <Button type="primary" size="small">
+          <Button type="primary" size="small" onClick={onClickSave}>
             Сохранить
           </Button>
-          <Button type="secondary" size="medium">
+          <Button type="secondary" size="medium" onClick={onClickCancel}>
              Отмена
           </Button>
           </div>
-        )
-        : <></>
-      }
+
       
     </form>
     </div>

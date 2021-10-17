@@ -89,3 +89,16 @@ export const resetPassword = async (password, token) => {
   })
   return result;
 }
+
+export const updateProfile = async (value, token) => {
+  const urlReset =  "https://norma.nomoreparties.space/api/auth/user"
+  const result = await getData( urlReset, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+token
+    },
+    body: JSON.stringify(value),
+  })
+  return result;
+}

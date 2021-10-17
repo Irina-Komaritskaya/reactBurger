@@ -1,4 +1,4 @@
-import {getIngredients, getOrder, registration, authorization, logOut, forgotPassword, resetPassword} from './api'
+import {getIngredients, getOrder, registration, authorization, logOut, forgotPassword, resetPassword, updateProfile} from './api'
 export const GET_INGREDIENT_SUCCESS = 'GET_INGREDIENT_SUCCESS';
 export const GET_INGREDIENT_REQUEST = 'GET_INGREDIENT_REQUEST';
 export const GET_INGREDIENT_FAILED = 'GET_INGREDIENT_FAILED';
@@ -32,6 +32,9 @@ export const RESET_FAILED = 'RESET_FAILED';
 export const CLEAR_RESET_PASSWORD = 'CLEAR_RESET_PASSWORD';
 
 export const GET_USER_FROM_COOKIES = 'GET_USER_FROM_COOKIES';
+
+export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
+export const UPDATE_PROFILE_FAILED = 'UPDATE_PROFILE_FAILED';
 
 export function loadIngredients(){
   return function(dispatch){
@@ -149,6 +152,22 @@ export function resetPasswordUser({password, token}){
     }
     fetchReset().catch(() => dispatch({
       type: RESET_FAILED
+    }));
+  }
+}
+
+export function updateProfileUser(value, token){
+  return function (dispatch){
+    const fetchUpdateProfile = async () => { 
+      const res = await updateProfile(value, token);
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        user: res.user
+      })
+      return res;
+    }
+    fetchUpdateProfile().catch(() => dispatch({
+      type: UPDATE_PROFILE_FAILED
     }));
   }
 }

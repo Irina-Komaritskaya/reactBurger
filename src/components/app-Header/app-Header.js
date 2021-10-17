@@ -21,7 +21,7 @@ function AppHeader(){
       user: JSON.parse(userCookie)
     })
   }
-  console.log(user)
+
 		return (
 		<header className={style.header}>
 				<nav className={style.nav}> 
