@@ -8,6 +8,10 @@
   max-width: 320px;
 }
 
+.itemsProfile > p{
+  cursor: pointer
+}
+
 .form > div{
   margin-top: calc(var(--offset-base-size)  * 4);
 }

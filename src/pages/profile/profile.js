@@ -1,18 +1,42 @@
-import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import styles from './profile.module.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { getCookie } from '../../utils/cookie';
+import {logOutUser} from '../../services/actions';
+import { Redirect } from 'react-router-dom';
+
 export function ProfilePage() {
-  const [value, setValue] = useState('')
+  const dispatch = useDispatch();
+  const user = useSelector(store => store.burger.user)
+  const [value, setValue] = useState({name: user.name, email: user.email, password: ''})
+  const [disabled, setDisabled] = useState({name: true, email: true, password: true})
   
   const onChange = e => {
-    setValue(e.target.value)
+    setValue({ ...value, [e.target.name]: e.target.value });
   }
+ 
+    const onClick = (e) =>{
+      e.preventDefault();
+      const accessToken = getCookie('accessToken');
+      const refreshToken = getCookie('refreshToken');
+      dispatch(logOutUser(accessToken, refreshToken))
+    }
+  
+    if (!user){
+      return <Redirect to={{pathname: '/login'}}/>
+    }  
+
+    const onIconClickName = () =>  setDisabled({...disabled, name: !disabled.name});
+    const onIconClickEmail = () => setDisabled({...disabled, email: !disabled.email});
+    const onIconClickPassword = () =>  setDisabled({...disabled, password: !disabled.password});
+
   return(
     <div className={`mt-25 ml-5 ${styles.wrapper}`}>
     <div className={`mr-15 text text_type_main-medium ${styles.itemsProfile}`}>
       <p>Профиль</p>
       <p className="text_color_inactive">История заказов</p>
-      <p className="text_color_inactive">Выход</p>
+      <p className="text_color_inactive" onClick={onClick}>Выход</p>
       <p className='mt-20 text text_type_main-default text_color_inactive'>
         В этом разделе вы можете изменить свои персональные данные
       </p>
@@ -21,30 +45,50 @@ export function ProfilePage() {
     <Input type='text' 
         placeholder={'Имя'} 
         onChange={onChange}
-        disabled={true} 
-        value={value} 
+        disabled={disabled.name} 
+        value={value.name} 
         name={'name'}  
         size={'default'}
         icon={'EditIcon'}
+        onIconClick={onIconClickName}
       />
       <Input 
         type='email' 
         placeholder={'Email'} 
         onChange={onChange} 
-        value={value} 
+        value={value.email} 
+        disabled={disabled.email} 
         name={'email'} 
         size={'default'}
         icon={'EditIcon'}
+        onIconClick={onIconClickEmail}
       />
        <Input 
         type='password' 
         placeholder={'password'} 
         onChange={onChange} 
-        value={value} 
+        value={value.password} 
+        disabled={disabled.password} 
         name={'password'} 
         size={'default'}
         icon={'EditIcon'}
+        onIconClick={onIconClickPassword}
       />
+      {
+        !disabled.password || !disabled.email || !disabled.name
+        ? (
+          <div>
+          <Button type="primary" size="small">
+            Сохранить
+          </Button>
+          <Button type="secondary" size="medium">
+             Отмена
+          </Button>
+          </div>
+        )
+        : <></>
+      }
+      
     </form>
     </div>
   )

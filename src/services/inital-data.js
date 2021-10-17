@@ -16,4 +16,6 @@ export const initialState = {
   hasErrorOrder: false,
   //#endregion
 
+  user: null,
+ redirect: null
 }

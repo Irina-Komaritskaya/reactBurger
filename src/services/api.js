@@ -31,14 +31,60 @@ export const getOrder = async (idIngredients, idBun) => {
   return result;
 }
 
-export const registration = async (name, email, password) => {
+export const registration = async (value) => {
   const urlReg = 'https://norma.nomoreparties.space/api/auth/register'
   const result = await getData( urlReg, {
     method: 'POST',
     body: new URLSearchParams({
-      'email': email, 
-      'password': password, 
-      'name': name 
+      'email': value.email, 
+      'password': value.password, 
+      'name': value.name 
+    })
+  })
+  return result;
+}
+
+export const authorization = async (value) => {
+  const urlAuth = 'https://norma.nomoreparties.space/api/auth/login'
+  const result = await getData( urlAuth, {
+    method: 'POST',
+    body: new URLSearchParams({
+      'email': value.email, 
+      'password': value.password,  
+    })
+  })
+  return result;
+}
+
+export const logOut = async (token) => {
+  const urlOut = 'https://norma.nomoreparties.space/api/auth/logout'
+  const result = await getData( urlOut, {
+    method: 'POST',
+    body: new URLSearchParams({
+      "token": token
+    })
+  })
+  return result;
+}
+
+export const forgotPassword = async (email) => {
+  const urlforgot = 'https://norma.nomoreparties.space/api/password-reset'
+  const result = await getData( urlforgot, {
+    method: 'POST',
+    body: new URLSearchParams({
+      "email": email
+    })
+  })
+  return result;
+}
+
+export const resetPassword = async (password, token) => {
+  const urlReset =  "https://norma.nomoreparties.space/api/password-reset/reset"
+  const result = await getData( urlReset, {
+    method: 'POST',
+    body: new URLSearchParams({
+      "password": password,
+      "token": token
     })
   })
   return result;

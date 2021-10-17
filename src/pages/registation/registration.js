@@ -1,13 +1,15 @@
 import styles from './registration.module.css'
 import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {registrationUser} from '../../services/actions'
+
 
 export function RegistrationPage() {
   const dispatch = useDispatch();
-  const [value, setValue] = useState({ name: '', email: '', password: '' });
+  const user = useSelector(store => store.burger.user)
+  const [value, setValue] = useState({ name: 'pig', email: 'pig@yandex.ru', password: '1' });
   const [typeInput, setTypeInput] = useState('password')
   
   const onChange = e => {
@@ -19,7 +21,11 @@ export function RegistrationPage() {
   }
   const onClick = (e) => {
     e.preventDefault();
-    dispatch(registrationUser(name, email, password))
+    dispatch(registrationUser(value))
+  }
+
+  if (user){
+    return <Redirect to={{pathname: '/'}}/>
   }
 
   return(

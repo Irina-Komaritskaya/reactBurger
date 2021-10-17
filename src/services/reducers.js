@@ -1,5 +1,5 @@
 import {initialState} from './inital-data'
-import { setCookie } from '../utils/cookie';
+import { setCookie, deleteCookie } from '../utils/cookie';
 import { v4 as generateKey} from 'uuid';
 import {
   GET_INGREDIENT_FAILED,
@@ -15,11 +15,21 @@ import {
   DEL_CURRENT_INGREDIENT,
   UPDATE_COMPONENT,
   GET_REG_SUCCESS,
-  GET_REG_REQUEST,
-  GET_REG_FAILED
+  GET_REG_FAILED,
+  GET_AUTH_SUCCESS,
+  GET_AUTH_FAILED,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILED ,
+  FORGOT_SUCCESS,
+  FORGOT_FAILED,
+  RESET_SUCCESS,
+  RESET_FAILED,
+  CLEAR_RESET_PASSWORD,
+  GET_USER_FROM_COOKIES
 } from './actions'
 
 export const burgerReducer = (state = initialState, action) => {
+ 
   switch (action.type) {
     //#region ingredint
     case GET_INGREDIENT_SUCCESS:{
@@ -137,11 +147,88 @@ export const burgerReducer = (state = initialState, action) => {
       setCookie('accessToken', accessToken, {expires: 20*60});
       setCookie('refreshToken', refreshToken, {expires: 30*24*60});
       alert('Вы успешно зарегистрировались');
-      return state;
+      return {
+        ...state,
+        user: {
+          name: action.value.name,
+          email: action.value.email
+        }
+      }
     }
     case GET_REG_FAILED:{
       alert('Что-то пошло не так, регистрация не успешна');
       return state;
+    }
+
+    case GET_AUTH_SUCCESS:{
+      const {accessToken, refreshToken} = action.value;
+      setCookie('accessToken', accessToken, {expires: 20*60});
+      setCookie('refreshToken', refreshToken, {expires: 30*24*60});
+      const user = {
+        name: action.value.name,
+        email: action.value.email
+      };
+      setCookie('user', JSON.stringify(user));
+      return {
+        ...state,
+        user: user
+      }
+    }
+
+    case GET_AUTH_FAILED:{
+      alert('Что-то пошло не так, авторизация не успешна');
+      return state;
+    }
+
+    case LOGOUT_SUCCESS:{
+      deleteCookie('user');
+      deleteCookie('accessToken');
+      deleteCookie('refreshToken');
+      return {
+        ...state,
+        user: null
+      }
+    }
+
+    case LOGOUT_FAILED:{
+      alert('Что-то пошло не так, выйти не удалось');
+      return state;
+    }
+
+    case FORGOT_SUCCESS:{
+      return {
+        ...state,
+        isRecoverEmail: true
+      }
+    }
+    case FORGOT_FAILED:{
+      alert('Что-то пошло не так, не удалось сбросить пароль');
+      return state;
+    }
+
+    case RESET_SUCCESS:{
+      alert('Пароль изменен');
+      return {
+        ...state,
+        isRecoverEmail: false,
+        isResetPassword: true
+      }
+    }
+    case RESET_FAILED:{
+      alert('Что-то пошло не так, не удалось задать новый пароль');
+      return state;
+    }
+    case CLEAR_RESET_PASSWORD:{
+      return{
+        ...state,
+        isResetPassword: false
+      }
+    }
+    case GET_USER_FROM_COOKIES:{
+      return{
+        ...state,
+        user: action.user
+      }
     }
     default: {
       return state;
