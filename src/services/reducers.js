@@ -27,7 +27,8 @@ import {
   CLEAR_RESET_PASSWORD,
   GET_USER_FROM_COOKIES,
   UPDATE_PROFILE_FAILED,
-  UPDATE_PROFILE_SUCCESS
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_USER
 } from './actions'
 
 export const burgerReducer = (state = initialState, action) => {
@@ -168,14 +169,13 @@ export const burgerReducer = (state = initialState, action) => {
       const {accessToken, refreshToken} = action.value;
       setCookie('accessToken', accessToken, {expires: 20*60});
       setCookie('refreshToken', refreshToken, {expires: 30*24*60});
-      const user = {
-        name: action.value.name,
-        email: action.value.email
-      };
-      setCookie('user', JSON.stringify(user));
+
       return {
         ...state,
-        user: user
+        user: {
+          name: action.value.name,
+          email: action.value.email
+        }
       }
     }
 
@@ -231,17 +231,8 @@ export const burgerReducer = (state = initialState, action) => {
       }
     }
     //#endregion
-    case GET_USER_FROM_COOKIES:{
-      return{
-        ...state,
-        user: action.user
-      }
-    }
-
+  
     case UPDATE_PROFILE_SUCCESS:{
-      const user = action.user
-      console.log(action.user)
-      setCookie('user', JSON.stringify(user));
       return{
         ...state,
         user: action.user
@@ -251,6 +242,12 @@ export const burgerReducer = (state = initialState, action) => {
     case UPDATE_PROFILE_FAILED:{
       alert('Обновить не удалось');
       return state;
+    }
+    case UPDATE_USER:{
+      return{
+        ...state,
+        user: action.user
+      }
     }
     default: {
       return state;

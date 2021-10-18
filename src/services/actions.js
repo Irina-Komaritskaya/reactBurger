@@ -1,4 +1,4 @@
-import {getIngredients, getOrder, registration, authorization, logOut, forgotPassword, resetPassword, updateProfile} from './api'
+import {getIngredients, getOrder, registration, authorization, logOut, forgotPassword, resetPassword, updateProfile, refreshToken} from './api'
 export const GET_INGREDIENT_SUCCESS = 'GET_INGREDIENT_SUCCESS';
 export const GET_INGREDIENT_REQUEST = 'GET_INGREDIENT_REQUEST';
 export const GET_INGREDIENT_FAILED = 'GET_INGREDIENT_FAILED';
@@ -35,6 +35,8 @@ export const GET_USER_FROM_COOKIES = 'GET_USER_FROM_COOKIES';
 
 export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
 export const UPDATE_PROFILE_FAILED = 'UPDATE_PROFILE_FAILED';
+
+export const UPDATE_USER = 'UPDATE_USER';
 
 export function loadIngredients(){
   return function(dispatch){
@@ -171,3 +173,4 @@ export function updateProfileUser(value, token){
     }));
   }
 }
+

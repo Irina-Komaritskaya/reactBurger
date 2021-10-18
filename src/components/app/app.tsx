@@ -9,7 +9,7 @@ import { ProfilePage } from '../../pages/profile/profile';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import {ProtectedRoute} from '../protected-route'
   function App() {
     return (
       <DndProvider backend={HTML5Backend}>
@@ -21,7 +21,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
               <Route path="/register" exact={true} component={RegistrationPage}/>
               <Route path="/login" exact={true} component={LoginPage}/>
               <Route path="/forgot-password" exact={true} component={ForgotPasswordPage}/>
-              <Route path="/profile" exact={true} component={ProfilePage}/>
+              <ProtectedRoute path="/profile" exact={true}>
+                <ProfilePage/>
+              </ProtectedRoute>
               <Route path="/reset" exact={true} component={ResetPasswordPage}/>
             </Switch> 
           </Router>

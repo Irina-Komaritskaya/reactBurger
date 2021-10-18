@@ -102,3 +102,26 @@ export const updateProfile = async (value, token) => {
   })
   return result;
 }
+
+export const getUser = async (token) => {
+  const urlUser =  "https://norma.nomoreparties.space/api/auth/user"
+  const result = await getData( urlUser, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer '+token
+    }
+  })
+  return result;
+}
+
+export const refreshToken = async (token) => {
+  const url =  "https://norma.nomoreparties.space/api/auth/token"
+  const result = await getData( url, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json;charset=utf-8"
+    },
+    body: JSON.stringify({token})
+  });
+  return result;
+}

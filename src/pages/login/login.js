@@ -7,10 +7,9 @@ import { authUser } from '../../services/actions';
 
 export function LoginPage() {
   const dispatch = useDispatch();
-  const [value, setValue] = useState({ password: '', email: ''})
+  const [value, setValue] = useState({ password: '1', email: 'amsterdam.ira@yandex.ru'})
   const user = useSelector(store => store.burger.user)
-  const isResetPassword = useSelector(store => store.burger.isResetPassword)
-  
+
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }

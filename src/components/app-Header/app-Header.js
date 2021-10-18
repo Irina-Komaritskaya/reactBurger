@@ -6,21 +6,8 @@ import {
 		ListIcon, 
 		ProfileIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {  useSelector, useDispatch } from 'react-redux';
-import { getCookie } from '../../utils/cookie';
-import {GET_USER_FROM_COOKIES} from '../../services/actions'
 
 function AppHeader(){
-  const dispatch = useDispatch();
-  const user = useSelector(store => store.burger.user)
-  const userCookie = getCookie('user')
-
-  if(!user && userCookie){
-    dispatch({
-      type: GET_USER_FROM_COOKIES,
-      user: JSON.parse(userCookie)
-    })
-  }
 
 		return (
 		<header className={style.header}>
@@ -38,7 +25,7 @@ function AppHeader(){
 						</a>
 				</nav>
 				<span className={style.logo}><Logo /></span>
-				<NavLink to={user ? '/profile' : '/login'} 
+				<NavLink to={'/profile'} 
           className={`text text_type_main-default text_color_inactive ${style.iconText}`}
           activeStyle ={{color: 'white'}}
         >
