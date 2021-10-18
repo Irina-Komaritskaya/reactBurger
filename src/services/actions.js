@@ -1,4 +1,13 @@
-import {getIngredients, getOrder, registration, authorization, logOut, forgotPassword, resetPassword, updateProfile, refreshToken} from './api'
+import { 
+  getIngredients,
+  getOrder,
+  registration,
+  authorization,
+  logOut,
+  forgotPassword,
+  resetPassword,
+  updateProfile
+} from './api'
 export const GET_INGREDIENT_SUCCESS = 'GET_INGREDIENT_SUCCESS';
 export const GET_INGREDIENT_REQUEST = 'GET_INGREDIENT_REQUEST';
 export const GET_INGREDIENT_FAILED = 'GET_INGREDIENT_FAILED';

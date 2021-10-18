@@ -8,10 +8,15 @@ import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 function Modal({isOpen, children, onClick, onCloseClick, title}){
   const onKeydown = ({ key }) => { 
     switch (key) { 
-      case 'Escape': 
+      case 'Escape': {
         onCloseClick();
         break; 
-    } 
+      }
+      default: {
+        return
+        }
+      } 
+
   } 
   useEffect(() => { 
     document.addEventListener('keydown', onKeydown); 

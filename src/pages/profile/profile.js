@@ -28,7 +28,8 @@ export function ProfilePage() {
     dispatch(updateProfileUser( newValue, token))
   }
 
-  const onClickCancel = () => {
+  const onClickCancel = (e) => {
+    e.preventDefault();
     setValue({name: user.name, email: user.email, password: ''})
   }
   const onChange = e => {
@@ -49,7 +50,7 @@ export function ProfilePage() {
     const onIconClickName = () =>  setDisabled({...disabled, name: !disabled.name});
     const onIconClickEmail = () => setDisabled({...disabled, email: !disabled.email});
     const onIconClickPassword = () =>  setDisabled({...disabled, password: !disabled.password});
-    
+
   return(
     <div className={`mt-25 ml-5 ${styles.wrapper}`}>
     <div className={`mr-15 text text_type_main-medium ${styles.itemsProfile}`}>

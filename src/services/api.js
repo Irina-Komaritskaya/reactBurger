@@ -1,10 +1,12 @@
 
 const getData = async (url, params) =>{
   const res = await fetch(url, params);
+  const s = await res.json();
+  console.log(s);
   if(res.status !== 200){
     throw new Error(res.statusText);
   }
-  const json = await res.json();
+  const json = s;
   if (json.success === true){
     return json;
   } 
@@ -104,7 +106,7 @@ export const updateProfile = async (value, token) => {
 }
 
 export const getUser = async (token) => {
-  const urlUser =  "https://norma.nomoreparties.space/api/auth/user"
+  const urlUser = "https://norma.nomoreparties.space/api/auth/user";
   const result = await getData( urlUser, {
     method: 'GET',
     headers: {
@@ -114,8 +116,8 @@ export const getUser = async (token) => {
   return result;
 }
 
-export const refreshToken = async (token) => {
-  const url =  "https://norma.nomoreparties.space/api/auth/token"
+export const getNewAccessToken = async (token) => {
+  const url =  "https://norma.nomoreparties.space/api/auth/token";
   const result = await getData( url, {
     method: 'POST',
     headers: {

@@ -32,7 +32,7 @@ function BurgerComponents() {
       const idBun = bun._id;
       dispatch(loadOrder(idIngredients, idBun))
     }
-  }, [dispatch, confirmOrder])
+  }, [dispatch, confirmOrder, bun, components])
 
   const onClickOrder = () => {
     if(!bun){
@@ -61,7 +61,7 @@ function BurgerComponents() {
         type: UPDATE_COMPONENT,
         value: { dragIndex, hoverIndex }
       });
-  }, [components.length]);
+  }, [dispatch]);
   
 
   return (
