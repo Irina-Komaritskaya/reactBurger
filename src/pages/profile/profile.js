@@ -9,10 +9,11 @@ import { Redirect } from 'react-router-dom';
 
 export function ProfilePage() {
   const dispatch = useDispatch();
-  const user = useSelector(store => store.auth.user)
-  const [value, setValue] = useState({name: user.name, email: user.email, password: ''})
-  const [disabled, setDisabled] = useState({name: true, email: true, password: true})
- 
+  const user = useSelector(store => store.auth.user);
+  const [value, setValue] = useState({name: user.name, email: user.email, password: ''});
+  const [disabled, setDisabled] = useState({name: true, email: true, password: true});
+  const [isSaveVisible, setisSaveVisible] = useState(false);
+
   const onClickSave = (e) => {
     e.preventDefault();
     const newValue = {}
@@ -27,19 +28,21 @@ export function ProfilePage() {
     }
     const token = getCookie('accessToken')
     dispatch(updateProfileUser( newValue, token));
-    setDisabled({name: true, email: true, password: true});
+    setDisabled({name: true, email: true, password: true})
+    setisSaveVisible(false);
   }
 
   const onClickCancel = (e) => {
     e.preventDefault();
     setValue({name: user.name, email: user.email, password: ''});
-    setDisabled({name: true, email: true, password: true});
+    setDisabled({name: true, email: true, password: true})
+    setisSaveVisible(false);
   }
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
  
-    const onClick = (e) =>{
+    const onClickExit = (e) =>{
       e.preventDefault();
       const accessToken = getCookie('accessToken');
       const refreshToken = getCookie('refreshToken');
@@ -50,16 +53,25 @@ export function ProfilePage() {
       return <Redirect to={{pathname: '/login'}}/>
     }  
 
-    const onIconClickName = () =>  setDisabled({...disabled, name: !disabled.name});
-    const onIconClickEmail = () => setDisabled({...disabled, email: !disabled.email});
-    const onIconClickPassword = () =>  setDisabled({...disabled, password: !disabled.password});
+    const onIconClickName = () => {
+      setDisabled({...disabled, name: !disabled.name});
+      setisSaveVisible(true);
+    } 
+    const onIconClickEmail = () => {
+      setDisabled({...disabled, email: !disabled.email});
+      setisSaveVisible(true);
+    }
+    const onIconClickPassword = () => {
+      setDisabled({...disabled, password: !disabled.password});
+      setisSaveVisible(true);
+    }
 
   return(
     <div className={`mt-25 ml-5 ${styles.wrapper}`}>
     <div className={`mr-15 text text_type_main-medium ${styles.itemsProfile}`}>
       <p>Профиль</p>
       <p className="text_color_inactive">История заказов</p>
-      <p className="text_color_inactive" onClick={onClick}>Выход</p>
+      <p className="text_color_inactive" onClick={onClickExit}>Выход</p>
       <p className='mt-20 text text_type_main-default text_color_inactive'>
         В этом разделе вы можете изменить свои персональные данные
       </p>
@@ -97,15 +109,22 @@ export function ProfilePage() {
         icon={'EditIcon'}
         onIconClick={onIconClickPassword}
       />
-      
-          <div>
-          <Button type="primary" size="small" onClick={onClickSave}>
-            Сохранить
-          </Button>
-          <Button type="secondary" size="medium" onClick={onClickCancel}>
-             Отмена
-          </Button>
-          </div>
+      {
+        isSaveVisible 
+        ? (
+            <div className={styles.button}>
+            <Button type="secondary" size="medium" onClick={onClickCancel}>
+              Отмена
+            </Button>
+            <Button type="primary" size="small" onClick={onClickSave}>
+              Сохранить
+            </Button>
+            </div>
+          )
+
+          : <></>
+      }
+          
 
     </form>
     </div>

@@ -5,7 +5,7 @@ import BurgerIngredients from '../../components/burger-ingredients/burger-ingred
 import BurgerComponents from '../../components/burger-components/burger-components'
 import {loadIngredients} from '../../services/ingredient/actions'
 
-function MainPage(){
+export function MainPage(){
 
   const isLoadingIngredient = useSelector(store => store.ingredient.isLoadingIngredient);
   const hasErrorIngredient = useSelector(store => store.ingredient.hasErrorIngredient);
@@ -34,4 +34,3 @@ useEffect(() => {
   )
 }
 
-export default MainPage;
