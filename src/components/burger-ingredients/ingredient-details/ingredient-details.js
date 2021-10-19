@@ -1,8 +1,30 @@
 import style from './ingredient-details.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import {useEffect } from 'react'
+import {loadIngredients} from '../../../services/ingredient/actions'
 
 function IngredientDetails(){
-  const currentIngredient = useSelector(store => store.ingredient.currentIngredient);
+  let currentIngredient = useSelector(store => store.ingredient.currentIngredient);
+  const {id} = useParams();
+  const ingredients = useSelector(store => store.ingredient.ingredients)
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if(ingredients.length === 0){
+      dispatch(loadIngredients());
+    }
+  }, [dispatch])
+
+  
+  if(!currentIngredient){
+    console.log(ingredients)
+    currentIngredient = ingredients.find((x) => x._id === id);
+    if(!currentIngredient){
+      return null;
+    }
+  }
+
   return(
     <div className="pb-15">
       <img src={currentIngredient.image_large} alt={currentIngredient.name}/> 

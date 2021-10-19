@@ -7,7 +7,7 @@ import { CurrencyIcon,
          Counter}  from '@ya.praktikum/react-developer-burger-ui-components';
 
          //BurgerBlock - компонент для карточки ингредиента
-function BurgerBlock({ data, onClick}) {
+function BurgerBlock({ data }) {
   const {components, bun} = useSelector(store => store.ingredient)
   const [{opacity}, dragRef] = useDrag({
     type: 'ingredient',
@@ -22,7 +22,7 @@ function BurgerBlock({ data, onClick}) {
     : components.filter((x) => x._id === data._id).length; 
   
   return (
-      <section onClick={() => onClick(data)} ref={dragRef} className={`ml-4 ${style.burgerBlock}`} style={{ opacity }}>
+      <section ref={dragRef} className={`ml-4 ${style.burgerBlock}`} style={{ opacity }}>
        {counter > 0 && <Counter count={counter} size="default" />}
           <p><img className="mb-1 ml-4" src={data.image} alt={data.name}/></p>
 

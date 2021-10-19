@@ -6,7 +6,8 @@ import Modal from '../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-
+import {Link} from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
 function BurgerIngredients() {
@@ -24,7 +25,7 @@ function BurgerIngredients() {
   const saucesAncor = useRef(null);
 
   const ingredientRef = useRef(null);
-
+  const location = useLocation();
   useEffect(() =>{
     const handleScroll = () =>{
       const positionScroll = ingredientRef.current.getBoundingClientRect().top;
@@ -93,7 +94,11 @@ function BurgerIngredients() {
 
           <h2 className='mt-10 mb-6' ref={bunsAncor}>Булки</h2>
           <div className={style.ingredients}>
-              {buns.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
+              {buns.map(x => (
+                <Link key={x._id} to ={{pathname: `/modal/${x._id}`,  state:{modal: true, prevPath: location}}}>
+                  <BurgerBlock  data={x} />
+                </Link>
+              ))}
           </div>
 
           <h2 className='mt-10 mb-6' ref={saucesAncor}>Соусы</h2>
@@ -108,14 +113,14 @@ function BurgerIngredients() {
         </div>
       </div>
 
-      <Modal
+      {/* <Modal
         isOpen={isOpenModal} 
         onClick={handleClick} 
         title={"Детали ингридиента"}
         onCloseClick={handleClick}
       >
         <IngredientDetails/>
-      </Modal>
+      </Modal> */}
     </>
   )
 }
