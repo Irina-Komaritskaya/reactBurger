@@ -3,12 +3,12 @@ import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-componen
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {registrationUser} from '../../services/actions'
+import {registrationUser} from '../../services/auth/actions'
 
 
 export function RegistrationPage() {
   const dispatch = useDispatch();
-  const user = useSelector(store => store.burger.user)
+  const user = useSelector(store => store.auth.user)
   const [value, setValue] = useState({ name: 'pig', email: 'pig@yandex.ru', password: '1' });
   const [typeInput, setTypeInput] = useState('password')
   

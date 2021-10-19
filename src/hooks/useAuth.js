@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../utils/cookie';
-import { UPDATE_USER } from '../services/actions'
+import { RESTORE_USER } from '../services/auth/actions'
 import { getUser,  getNewAccessToken } from '../services/api'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +11,7 @@ export function useAuth() {
   const accessToken = getCookie('accessToken');
   const refreshToken = getCookie('refreshToken');
 
-  const user = useSelector(store => store.burger.user);
+  const user = useSelector(store => store.auth.user);
   const [isLoadingUser, setIsLoadingUser] = useState(false);
   
   useEffect(() =>{
@@ -19,7 +19,7 @@ export function useAuth() {
     const saveUser = async (token) => {
       const res = await getUser(token);
       dispatch({
-        type: UPDATE_USER,
+        type: RESTORE_USER,
         user: res.user
       })
       setIsLoadingUser(true);

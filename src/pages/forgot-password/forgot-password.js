@@ -2,13 +2,13 @@ import styles from './forgot-password.module.css'
 import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { forgotPasswordUser } from '../../services/actions';
+import { forgotPasswordUser } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 export function ForgotPasswordPage() {
   const [value, setValue] = useState('')
   const dispatch = useDispatch();
-  const isRecoverEmail = useSelector(store => store.burger.isRecoverEmail)
+  const isRecoverEmail = useSelector(store => store.password.isRecoverEmail)
 
   const onChange = e => {
     setValue(e.target.value)

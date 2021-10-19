@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useDrop} from 'react-dnd'
-import { ADD_COMPONENT, UPDATE_COMPONENT } from '../../services/component/actions';
+import { ADD_COMPONENT, UPDATE_COMPONENT } from '../../services/burger-component/actions';
 import {CONFIRM_ORDER} from '../../services/order/actions'
 import {loadOrder} from '../../services/order/actions'
 import styles from './burger-components.module.css';

@@ -3,12 +3,13 @@ import { useState } from 'react';
 import styles from './profile.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getCookie } from '../../utils/cookie';
-import {logOutUser, updateProfileUser} from '../../services/actions';
+import {updateProfileUser} from '../../services/profile/actions';
+import {logOutUser} from '../../services/auth/actions';
 import { Redirect } from 'react-router-dom';
 
 export function ProfilePage() {
   const dispatch = useDispatch();
-  const user = useSelector(store => store.burger.user)
+  const user = useSelector(store => store.auth.user)
   const [value, setValue] = useState({name: user.name, email: user.email, password: ''})
   const [disabled, setDisabled] = useState({name: true, email: true, password: true})
  
@@ -25,12 +26,14 @@ export function ProfilePage() {
       newValue['password'] = value.password;
     }
     const token = getCookie('accessToken')
-    dispatch(updateProfileUser( newValue, token))
+    dispatch(updateProfileUser( newValue, token));
+    setDisabled({name: true, email: true, password: true});
   }
 
   const onClickCancel = (e) => {
     e.preventDefault();
-    setValue({name: user.name, email: user.email, password: ''})
+    setValue({name: user.name, email: user.email, password: ''});
+    setDisabled({name: true, email: true, password: true});
   }
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -104,7 +107,6 @@ export function ProfilePage() {
           </Button>
           </div>
 
-      
     </form>
     </div>
   )

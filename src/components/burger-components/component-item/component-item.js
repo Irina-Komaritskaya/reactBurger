@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import {useDrop, useDrag} from 'react-dnd'
 import {useRef} from 'react'
-import { DEL_COMPONENT} from '../../../services/component/actions';
+import { DEL_COMPONENT} from '../../../services/burger-component/actions';
 import PropTypes from 'prop-types';
 import { dataItemProps } from '../../../types/types';
 import { 

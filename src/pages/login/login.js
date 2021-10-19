@@ -3,12 +3,12 @@ import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-componen
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { authUser } from '../../services/actions';
+import { authUser } from '../../services/auth/actions';
 
 export function LoginPage() {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '1', email: 'amsterdam.ira@yandex.ru'})
-  const user = useSelector(store => store.burger.user)
+  const user = useSelector(store => store.auth.user)
 
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });

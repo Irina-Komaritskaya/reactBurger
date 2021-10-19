@@ -2,14 +2,13 @@ import styles from './reset-password.module.css'
 import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { resetPasswordUser } from '../../services/actions';
+import { resetPasswordUser, CLEAR_RESET_PASSWORD } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import {CLEAR_RESET_PASSWORD} from '../../services/actions'
 
 export function ResetPasswordPage() {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '', token: ''})
-  const isResetPassword = useSelector(store => store.burger.isResetPassword)
+  const isResetPassword = useSelector(store => store.password.isResetPassword)
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
