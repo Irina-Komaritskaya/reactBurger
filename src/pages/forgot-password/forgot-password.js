@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { forgotPasswordUser } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
 
-export function ForgotPasswordPage() {
+ function ForgotPasswordPage() {
   const [value, setValue] = useState('')
   const dispatch = useDispatch();
   const isRecoverEmail = useSelector(store => store.password.isRecoverEmail)
@@ -21,7 +22,7 @@ export function ForgotPasswordPage() {
   if (isRecoverEmail){
     return <Redirect to={{pathname: '/reset'}}/>
   }
-  
+
   return(
     <div className={styles.wrapper}>
     <form className= {styles.form}>
@@ -43,3 +44,5 @@ export function ForgotPasswordPage() {
   </div>
   );
 }
+
+export default RedirectAuthUser(ForgotPasswordPage, '/profile')

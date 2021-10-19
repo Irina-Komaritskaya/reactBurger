@@ -10,7 +10,8 @@ import {
   RegistrationPage,
   ForgotPasswordPage,
   ResetPasswordPage,
-  ProfilePage
+  ProfilePage,
+  Test
 } from '../../pages/index';
 
   function App() {
@@ -24,10 +25,13 @@ import {
               <Route path="/register" exact={true} component={RegistrationPage}/>
               <Route path="/login" exact={true} component={LoginPage}/>
               <Route path="/forgot-password" exact={true} component={ForgotPasswordPage}/>
+              <Route path="/reset" exact={true} component={ResetPasswordPage}/>
               <ProtectedRoute path="/profile" exact={true}>
                 <ProfilePage/>
               </ProtectedRoute>
-              <Route path="/reset" exact={true} component={ResetPasswordPage}/>
+              <ProtectedRoute path="/profile/test" exact={true}>
+                <Test/>
+              </ProtectedRoute>
             </Switch> 
           </Router>
         </div>

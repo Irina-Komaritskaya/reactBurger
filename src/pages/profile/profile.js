@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCookie } from '../../utils/cookie';
 import {updateProfileUser} from '../../services/profile/actions';
 import {logOutUser} from '../../services/auth/actions';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 export function ProfilePage() {
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ export function ProfilePage() {
     <div className={`mt-25 ml-5 ${styles.wrapper}`}>
     <div className={`mr-15 text text_type_main-medium ${styles.itemsProfile}`}>
       <p>Профиль</p>
-      <p className="text_color_inactive">История заказов</p>
+      <Link to='profile/test'><p className="text_color_inactive">История заказов</p></Link>
       <p className="text_color_inactive" onClick={onClickExit}>Выход</p>
       <p className='mt-20 text text_type_main-default text_color_inactive'>
         В этом разделе вы можете изменить свои персональные данные

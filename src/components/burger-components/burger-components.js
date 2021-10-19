@@ -8,11 +8,13 @@ import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
 import {ComponentItem} from './component-item/component-item'
 import Modal from '../modal/modal';
+import { useAuth } from '../../hooks/useAuth';
 import { 
   Button, 
   CurrencyIcon, 
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
+import { authorization } from '../../services/api';
 
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
@@ -22,7 +24,7 @@ function BurgerComponents() {
   const confirmOrder =useSelector(store => store.order.confirmOrder)
   const dispatch = useDispatch();
   const[isOpenModal, setIsOpenModal] = useState(false);
-
+  const [user, isLoadingUser] = useAuth();
   const handleClick = () =>{
     setIsOpenModal(false);
   }
@@ -36,13 +38,17 @@ function BurgerComponents() {
   }, [dispatch, confirmOrder, bun, components])
 
   const onClickOrder = () => {
-    if(!bun){
-      alert('Для оформления заказа выберите булку')
+    if (user && isLoadingUser){
+      if(!bun){
+        alert('Для оформления заказа выберите булку')
+      } else {
+        dispatch({
+          type: CONFIRM_ORDER,
+          value: true
+        })
+        setIsOpenModal(true);
+      } 
     } else {
-     dispatch({
-       type: CONFIRM_ORDER,
-       value: true
-     })
       setIsOpenModal(true);
     }
   }

@@ -9,10 +9,14 @@ export function ResetPasswordPage() {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '', token: ''})
   const isResetPassword = useSelector(store => store.password.isResetPassword)
+  const isRecoverEmail = useSelector(store => store.password.isRecoverEmail)
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
 
+  if (!isRecoverEmail){
+    return <Redirect to={'/profile'}/>
+  }
   const onClick = (e) => {
     e.preventDefault();
     dispatch(resetPasswordUser(value));
@@ -20,7 +24,7 @@ export function ResetPasswordPage() {
   
   if (isResetPassword){
     setTimeout(() => dispatch({type: CLEAR_RESET_PASSWORD}), 0)
-    return <Redirect to={{pathname: '/login'}}/>
+    return <Redirect to={'/login'}/>
   }
 
   return(

@@ -17,5 +17,6 @@ export const initialState = {
   //#endregion
 
  user: null,
- redirect: null
+ isRecoverEmail: null,
+ isResetPassword: null
 }

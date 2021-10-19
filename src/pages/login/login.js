@@ -1,15 +1,14 @@
 import styles from './login.module.css'
 import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { authUser } from '../../services/auth/actions';
+import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
 
-export function LoginPage() {
+ function LoginPage() {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '1', email: 'amsterdam.ira@yandex.ru'})
-  const user = useSelector(store => store.auth.user)
-
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
@@ -17,10 +16,6 @@ export function LoginPage() {
   const onClick = (e) => {
     e.preventDefault();
     dispatch(authUser(value))
-  }
-
-  if (user){
-    return <Redirect to={{pathname: '/'}}/>
   }
   
   return(
@@ -52,8 +47,9 @@ export function LoginPage() {
       <p className='mt-4 text text_type_main-default text_color_inactive'>
         Забыли пароль? <Link to='/forgot-password' className='text_color_accent'>Восстановить пароль</Link>
       </p>
-      <Link to='/profile'> Profile </Link>
   </form>
   </div>
   );
 }
+
+export default RedirectAuthUser(LoginPage, '/profile')
