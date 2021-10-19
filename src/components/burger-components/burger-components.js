@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useDrop} from 'react-dnd'
-import { CONFIRM_ORDER, ADD_COMPONENT, UPDATE_COMPONENT } from '../../services/actions';
-import {loadOrder} from '../../services/actions'
+import { ADD_COMPONENT, UPDATE_COMPONENT } from '../../services/component/actions';
+import {CONFIRM_ORDER} from '../../services/order/actions'
+import {loadOrder} from '../../services/order/actions'
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
 import {ComponentItem} from './component-item/component-item'
@@ -15,10 +16,10 @@ import {
 
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
-  const bun = useSelector(store => store.burger.bun)
-  const components = useSelector(store => store.burger.components)
-  const totalSum = useSelector(store => store.burger.totalSum)
-  const confirmOrder =useSelector(store => store.burger.confirmOrder)
+  const bun = useSelector(store => store.component.bun)
+  const components = useSelector(store => store.component.components)
+  const totalSum = useSelector(store => store.component.totalSum)
+  const confirmOrder =useSelector(store => store.order.confirmOrder)
   const dispatch = useDispatch();
   const[isOpenModal, setIsOpenModal] = useState(false);
 

@@ -3,13 +3,13 @@ import {useEffect} from 'react';
 import style from './main.module.css';
 import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients'
 import BurgerComponents from '../../components/burger-components/burger-components'
-import {loadIngredients} from '../../services/actions'
+import {loadIngredients} from '../../services/ingredient/actions'
 
 function MainPage(){
 
-  const isLoadingIngredient = useSelector(store => store.burger.isLoadingIngredient);
-  const hasErrorIngredient = useSelector(store => store.burger.hasErrorIngredient);
-  const ingredients = useSelector(store => store.burger.ingredients);
+  const isLoadingIngredient = useSelector(store => store.ingredient.isLoadingIngredient);
+  const hasErrorIngredient = useSelector(store => store.ingredient.hasErrorIngredient);
+  const ingredients = useSelector(store => store.ingredient.ingredients);
 
   const dispatch = useDispatch();
 

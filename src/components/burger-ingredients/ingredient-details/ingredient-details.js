@@ -2,7 +2,7 @@ import style from './ingredient-details.module.css';
 import { useSelector } from 'react-redux';
 
 function IngredientDetails(){
-  const currentIngredient = useSelector(store => store.burger.currentIngredient);
+  const currentIngredient = useSelector(store => store.ingredient.currentIngredient);
   return(
     <div className="pb-15">
       <img src={currentIngredient.image_large} alt={currentIngredient.name}/> 

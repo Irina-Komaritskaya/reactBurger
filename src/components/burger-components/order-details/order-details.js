@@ -2,7 +2,7 @@ import styles from './order-details.module.css';
 import { useSelector} from 'react-redux';
 
 function OrderDetails(){
-  const {order,isLoadingOrder} = useSelector(store => store.burger);
+  const {order,isLoadingOrder} = useSelector(store => store.order);
 
   return (
   <>

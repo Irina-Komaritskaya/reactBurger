@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../services/actions';
+import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../services/ingredient/actions';
 import BurgerBlock from './burger-block/burger-block';
 import Modal from '../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details';
@@ -10,7 +10,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 //BurgerIngredients - компонент для панели ингредиентов бургера
 
 function BurgerIngredients() {
-  const ingredients = useSelector(store => store.burger.ingredients);
+  const ingredients = useSelector(store => store.ingredient.ingredients);
   const dispatch = useDispatch();
 
   const [current, setCurrent] = useState('bun'); //Tab

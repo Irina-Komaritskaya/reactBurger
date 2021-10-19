@@ -8,7 +8,7 @@ import { CurrencyIcon,
 
          //BurgerBlock - компонент для карточки ингредиента
 function BurgerBlock({ data, onClick}) {
-  const {components, bun} = useSelector(store => store.burger)
+  const {components, bun} = useSelector(store => store.ingredient)
   const [{opacity}, dragRef] = useDrag({
     type: 'ingredient',
     item: data,
