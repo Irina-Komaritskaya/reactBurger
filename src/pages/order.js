@@ -1,4 +1,4 @@
-export function Test(){
+export function Order(){
   return(
     <span>test</span>
   )

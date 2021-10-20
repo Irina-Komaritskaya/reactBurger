@@ -13,7 +13,7 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
   ProfilePage,
-  Test,
+  Order,
   PageNotFound
 } from '../../pages/index';
 
@@ -39,11 +39,8 @@ function App() {
             exact={true}
             component={ForgotPasswordPage}
           />
-          <ProtectedRoute path='/profile' exact={true}>
+          <ProtectedRoute path='/profile'>
             <ProfilePage />
-          </ProtectedRoute>
-          <ProtectedRoute path='/profile/test' exact={true}>
-            <Test />
           </ProtectedRoute>
           <Route component={PageNotFound} />
         </Switch>

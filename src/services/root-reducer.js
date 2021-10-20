@@ -12,5 +12,5 @@ export const rootReducer = combineReducers({
   order: orderReducer,
   auth: authReducer,
   password: passwordReducer,
-  profileReducer: profileReducer
+  profile: profileReducer
 });

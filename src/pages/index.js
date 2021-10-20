@@ -4,7 +4,7 @@ import { MainPage } from './main/main-page'
 import { ProfilePage } from "./profile/profile";
 import { RegistrationPage } from "./registation/registration";
 import { ResetPasswordPage } from "./reset-password/reset-password";
-import { Test } from "./test";
+import { Order } from "./order";
 import {PageNotFound} from './page-not-found/page-not-found'
 
 export {
@@ -14,6 +14,6 @@ export {
   ForgotPasswordPage,
   ResetPasswordPage,
   ProfilePage, 
-  Test,
+  Order,
   PageNotFound
 }

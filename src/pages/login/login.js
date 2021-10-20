@@ -21,7 +21,7 @@ import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
     e.preventDefault();
     dispatch(authUser(value))
   }
-  
+
   return(
     <div className={styles.wrapper}>
     <form method='post' className= {styles.form}>
@@ -35,8 +35,8 @@ import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
         size={'default'}
       />
       <Input 
-        type='password' 
-        placeholder={typeInput} 
+        type= {typeInput}  
+        placeholder='пароль'
         onChange={onChange} 
         value={value.password} 
         name={'password'} 
@@ -57,4 +57,4 @@ import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
   );
 }
 
-export default RedirectAuthUser(LoginPage, '/profile')
+export default RedirectAuthUser(LoginPage, '/')
