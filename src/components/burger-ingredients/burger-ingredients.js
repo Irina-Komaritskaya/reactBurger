@@ -74,8 +74,8 @@ function BurgerIngredients() {
               {buns.map(x => (
                 <Link 
                   key={x._id} 
-                  to ={{ pathname: `/modal/${x._id}`, state:{modal: true, prevPath: location }}}
-                  className = {style.link}
+                  to={{ pathname: `/ingredient/${x._id}`, state:{modal: true, prevPath: location }}}
+                  className={style.link}
                 >
                   <BurgerBlock  data={x} />
                 </Link>
@@ -84,12 +84,28 @@ function BurgerIngredients() {
 
           <h2 className='mt-10 mb-6' ref={saucesAncor}>Соусы</h2>
           <div className={style.ingredients}>
-            {sauces.map(x => (<BurgerBlock key={x._id} data={x} />))}
+            {sauces.map(x => (
+              <Link 
+              key={x._id} 
+              to={{ pathname: `/ingredient/${x._id}`, state:{modal: true, prevPath: location }}}
+              className={style.link}
+            >
+              <BurgerBlock  data={x} />
+            </Link>
+            ))}
           </div>
           
           <h2 className='mt-10 mb-6' ref={mainsAncor}>Начинки</h2>
           <div className={style.ingredients}>
-              {mains.map(x => (<BurgerBlock key={x._id} data={x} />))}
+              {mains.map(x => (
+              <Link 
+                key={x._id} 
+                to={{ pathname: `/ingredient/${x._id}`, state:{modal: true, prevPath: location }}}
+                className={style.link}
+              >
+                <BurgerBlock  data={x} />
+              </Link>
+              ))}
           </div>
         </div>
       </div>

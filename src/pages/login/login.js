@@ -8,13 +8,13 @@ import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
 
  function LoginPage() {
   const dispatch = useDispatch();
-  const [value, setValue] = useState({ password: '1', email: 'amsterdam.ira@yandex.ru'})
+  const [value, setValue] = useState({ password: '', email: ''})
   const [typeInput, setTypeInput] = useState('password')
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
 
-  const onIconClick = (e) => {
+  const onIconClick = () => {
     setTypeInput( typeInput === 'password' ? 'text' : 'password') 
   }
   const onClick = (e) => {

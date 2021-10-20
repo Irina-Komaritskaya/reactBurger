@@ -1,7 +1,7 @@
 import style from './ingredient-details.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import {useEffect } from 'react'
+import {useEffect, useState } from 'react'
 import {loadIngredients} from '../../../services/ingredient/actions'
 
 function IngredientDetails(){
@@ -12,14 +12,13 @@ function IngredientDetails(){
 
   useEffect(() => {
     if(ingredients.length === 0){
-      dispatch(loadIngredients());
-      
+      dispatch(loadIngredients());  
     }
   }, [dispatch])
 
-    if(!currentIngredient){
-      return null;
-    }
+  if(!currentIngredient){
+    return null;
+  }
 
   return(
     <div className="pb-15">

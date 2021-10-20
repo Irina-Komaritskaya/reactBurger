@@ -14,6 +14,7 @@ import {
   ResetPasswordPage,
   ProfilePage,
   Test,
+  PageNotFound
 } from '../../pages/index';
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
           <Route path='/register' exact={true} component={RegistrationPage} />
           <Route path='/login' exact={true} component={LoginPage} />
           <Route path='/reset' exact={true} component={ResetPasswordPage} />
-          <Route path='/modal/:id' exact={true} component={IngredientDetails} />
+          <Route path='/ingredient/:id' exact={true} component={IngredientDetails} />
           <Route
             path='/forgot-password'
             exact={true}
@@ -44,9 +45,10 @@ function App() {
           <ProtectedRoute path='/profile/test' exact={true}>
             <Test />
           </ProtectedRoute>
+          <Route component={PageNotFound} />
         </Switch>
         {isModal && (
-          <Route exact path='/modal/:id' component={ModalIngredient} />
+          <Route exact path='/ingredient/:id' component={ModalIngredient} />
         )}
       </div>
     </DndProvider>

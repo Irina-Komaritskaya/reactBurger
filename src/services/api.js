@@ -1,11 +1,10 @@
 
 const getData = async (url, params) =>{
   const res = await fetch(url, params);
-  const s = await res.json();
   if(res.status !== 200){
     throw new Error(res.statusText);
   }
-  const json = s;
+  const json = await res.json();
   if (json.success === true){
     return json;
   } 
