@@ -1,5 +1,5 @@
 import style from './header.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import {
 		Logo, 
 		BurgerIcon, 
@@ -8,6 +8,8 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function AppHeader(){
+  const loginLink = useRouteMatch('/login');
+  const isLoginPage = loginLink && loginLink.path === '/login'; 
 
 		return (
 		<header className={style.header}>
@@ -26,7 +28,9 @@ function AppHeader(){
 				</nav>
 				<span className={style.logo}><Logo /></span>
 				<NavLink to={'/profile'} 
-          className={`text text_type_main-default text_color_inactive ${style.iconText}`}
+          className={`text text_type_main-default
+                    ${isLoginPage ? style.text_color_active : 'text_color_inactive'} 
+                    ${style.iconText}`}
           activeStyle ={{color: 'white'}}
         >
 						<ProfileIcon type="secondary" />

@@ -1,9 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch} from 'react-redux';
-import { ADD_CURRENT_INGREDIENT, DEL_CURRENT_INGREDIENT } from '../../services/ingredient/actions';
+import { useSelector } from 'react-redux';
 import BurgerBlock from './burger-block/burger-block';
-import Modal from '../modal/modal'
-import IngredientDetails from './ingredient-details/ingredient-details';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import {Link} from "react-router-dom";
@@ -12,10 +9,7 @@ import { useLocation } from 'react-router-dom';
 
 function BurgerIngredients() {
   const ingredients = useSelector(store => store.ingredient.ingredients);
-  const dispatch = useDispatch();
-
   const [current, setCurrent] = useState('bun'); //Tab
-
   const buns = ingredients.filter((x) => x.type === "bun");
   const mains = ingredients.filter((x) => x.type === "main");
   const sauces = ingredients.filter((x) => x.type === "sauce");
@@ -46,23 +40,6 @@ function BurgerIngredients() {
     return () => { ingredientRef?.current?.removeEventListener('scroll', handleScroll);}
   },[])
 
-  const[isOpenModal, setIsOpenModal] = useState(false);
-
-  const handleClick = () =>{
-    setIsOpenModal(false);
-    dispatch({
-      type: DEL_CURRENT_INGREDIENT
-    })
-  }
-
-  const showBurger = (currentIngredient) =>{
-    dispatch({
-      type: ADD_CURRENT_INGREDIENT,
-      value: currentIngredient
-    })
-     setIsOpenModal(true);
-  }
-  
   return (
     <>
       <div className={style.productPanel}>
@@ -95,7 +72,11 @@ function BurgerIngredients() {
           <h2 className='mt-10 mb-6' ref={bunsAncor}>Булки</h2>
           <div className={style.ingredients}>
               {buns.map(x => (
-                <Link key={x._id} to ={{pathname: `/modal/${x._id}`,  state:{modal: true, prevPath: location}}}>
+                <Link 
+                  key={x._id} 
+                  to ={{ pathname: `/modal/${x._id}`, state:{modal: true, prevPath: location }}}
+                  className = {style.link}
+                >
                   <BurgerBlock  data={x} />
                 </Link>
               ))}
@@ -103,24 +84,15 @@ function BurgerIngredients() {
 
           <h2 className='mt-10 mb-6' ref={saucesAncor}>Соусы</h2>
           <div className={style.ingredients}>
-            {sauces.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
+            {sauces.map(x => (<BurgerBlock key={x._id} data={x} />))}
           </div>
           
           <h2 className='mt-10 mb-6' ref={mainsAncor}>Начинки</h2>
           <div className={style.ingredients}>
-              {mains.map(x => (<BurgerBlock key={x._id} data={x} onClick={showBurger} />))}
+              {mains.map(x => (<BurgerBlock key={x._id} data={x} />))}
           </div>
         </div>
       </div>
-
-      {/* <Modal
-        isOpen={isOpenModal} 
-        onClick={handleClick} 
-        title={"Детали ингридиента"}
-        onCloseClick={handleClick}
-      >
-        <IngredientDetails/>
-      </Modal> */}
     </>
   )
 }

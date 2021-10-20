@@ -2,11 +2,10 @@ import style from './app.module.css';
 import AppHeader from '../app-Header/app-Header';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { BrowserRouter as Router, Switch, Route,  useHistory, useLocation, useParams } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import {ProtectedRoute} from '../protected-route'
 import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details'
-import Modal from '../modal/modal';
-import { useEffect, useState } from 'react';
+import { ModalIngredient } from '../burger-ingredients/modal-ingredient';
 import { 
   MainPage,
   LoginPage,
@@ -24,13 +23,7 @@ import {
       location.state.modal &&
       location.state.prevPath != location
     )
-    const history = useHistory();
 
-  const handleClick = () =>{
-    history.goBack();
-  }
-
-    console.log(isModal)
     return (
       <DndProvider backend={HTML5Backend}>
         <div className={style.app}>
@@ -49,18 +42,7 @@ import {
                 <Test/>
               </ProtectedRoute>
             </Switch> 
-            {isModal
-              ? <Route exact path="/modal/:id"  children={<Modal
-                isOpen={true} 
-                onClick={handleClick} 
-                title={"Детали ингридиента"}
-                onCloseClick={handleClick}
-              >
-                <IngredientDetails/>
-              </Modal>} />
-              :
-              null
-            }
+            {isModal && <Route exact path="/modal/:id"  component={ModalIngredient} />}
         </div>
       </DndProvider>
     );

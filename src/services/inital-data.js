@@ -3,7 +3,6 @@ export const initialState = {
   isLoadingIngredient: false,
   hasErrorIngredient: false,
   ingredients: [],
-  currentIngredient: null,
   //#endregion
 
   //region order

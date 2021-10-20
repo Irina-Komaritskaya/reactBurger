@@ -5,25 +5,21 @@ import {useEffect } from 'react'
 import {loadIngredients} from '../../../services/ingredient/actions'
 
 function IngredientDetails(){
-  let currentIngredient = useSelector(store => store.ingredient.currentIngredient);
   const {id} = useParams();
   const ingredients = useSelector(store => store.ingredient.ingredients)
   const dispatch = useDispatch();
-  
+  const currentIngredient = ingredients.find((x) => x._id === id);
+
   useEffect(() => {
     if(ingredients.length === 0){
       dispatch(loadIngredients());
+      
     }
   }, [dispatch])
 
-  
-  if(!currentIngredient){
-    console.log(ingredients)
-    currentIngredient = ingredients.find((x) => x._id === id);
     if(!currentIngredient){
       return null;
     }
-  }
 
   return(
     <div className="pb-15">

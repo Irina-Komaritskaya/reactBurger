@@ -2,9 +2,7 @@ import {initialState} from '../inital-data'
 import {
   GET_INGREDIENT_FAILED,
   GET_INGREDIENT_REQUEST,
-  GET_INGREDIENT_SUCCESS,
-  ADD_CURRENT_INGREDIENT,
-  DEL_CURRENT_INGREDIENT
+  GET_INGREDIENT_SUCCESS
 } from './actions'
 
 export const ingredientReducer = (state = initialState, action) => {
@@ -28,18 +26,6 @@ export const ingredientReducer = (state = initialState, action) => {
         ...state,
         hasErrorIngredient: true,
         isLoadingIngredient: false
-      }
-    }
-    case ADD_CURRENT_INGREDIENT:{
-      return{
-        ...state,
-        currentIngredient: action.value
-      }
-    }
-    case DEL_CURRENT_INGREDIENT:{
-      return{
-        ...state,
-        currentIngredient: null
       }
     }
     default: {

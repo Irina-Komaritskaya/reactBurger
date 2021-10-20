@@ -3,8 +3,6 @@ import {getIngredients} from '../api'
 export const GET_INGREDIENT_SUCCESS = 'GET_INGREDIENT_SUCCESS';
 export const GET_INGREDIENT_REQUEST = 'GET_INGREDIENT_REQUEST';
 export const GET_INGREDIENT_FAILED = 'GET_INGREDIENT_FAILED';
-export const ADD_CURRENT_INGREDIENT = 'ADD_CURRENT_INGREDIENT';
-export const DEL_CURRENT_INGREDIENT ='DEL_CURRENT_INGREDIENT';
 
 export function loadIngredients(){
   return function(dispatch){

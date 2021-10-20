@@ -9,7 +9,7 @@ import {registrationUser} from '../../services/auth/actions'
 export function RegistrationPage() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.auth.user)
-  const [value, setValue] = useState({ name: 'pig', email: 'pig@yandex.ru', password: '1' });
+  const [value, setValue] = useState({ name: '', email: '', password: '1' });
   const [typeInput, setTypeInput] = useState('password')
   
   const onChange = e => {

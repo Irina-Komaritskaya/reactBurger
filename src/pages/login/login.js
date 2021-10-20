@@ -9,10 +9,14 @@ import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
  function LoginPage() {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '1', email: 'amsterdam.ira@yandex.ru'})
+  const [typeInput, setTypeInput] = useState('password')
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
 
+  const onIconClick = (e) => {
+    setTypeInput( typeInput === 'password' ? 'text' : 'password') 
+  }
   const onClick = (e) => {
     e.preventDefault();
     dispatch(authUser(value))
@@ -32,12 +36,13 @@ import {RedirectAuthUser} from '../../hoc/redirectAuthUser'
       />
       <Input 
         type='password' 
-        placeholder={'password'} 
+        placeholder={typeInput} 
         onChange={onChange} 
         value={value.password} 
         name={'password'} 
         size={'default'}
         icon={'ShowIcon'}
+        onIconClick ={onIconClick}
       />
       <Button type="primary" size="large" onClick={onClick}>Войти</Button>
       <p className='mt-20 text text_type_main-default text_color_inactive'>
