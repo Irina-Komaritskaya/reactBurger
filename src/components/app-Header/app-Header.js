@@ -16,23 +16,23 @@ function AppHeader() {
       <nav className={style.nav}>
         <NavLink
           exact
-          to='/'
+          to="/"
           className={`pl-5 mr-2 text text_type_main-default text_color_inactive ${style.iconText}`}
           activeStyle={{ color: 'white' }}
         >
-          <BurgerIcon type='primary' />
-          <span className='pl-2'>Конструктор</span>
+          <BurgerIcon type="primary" />
+          <span className="pl-2">Конструктор</span>
         </NavLink>
         <a
-          href='#'
+          href="#"
           className={`pl-5 text text_type_main-default text_color_inactive ${style.iconText}`}
         >
-          <ListIcon type='secondary' />
-          <span className='pl-2'>Лента заказов</span>
+          <ListIcon type="secondary" />
+          <span className="pl-2">Лента заказов</span>
         </a>
       </nav>
-      <Link to={'/'}> 
-        <span className={style.logo}> 
+      <Link to="/">
+        <span className={style.logo}>
           <Logo />
         </span>
       </Link>
@@ -47,8 +47,8 @@ function AppHeader() {
                     ${style.iconText}`}
         activeStyle={{ color: 'white' }}
       >
-        <ProfileIcon type='secondary' />
-        <span className='pl-2'>Личный кабинет</span>
+        <ProfileIcon type="secondary" />
+        <span className="pl-2">Личный кабинет</span>
       </NavLink>
     </header>
   );

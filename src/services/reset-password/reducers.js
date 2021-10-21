@@ -1,44 +1,44 @@
-import {initialState} from '../inital-data'
-import{
+import { initialState } from '../inital-data';
+import {
   FORGOT_SUCCESS,
   FORGOT_FAILED,
   RESET_SUCCESS,
   RESET_FAILED,
-  CLEAR_RESET_PASSWORD
-} from './actions'
+  CLEAR_RESET_PASSWORD,
+} from './actions';
 
 export const passwordReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FORGOT_SUCCESS:{
+    case FORGOT_SUCCESS: {
       return {
         ...state,
-        isRecoverEmail: true
-      }
+        isRecoverEmail: true,
+      };
     }
-    case FORGOT_FAILED:{
+    case FORGOT_FAILED: {
       alert('Что-то пошло не так, не удалось сбросить пароль');
       return state;
     }
-    case RESET_SUCCESS:{
+    case RESET_SUCCESS: {
       alert('Пароль изменен');
       return {
         ...state,
         isRecoverEmail: false,
-        isResetPassword: true
-      }
+        isResetPassword: true,
+      };
     }
-    case RESET_FAILED:{
+    case RESET_FAILED: {
       alert('Что-то пошло не так, не удалось задать новый пароль');
       return state;
     }
-    case CLEAR_RESET_PASSWORD:{
-      return{
+    case CLEAR_RESET_PASSWORD: {
+      return {
         ...state,
-        isResetPassword: false
-      }
+        isResetPassword: false,
+      };
     }
     default: {
       return state;
     }
   }
-}
+};

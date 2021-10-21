@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../utils/cookie';
-import { RESTORE_USER } from '../services/auth/actions'
-import { getUser,  getNewAccessToken } from '../services/api'
+import { RESTORE_USER } from '../services/auth/actions';
+import { getUser, getNewAccessToken } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 
 export function useAuth() {
@@ -11,19 +11,19 @@ export function useAuth() {
   const accessToken = getCookie('accessToken');
   const refreshToken = getCookie('refreshToken');
 
-  const user = useSelector(store => store.auth.user);
+  const user = useSelector((store) => store.auth.user);
   const [isLoadingUser, setIsLoadingUser] = useState(false);
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     //#region func
     const saveUser = async (token) => {
       const res = await getUser(token);
       dispatch({
         type: RESTORE_USER,
-        user: res.user
-      })
+        user: res.user,
+      });
       setIsLoadingUser(true);
-    }
+    };
 
     const getToken = async (token) => {
       const res = await getNewAccessToken(token);
@@ -31,8 +31,8 @@ export function useAuth() {
       setCookie('refreshToken', res.refreshToken);
       setCookie('accessToken', newAccessToken);
       await saveUser(newAccessToken);
-    }
-    //#endregion 
+    };
+    //#endregion
 
     if (accessToken) {
       if (user) {

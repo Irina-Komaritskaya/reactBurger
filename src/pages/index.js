@@ -1,11 +1,11 @@
-import  ForgotPasswordPage  from "./forgot-password/forgot-password";
-import  LoginPage  from "./login/login";
-import { MainPage } from './main/main-page'
-import { ProfilePage } from "./profile/profile";
-import { RegistrationPage } from "./registation/registration";
-import { ResetPasswordPage } from "./reset-password/reset-password";
-import { Order } from "./order";
-import {PageNotFound} from './page-not-found/page-not-found'
+import ForgotPasswordPage from './forgot-password/forgot-password';
+import LoginPage from './login/login';
+import { MainPage } from './main/main-page';
+import { ProfilePage } from './profile/profile';
+import { RegistrationPage } from './registation/registration';
+import { ResetPasswordPage } from './reset-password/reset-password';
+import { Order } from './order';
+import { PageNotFound } from './page-not-found/page-not-found';
 
 export {
   MainPage,
@@ -13,7 +13,7 @@ export {
   RegistrationPage,
   ForgotPasswordPage,
   ResetPasswordPage,
-  ProfilePage, 
+  ProfilePage,
   Order,
-  PageNotFound
-}
+  PageNotFound,
+};

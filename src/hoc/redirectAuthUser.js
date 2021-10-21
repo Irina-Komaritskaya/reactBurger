@@ -1,23 +1,23 @@
-import { useAuth } from "../hooks/useAuth";
-import { Redirect } from "react-router";
-import { useHistory } from "react-router";
+import { useAuth } from '../hooks/useAuth';
+import { Redirect } from 'react-router';
+import { useHistory } from 'react-router';
 
 export function RedirectAuthUser(Component, path) {
-  return function RedirectComponent(props){
+  return function RedirectComponent(props) {
     const history = useHistory();
 
     const [user, isLoadingUser] = useAuth();
-    if (!isLoadingUser){
-      return null
+    if (!isLoadingUser) {
+      return null;
     }
-    if (user){
-      if(history.length === 1){
-       return <Redirect to={{path}}/>
+    if (user) {
+      if (history.length === 1) {
+        return <Redirect to={{ path }} />;
       }
 
       history.goBack();
       return null;
     }
-    return <Component {...props}/>
-  } 
+    return <Component {...props} />;
+  };
 }

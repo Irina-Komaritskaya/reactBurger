@@ -1,5 +1,3 @@
-export function Order(){
-  return(
-    <span>test</span>
-  )
+export function Order() {
+  return <span>test</span>;
 }

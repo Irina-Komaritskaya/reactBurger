@@ -1,30 +1,34 @@
 import style from './ingredient-details.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import {useEffect, useState } from 'react'
-import {loadIngredients} from '../../../services/ingredient/actions'
+import { useEffect } from 'react';
+import { loadIngredients } from '../../../services/ingredient/actions';
 
-function IngredientDetails(){
-  const {id} = useParams();
-  const ingredients = useSelector(store => store.ingredient.ingredients)
+function IngredientDetails() {
+  const { id } = useParams();
+  const ingredients = useSelector((store) => store.ingredient.ingredients);
   const dispatch = useDispatch();
   const currentIngredient = ingredients.find((x) => x._id === id);
 
   useEffect(() => {
-    if(ingredients.length === 0){
-      dispatch(loadIngredients());  
+    if (ingredients.length === 0) {
+      dispatch(loadIngredients());
     }
-  }, [dispatch])
+  }, [dispatch]);
 
-  if(!currentIngredient){
+  if (!currentIngredient) {
     return null;
   }
 
-  return(
+  return (
     <div className="pb-15">
-      <img src={currentIngredient.image_large} alt={currentIngredient.name}/> 
-      <p className="text text_type_main-medium mt-4">{currentIngredient.name}</p>
-      <section className={`text text_type_main-small text_color_inactive mt-8 ${style.energy}`}>
+      <img src={currentIngredient.image_large} alt={currentIngredient.name} />
+      <p className="text text_type_main-medium mt-4">
+        {currentIngredient.name}
+      </p>
+      <section
+        className={`text text_type_main-small text_color_inactive mt-8 ${style.energy}`}
+      >
         <span>
           <p>Калории, ккал</p>
           <p>{currentIngredient.calories}</p>
@@ -40,9 +44,9 @@ function IngredientDetails(){
         <span>
           <p>Углеводы, г</p>
           <p>{currentIngredient.carbohydrates}</p>
-        </span> 
+        </span>
       </section>
-  </div>
+    </div>
   );
 }
 

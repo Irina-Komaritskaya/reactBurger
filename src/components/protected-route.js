@@ -4,22 +4,14 @@ import { useAuth } from '../hooks/useAuth';
 
 export function ProtectedRoute({ children, ...rest }) {
   const [user, isLoading] = useAuth();
-  
+
   if (!isLoading) {
     return null;
   }
-  
-  if (!user){
-    return <Redirect to='/login'/>;
+
+  if (!user) {
+    return <Redirect to="/login" />;
   }
 
-  return (
-    <Route
-      {...rest}
-      render={() => (
-          children
-        )
-      }
-    />
-  );
-} 
+  return <Route {...rest} render={() => children} />;
+}

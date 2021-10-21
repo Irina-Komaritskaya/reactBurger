@@ -15,7 +15,7 @@ export const initialState = {
   hasErrorOrder: false,
   //#endregion
 
- user: null,
- isRecoverEmail: null,
- isResetPassword: null
-}
+  user: null,
+  isRecoverEmail: null,
+  isResetPassword: null,
+};

@@ -13,36 +13,40 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
   ProfilePage,
-  PageNotFound
+  PageNotFound,
 } from '../../pages/index';
 
 function App() {
   const history = useHistory();
   const location = useLocation();
-  const action = history.action ==='PUSH' || history.action ==='REPLACE';
+  const action = history.action === 'PUSH' || history.action === 'REPLACE';
   const isModal = action && location.state && location.state.modal;
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style.app}>
         <AppHeader />
         <Switch location={isModal ? location.state.prevPath : location}>
-          <Route path='/' component={MainPage} exact={true} />
-          <Route path='/register' exact={true} component={RegistrationPage} />
-          <Route path='/login' exact={true} component={LoginPage} />
-          <Route path='/reset' exact={true} component={ResetPasswordPage} />
-          <Route path='/ingredient/:id' exact={true} component={IngredientDetails} />
+          <Route path="/" component={MainPage} exact={true} />
+          <Route path="/register" exact={true} component={RegistrationPage} />
+          <Route path="/login" exact={true} component={LoginPage} />
+          <Route path="/reset" exact={true} component={ResetPasswordPage} />
           <Route
-            path='/forgot-password'
+            path="/ingredient/:id"
+            exact={true}
+            component={IngredientDetails}
+          />
+          <Route
+            path="/forgot-password"
             exact={true}
             component={ForgotPasswordPage}
           />
-          <ProtectedRoute path='/profile'>
+          <ProtectedRoute path="/profile">
             <ProfilePage />
           </ProtectedRoute>
           <Route component={PageNotFound} />
         </Switch>
         {isModal && (
-          <Route exact path='/ingredient/:id' component={ModalIngredient} />
+          <Route exact path="/ingredient/:id" component={ModalIngredient} />
         )}
       </div>
     </DndProvider>
