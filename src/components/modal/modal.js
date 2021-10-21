@@ -40,7 +40,7 @@ function Modal({isOpen, children, onClick, onCloseClick, title}){
         </div>
       </div>
     </ModalOverlay>
-  ),document.body);
+  ),document.getElementById('modal'));
 }
 
 Modal.propTypes={

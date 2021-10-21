@@ -1,5 +1,5 @@
 import style from './header.module.css';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch, Link } from 'react-router-dom';
 import {
   Logo,
   BurgerIcon,
@@ -31,9 +31,11 @@ function AppHeader() {
           <span className='pl-2'>Лента заказов</span>
         </a>
       </nav>
-      <span className={style.logo}>
-        <Logo />
-      </span>
+      <Link to={'/'}> 
+        <span className={style.logo}> 
+          <Logo />
+        </span>
+      </Link>
       <NavLink
         to={'/profile'}
         className={`text text_type_main-default
