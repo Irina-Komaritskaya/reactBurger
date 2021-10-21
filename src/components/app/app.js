@@ -2,7 +2,7 @@ import style from './app.module.css';
 import AppHeader from '../app-Header/app-Header';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route';
 import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details';
 import { ModalIngredient } from '../burger-ingredients/modal-ingredient';
@@ -13,17 +13,14 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
   ProfilePage,
-  Order,
   PageNotFound
 } from '../../pages/index';
 
 function App() {
-  let location = useLocation();
-  const isModal =
-    location.state &&
-    location.state.modal &&
-    location.state.prevPath != location;
-
+  const history = useHistory();
+  const location = useLocation();
+  const action = history.action ==='PUSH' || history.action ==='REPLACE';
+  const isModal = action && location.state && location.state.modal;
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style.app}>

@@ -1,6 +1,6 @@
 import styles from './reset-password.module.css'
 import { Input, Button  } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { resetPasswordUser, CLEAR_RESET_PASSWORD } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,12 @@ export function ResetPasswordPage() {
   const [value, setValue] = useState({ password: '', token: ''})
   const isResetPassword = useSelector(store => store.password.isResetPassword)
   const isRecoverEmail = useSelector(store => store.password.isRecoverEmail)
+  
+  useEffect (() =>{
+    const button = document.getElementById('saveButon');
+    button.setAttribute('type', 'submit');
+  }, [])
+
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
   }
@@ -17,7 +23,7 @@ export function ResetPasswordPage() {
   if (!isRecoverEmail){
     return <Redirect to={'/profile'}/>
   }
-  const onClick = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     dispatch(resetPasswordUser(value));
   }
@@ -29,7 +35,7 @@ export function ResetPasswordPage() {
 
   return(
     <div className={styles.wrapper}>
-    <form className= {styles.form}>
+    <form onSubmit={onSubmit} className= {styles.form}>
       <h1 className='text text_type_main-medium'>Восстановление пароля</h1>
       <Input 
         type='password' 
@@ -48,7 +54,7 @@ export function ResetPasswordPage() {
         name={'token'} 
         size={'default'}
       />
-      <Button type="primary" size="large" onClick={onClick}>Сохранить</Button>
+      <Button type="primary" size="large" id='saveButton'>Сохранить</Button>
   </form>
   </div>
   );

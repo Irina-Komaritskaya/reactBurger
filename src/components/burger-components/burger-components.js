@@ -41,7 +41,6 @@ function BurgerComponents() {
   }, [dispatch, confirmOrder])
 
   const onClickOrder = () => {
-    console.log(bun)
     if (user && isLoadingUser){
       if(!bun){
         alert('Для оформления заказа выберите булку')

@@ -1,5 +1,5 @@
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {updateProfileUser} from '../../services/profile/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './profile.module.css'
@@ -12,13 +12,19 @@ export function Profile(){
   const [isSaveVisible, setisSaveVisible] = useState(false);
   const dispatch = useDispatch();
   
+  useEffect (() =>{
+    if (isSaveVisible){
+      const button = document.getElementById('saveButton');
+    button.setAttribute('type', 'submit');
+    }
+  }, [isSaveVisible])
 
-  const onClickSave = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const newValue = {}
     if (user.name !== value.name){
       newValue['name'] = value.name;
-    } 
+    }
     if (user.email !== value.email){
       newValue['email'] = value.email;
     }
@@ -29,6 +35,7 @@ export function Profile(){
     dispatch(updateProfileUser( newValue, token));
     setDisabled({name: true, email: true, password: true})
     setisSaveVisible(false);
+    
   }
 
   const onClickCancel = (e) => {
@@ -36,6 +43,7 @@ export function Profile(){
     setValue({name: user.name, email: user.email, password: ''});
     setDisabled({name: true, email: true, password: true})
     setisSaveVisible(false);
+    
   }
   const onChange = e => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -44,7 +52,7 @@ export function Profile(){
   const onIconClickName = () => {
     setDisabled({...disabled, name: !disabled.name});
     setisSaveVisible(true);
-  } 
+  }
   const onIconClickEmail = () => {
     setDisabled({...disabled, email: !disabled.email});
     setisSaveVisible(true);
@@ -55,48 +63,48 @@ export function Profile(){
   }
 
   return(
-    <form className={styles.form}>
-    <Input type='text' 
-        placeholder={'Имя'} 
+    <form onSubmit ={onSubmit} className={styles.form}>
+    <Input type='text'
+        placeholder={'Имя'}
         onChange={onChange}
-        disabled={disabled.name} 
-        value={value.name} 
-        name={'name'}  
+        disabled={disabled.name}
+        value={value.name}
+        name={'name'}
         size={'default'}
         icon={'EditIcon'}
         onIconClick={onIconClickName}
       />
-      <Input 
-        type='email' 
-        placeholder={'Email'} 
-        onChange={onChange} 
-        value={value.email} 
-        disabled={disabled.email} 
-        name={'email'} 
+      <Input
+        type='email'
+        placeholder={'Email'}
+        onChange={onChange}
+        value={value.email}
+        disabled={disabled.email}
+        name={'email'}
         size={'default'}
         icon={'EditIcon'}
         onIconClick={onIconClickEmail}
       />
-       <Input 
-        type='password' 
-        placeholder={'password'} 
-        onChange={onChange} 
-        value={value.password} 
-        disabled={disabled.password} 
-        name={'password'} 
+       <Input
+        type='password'
+        placeholder={'password'}
+        onChange={onChange}
+        value={value.password}
+        disabled={disabled.password}
+        name={'password'}
         size={'default'}
         icon={'EditIcon'}
         onIconClick={onIconClickPassword}
       />
       {
-        isSaveVisible 
+        isSaveVisible
         ? (
             <div className={styles.button}>
+            <Button type="primary" size="small" id='saveButton'>
+              Сохранить
+            </Button>
             <Button type="secondary" size="medium" onClick={onClickCancel}>
               Отмена
-            </Button>
-            <Button type="primary" size="small" onClick={onClickSave}>
-              Сохранить
             </Button>
             </div>
           )

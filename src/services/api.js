@@ -1,4 +1,4 @@
-const urlApi = 'https://norma.nomoreparties.space/api'
+const urlApi = 'https://norma.nomoreparties.space/api/'
 const getData = async (url, params) =>{
   const res = await fetch(url, params);
   if(res.status !== 200){
@@ -14,14 +14,14 @@ const getData = async (url, params) =>{
 }
 
 export const getIngredients = async () => {
-  const url = urlApi + '/ingredients'
+  const url = urlApi + 'ingredients'
   const result = await getData(url);
   return result;
 }
   
 export const getOrder = async (idIngredients, idBun) => {
-  const urlOrder = 'https://norma.nomoreparties.space/api/orders'
-  const result = await getData(urlOrder, {
+  const url = urlApi + '/orders'
+  const result = await getData(url, {
     method: 'POST', 
     headers: {'Content-Type': 'application/json;charset=utf-8'},
     body: JSON.stringify({
@@ -32,8 +32,8 @@ export const getOrder = async (idIngredients, idBun) => {
 }
 
 export const registration = async (value) => {
-  const urlReg = 'https://norma.nomoreparties.space/api/auth/register'
-  const result = await getData( urlReg, {
+  const url= urlApi + 'auth/register'
+  const result = await getData( url, {
     method: 'POST',
     body: new URLSearchParams({
       'email': value.email, 
@@ -45,8 +45,8 @@ export const registration = async (value) => {
 }
 
 export const authorization = async (value) => {
-  const urlAuth = 'https://norma.nomoreparties.space/api/auth/login'
-  const result = await getData( urlAuth, {
+  const url = urlApi + 'auth/login'
+  const result = await getData( url, {
     method: 'POST',
     body: new URLSearchParams({
       'email': value.email, 
@@ -57,8 +57,8 @@ export const authorization = async (value) => {
 }
 
 export const logOut = async (token) => {
-  const urlOut = 'https://norma.nomoreparties.space/api/auth/logout'
-  const result = await getData( urlOut, {
+  const url = urlApi + 'auth/logout'
+  const result = await getData( url, {
     method: 'POST',
     body: new URLSearchParams({
       "token": token
@@ -68,8 +68,8 @@ export const logOut = async (token) => {
 }
 
 export const forgotPassword = async (email) => {
-  const urlforgot = 'https://norma.nomoreparties.space/api/password-reset'
-  const result = await getData( urlforgot, {
+  const url = urlApi + 'password-reset'
+  const result = await getData( url, {
     method: 'POST',
     body: new URLSearchParams({
       "email": email
@@ -79,8 +79,8 @@ export const forgotPassword = async (email) => {
 }
 
 export const resetPassword = async (password, token) => {
-  const urlReset =  "https://norma.nomoreparties.space/api/password-reset/reset"
-  const result = await getData( urlReset, {
+  const url =  urlApi + 'password-reset/reset'
+  const result = await getData( url, {
     method: 'POST',
     body: new URLSearchParams({
       "password": password,
@@ -91,8 +91,8 @@ export const resetPassword = async (password, token) => {
 }
 
 export const updateProfile = async (value, token) => {
-  const urlReset =  "https://norma.nomoreparties.space/api/auth/user"
-  const result = await getData( urlReset, {
+  const url =  urlApi + 'auth/user'
+  const result = await getData( url, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -104,8 +104,8 @@ export const updateProfile = async (value, token) => {
 }
 
 export const getUser = async (token) => {
-  const urlUser = "https://norma.nomoreparties.space/api/auth/user";
-  const result = await getData( urlUser, {
+  const url = urlApi + 'auth/user';
+  const result = await getData( url, {
     method: 'GET',
     headers: {
       'Authorization': 'Bearer '+token
@@ -115,7 +115,7 @@ export const getUser = async (token) => {
 }
 
 export const getNewAccessToken = async (token) => {
-  const url =  "https://norma.nomoreparties.space/api/auth/token";
+  const url =  urlApi + 'auth/token';
   const result = await getData( url, {
     method: 'POST',
     headers: {
