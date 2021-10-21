@@ -10,7 +10,6 @@ export function RedirectAuthUser(Component, path) {
     if (!isLoadingUser){
       return null
     }
-    console.log(history.length)
     if (user){
       if(history.length === 1){
        return <Redirect to={{path}}/>

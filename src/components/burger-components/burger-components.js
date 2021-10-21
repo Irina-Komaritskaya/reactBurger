@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useDrop} from 'react-dnd'
-import { ADD_COMPONENT, UPDATE_COMPONENT } from '../../services/burger-component/actions';
+import { ADD_COMPONENT, UPDATE_COMPONENT, CLEAR_COMPONENTS } from '../../services/burger-component/actions';
 import {CONFIRM_ORDER} from '../../services/order/actions'
 import {loadOrder} from '../../services/order/actions'
 import styles from './burger-components.module.css';
@@ -14,17 +14,17 @@ import {
   CurrencyIcon, 
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { authorization } from '../../services/api';
 
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
   const bun = useSelector(store => store.component.bun)
   const components = useSelector(store => store.component.components)
   const totalSum = useSelector(store => store.component.totalSum)
-  const confirmOrder =useSelector(store => store.order.confirmOrder)
+  const confirmOrder = useSelector(store => store.order.confirmOrder)
   const dispatch = useDispatch();
   const[isOpenModal, setIsOpenModal] = useState(false);
   const [user, isLoadingUser] = useAuth();
+  
   const handleClick = () =>{
     setIsOpenModal(false);
   }
@@ -33,16 +33,20 @@ function BurgerComponents() {
     if(confirmOrder){
       const idIngredients = components.map((x) => x._id);
       const idBun = bun._id;
-      dispatch(loadOrder(idIngredients, idBun))
+      dispatch(loadOrder(idIngredients, idBun));
+      dispatch({
+        type: CLEAR_COMPONENTS
+      })
     }
-  }, [dispatch, confirmOrder, bun, components])
+  }, [dispatch, confirmOrder])
 
   const onClickOrder = () => {
+    console.log(bun)
     if (user && isLoadingUser){
       if(!bun){
         alert('Для оформления заказа выберите булку')
       } else {
-        dispatch({
+        dispatch({  
           type: CONFIRM_ORDER,
           value: true
         })

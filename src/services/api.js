@@ -1,4 +1,4 @@
-
+const urlApi = 'https://norma.nomoreparties.space/api'
 const getData = async (url, params) =>{
   const res = await fetch(url, params);
   if(res.status !== 200){
@@ -14,8 +14,8 @@ const getData = async (url, params) =>{
 }
 
 export const getIngredients = async () => {
-  const urlIngredient = 'https://norma.nomoreparties.space/api/ingredients'
-  const result = await getData(urlIngredient);
+  const url = urlApi + '/ingredients'
+  const result = await getData(url);
   return result;
 }
   

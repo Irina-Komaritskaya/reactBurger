@@ -13,9 +13,7 @@ export const orderReducer = (state = initialState, action) => {
         ...state,
         order: action.value.order,
         isLoadingOrder: false,
-        components: [],
         confirmOrder: false,
-        bun: null
       }
     }
     case GET_ORDER_REQUEST:{

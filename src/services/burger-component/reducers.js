@@ -3,7 +3,8 @@ import { v4 as generateKey} from 'uuid';
 import {
   ADD_COMPONENT,
   DEL_COMPONENT,
-  UPDATE_COMPONENT
+  UPDATE_COMPONENT,
+  CLEAR_COMPONENTS
 } from './actions';
 
 export const componentReducer = (state = initialState, action) => {
@@ -44,6 +45,14 @@ export const componentReducer = (state = initialState, action) => {
       return{
         ...state,
         components: newComponents
+      }
+    }
+    case CLEAR_COMPONENTS:{
+      return{
+        ...state,
+        components: [],
+        bun: null,
+        totalSum: 0
       }
     }
     default: {
