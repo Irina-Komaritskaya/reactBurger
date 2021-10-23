@@ -6,9 +6,9 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function OrderDetails() {
   const { order, isLoadingOrder } = useSelector((store) => store.order);
-  const [user, isLoadingUser] = useAuth();
+  const [user, isLoadedUser] = useAuth();
 
-  if (!isLoadingUser) {
+  if (!isLoadedUser) {
     return null;
   }
 

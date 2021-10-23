@@ -26,7 +26,7 @@ export function Profile() {
   useEffect(() => {
     if (isSaveVisible) {
       const button = document.getElementById('saveButton');
-      button.setAttribute('type', 'submit');
+      button?.setAttribute('type', 'submit');
     }
   }, [isSaveVisible]);
 

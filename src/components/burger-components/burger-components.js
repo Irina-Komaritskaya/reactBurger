@@ -27,7 +27,7 @@ function BurgerComponents() {
   const confirmOrder = useSelector((store) => store.order.confirmOrder);
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [user, isLoadingUser] = useAuth();
+  const [user, isLoadedUser] = useAuth();
 
   const handleClick = () => {
     setIsOpenModal(false);
@@ -45,7 +45,7 @@ function BurgerComponents() {
   }, [dispatch, confirmOrder]);
 
   const onClickOrder = () => {
-    if (user && isLoadingUser) {
+    if (user && isLoadedUser) {
       if (!bun) {
         alert('Для оформления заказа выберите булку');
       } else {

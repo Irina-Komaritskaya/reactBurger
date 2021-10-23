@@ -19,7 +19,7 @@ export const getIngredients = async () => {
 };
 
 export const getOrder = async (idIngredients, idBun) => {
-  const url = urlApi + '/orders';
+  const url = urlApi + 'orders';
   const result = await getData(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json;charset=utf-8' },

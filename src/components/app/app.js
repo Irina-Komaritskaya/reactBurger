@@ -3,9 +3,10 @@ import AppHeader from '../app-Header/app-Header';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
-import { ProtectedRoute } from '../protected-route';
+import { ProtectedRoute } from '../routes/protected-route';
 import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details';
 import { ModalIngredient } from '../burger-ingredients/modal-ingredient';
+import {RedirectAuthRoute} from '../routes/redirect-auth-route';
 import {
   MainPage,
   LoginPage,
@@ -35,10 +36,11 @@ function App() {
             exact={true}
             component={IngredientDetails}
           />
-          <Route
+          <RedirectAuthRoute
             path="/forgot-password"
             exact={true}
             component={ForgotPasswordPage}
+            redirect="/profile"
           />
           <ProtectedRoute path="/profile">
             <ProfilePage />

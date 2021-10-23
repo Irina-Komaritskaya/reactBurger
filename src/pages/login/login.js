@@ -4,20 +4,24 @@ import {
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authUser } from '../../services/auth/actions';
-import { RedirectAuthUser } from '../../hoc/redirectAuthUser';
+import { useAuth } from '../../hooks/useAuth';
 
-function LoginPage() {
+export function LoginPage() {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '', email: '' });
   const [typeInput, setTypeInput] = useState('password');
   const [isError, setIsError] = useState({ email: false, password: false });
+  const [isSubmitted, setIsSubmited] = useState(false);
+  const [user, isLoadedUser] = useAuth();
+  const location = useLocation();
+  const from = location.state?.from?.pathname;
 
   useEffect(() => {
     const button = document.getElementById('enterButton');
-    button.setAttribute('type', 'submit');
+    button?.setAttribute('type', 'submit');
   }, []);
 
   const onChange = (e) => {
@@ -38,8 +42,20 @@ function LoginPage() {
       return;
     }
     dispatch(authUser(value));
+    setIsSubmited(true);
   };
 
+  if (!isLoadedUser) {
+    return null;
+  }
+
+  if (user) {
+    if (isSubmitted) {
+      return <Redirect to={from || '/'} />;
+    } else {
+      return <Redirect to='/profile' />;
+    }
+  }
   return (
     <div className={styles.wrapper}>
       <form onSubmit={onSubmit} className={styles.form}>
@@ -86,5 +102,3 @@ function LoginPage() {
     </div>
   );
 }
-
-export default RedirectAuthUser(LoginPage, '/');

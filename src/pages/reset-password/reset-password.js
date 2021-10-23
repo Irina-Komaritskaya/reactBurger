@@ -21,7 +21,7 @@ export function ResetPasswordPage() {
 
   useEffect(() => {
     const button = document.getElementById('saveButon');
-    button.setAttribute('type', 'submit');
+    button?.setAttribute('type', 'submit');
   }, []);
 
   const onChange = (e) => {

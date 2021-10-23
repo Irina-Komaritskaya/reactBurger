@@ -12,7 +12,7 @@ export function useAuth() {
   const refreshToken = getCookie('refreshToken');
 
   const user = useSelector((store) => store.auth.user);
-  const [isLoadingUser, setIsLoadingUser] = useState(false);
+  const [isLoadedUser, setIsLoadedUser] = useState(false);
 
   useEffect(() => {
     //#region func
@@ -22,7 +22,7 @@ export function useAuth() {
         type: RESTORE_USER,
         user: res.user,
       });
-      setIsLoadingUser(true);
+      setIsLoadedUser(true);
     };
 
     const getToken = async (token) => {
@@ -36,7 +36,7 @@ export function useAuth() {
 
     if (accessToken) {
       if (user) {
-        setIsLoadingUser(true);
+        setIsLoadedUser(true);
       } else {
         saveUser(accessToken).catch(() => setError(true));
       }
@@ -49,5 +49,5 @@ export function useAuth() {
     return [null, true];
   }
 
-  return [user, isLoadingUser];
+  return [user, isLoadedUser];
 }

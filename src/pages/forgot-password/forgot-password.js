@@ -7,16 +7,15 @@ import { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { forgotPasswordUser } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { RedirectAuthUser } from '../../hoc/redirectAuthUser';
 
-function ForgotPasswordPage() {
+export function ForgotPasswordPage() {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
   const isRecoverEmail = useSelector((store) => store.password.isRecoverEmail);
 
   useEffect(() => {
     const button = document.getElementById('recoverButton');
-    button.setAttribute('type', 'submit');
+    button?.setAttribute('type', 'submit');
   }, []);
 
   const onChange = (e) => {
@@ -58,4 +57,3 @@ function ForgotPasswordPage() {
   );
 }
 
-export default RedirectAuthUser(ForgotPasswordPage, '/profile');
