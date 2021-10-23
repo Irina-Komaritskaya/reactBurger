@@ -7,9 +7,11 @@ import {
   CurrencyIcon,
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Link } from 'react-router-dom';
 
 function BurgerItem({ data }) {
   const { components, bun } = useSelector((store) => store.ingredient);
+
   const [{ opacity }, dragRef] = useDrag({
     type: 'ingredient',
     item: data,
@@ -24,23 +26,29 @@ function BurgerItem({ data }) {
       : components.filter((x) => x._id === data._id).length;
 
   return (
-    <section
-      ref={dragRef}
-      className={`ml-4 ${style.burgerBlock}`}
-      style={{ opacity }}
-    >
-      {counter > 0 && <Counter count={counter} size="default" />}
-      <p>
-        <img className="mb-1 ml-4" src={data.image} alt={data.name} />
-      </p>
+    <div ref={dragRef}>
+      <Link
+        to={{
+          pathname: `/ingredient/${data._id}`,
+          state: { modal: true },
+        }}
+        className={style.link}
+      >
+        <section className={`ml-4 ${style.burgerBlock}`} style={{ opacity }}>
+          {counter > 0 && <Counter count={counter} size="default" />}
+          <p>
+            <img className="mb-1 ml-4" src={data.image} alt={data.name} />
+          </p>
 
-      <p className={`${style.price} text text_type_digits-default`}>
-        {data.price} &nbsp;
-        <CurrencyIcon type="primary" />
-      </p>
+          <p className={`${style.price} text text_type_digits-default`}>
+            {data.price} &nbsp;
+            <CurrencyIcon type="primary" />
+          </p>
 
-      <p className="text text_type_main-default">{data.name}</p>
-    </section>
+          <p className="text text_type_main-default">{data.name}</p>
+        </section>
+      </Link>
+    </div>
   );
 }
 

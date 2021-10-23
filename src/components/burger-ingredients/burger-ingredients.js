@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import BurgerItem from './burger-item/burger-item';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+
 
 function BurgerIngredients() {
   const ingredients = useSelector((store) => store.ingredient.ingredients);
@@ -90,16 +90,7 @@ function BurgerIngredients() {
           </h2>
           <div className={style.ingredients}>
             {buns.map((x) => (
-              <Link
-                key={x._id}
-                to={{
-                  pathname: `/ingredient/${x._id}`,
-                  state: { modal: true },
-                }}
-                className={style.link}
-              >
-                <BurgerItem data={x} />
-              </Link>
+                <BurgerItem data={x} key={x._id}/>
             ))}
           </div>
 
@@ -108,16 +99,7 @@ function BurgerIngredients() {
           </h2>
           <div className={style.ingredients}>
             {sauces.map((x) => (
-              <Link
-                key={x._id}
-                to={{
-                  pathname: `/ingredient/${x._id}`,
-                  state: { modal: true },
-                }}
-                className={style.link}
-              >
-                <BurgerItem data={x} />
-              </Link>
+                <BurgerItem data={x} key={x._id}/>
             ))}
           </div>
 
@@ -126,16 +108,8 @@ function BurgerIngredients() {
           </h2>
           <div className={style.ingredients}>
             {mains.map((x) => (
-              <Link
-                key={x._id}
-                to={{
-                  pathname: `/ingredient/${x._id}`,
-                  state: { modal: true },
-                }}
-                className={style.link}
-              >
-                <BurgerItem data={x} />
-              </Link>
+                <BurgerItem data={x} key={x._id} />
+
             ))}
           </div>
         </div>
