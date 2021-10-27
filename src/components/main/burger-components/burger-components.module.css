@@ -12,14 +12,14 @@
   padding: 0;
 }
 
-.componentList > li {
+.componentList > li > div {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.componentList > li > svg {
+.componentList > li > div > svg {
  padding-right: 10px;
 }
 
@@ -37,7 +37,7 @@
   border-radius: 6px;
 }
 
-.fullWidht > div {
+.fullWidht > div > div{
   width: 100%;
 }
 

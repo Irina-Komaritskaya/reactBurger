@@ -1,30 +1,72 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useCallback} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {useDrop} from 'react-dnd'
+import { CONFIRM_ORDER, ADD_COMPONENT, UPDATE_COMPONENT } from '../../../services/actions';
+import {loadOrder} from '../../../services/actions'
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
+import {ComponentItem} from './component-item/component-item'
 import Modal from '../../modal/modal';
-import {ComponentContext} from '../../../services/main-context'
-import { v4 as generateKey} from 'uuid';
-import PropTypes from 'prop-types';
-import { orderItemProps } from '../../../types/types';
 import { 
   Button, 
   CurrencyIcon, 
-  DragIcon, 
   ConstructorElement 
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-
     //BurgerComponents- компонент для корзины заказа
 function BurgerComponents() {
-  const {totalSumState, totalSumDispatcher, order, setOrder}  = useContext(ComponentContext);
+  const bun = useSelector(store => store.burger.bun)
+  const components = useSelector(store => store.burger.components)
+  const totalSum = useSelector(store => store.burger.totalSum)
+  const confirmOrder =useSelector(store => store.burger.confirmOrder)
+  const dispatch = useDispatch();
   const[isOpenModal, setIsOpenModal] = useState(false);
-  const {bun, ingredients, setConfirmOrder} = order
+
   const handleClick = () =>{
     setIsOpenModal(false);
   }
+
+  useEffect(() => {
+    if(confirmOrder){
+      const idIngredients = components.map((x) => x._id);
+      const idBun = bun._id;
+      dispatch(loadOrder(idIngredients, idBun))
+    }
+  }, [dispatch, confirmOrder])
+
+  const onClickOrder = () => {
+    if(!bun){
+      alert('Для оформления заказа выберите булку')
+    } else {
+     dispatch({
+       type: CONFIRM_ORDER,
+       value: true
+     })
+      setIsOpenModal(true);
+    }
+  }
+  
+  const [ ,ingredientRef] = useDrop({
+    accept: 'ingredient',
+    drop: (item) =>{
+      dispatch({
+        type: ADD_COMPONENT,
+        value: item
+      })
+    }
+  });
+
+  const moveListItem = useCallback((dragIndex, hoverIndex) => {
+      dispatch({
+        type: UPDATE_COMPONENT,
+        value: { dragIndex, hoverIndex }
+      });
+  }, [components.length]);
+  
+
   return (
   <>
-    <div className={`mt-25 ${styles.panel}`}>
+    <div className={`mt-25 ${styles.panel}`} ref={ingredientRef}>
         <ConstructorElement
           type="top"
           isLocked={true}
@@ -34,27 +76,13 @@ function BurgerComponents() {
         />
 
       <ul className={`pr-8 ${styles.componentList}`} >
-      {ingredients.map((x, index) => (
-        <li key={generateKey()} className={`mb-4 ${styles.fullWidht}`}>
-          {<DragIcon type="primary" />}
-          <ConstructorElement
-            text={x.name}
-            price={x.price}
-            thumbnail={x.image}
-            handleClose={() => {
-              totalSumDispatcher({type: 'del', price: x.price})
-              let newIngredients = [...ingredients];
-              newIngredients.splice(index, 1);
-              setOrder({
-                ...order,
-                ingredients: newIngredients
-              })
-            }}
-          />
-        </li>
-      ))}
+        {components.map((x, index) => {
+          return <li key={x.key} >
+            <ComponentItem item={x} index={index} moveListItem={moveListItem}/>
+          </li>
+      })}
       </ul>
-            
+
         <ConstructorElement
           type="bottom"
           isLocked={true}
@@ -64,18 +92,10 @@ function BurgerComponents() {
         />
       <section className={`mt-5 ${styles.totalPrice}`}>
         <span className="text text_type_digits-medium mr-10">
-          {totalSumState.totalSum} <CurrencyIcon type="primary" />
+        {totalSum} <CurrencyIcon type="primary" />
         </span>
         <Button 
-          onClick={()=> {
-            if(!bun){
-              alert('Для оформления заказа выберите булку')
-            } else {
-            setConfirmOrder(true);
-            setIsOpenModal(true);
-            }
-            
-          }} 
+          onClick={onClickOrder} 
           type="primary" 
           size="large"
         >
@@ -83,6 +103,7 @@ function BurgerComponents() {
         </Button>
       </section>
     </div>
+    
     <Modal
       isOpen={isOpenModal} 
       onClick={handleClick} 
@@ -96,12 +117,4 @@ function BurgerComponents() {
   );
 }
 
-BurgerComponents.propTypes={
-  ComponentContext: PropTypes.shape({
-    order: orderItemProps.isRequired,
-    totalSumState: orderItemProps.isRequired,
-    totalSumDispatcher: PropTypes.func.isRequired,
-    setOrder: PropTypes.func.isRequired
-    })
-}
 export default BurgerComponents;

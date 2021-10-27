@@ -1,15 +1,14 @@
-import { useContext } from 'react';
 import styles from './order-details.module.css';
-import PropTypes from 'prop-types';
-import {ComponentContext} from '../../../../services/main-context'
+import { useSelector} from 'react-redux';
 
 function OrderDetails(){
-  const {order: {numberOrder, isLoading}}  = useContext(ComponentContext);
+  const {order,isLoadingOrder} = useSelector(store => store.burger);
+
   return (
   <>
       <section> 
         <p className={`text text_type_digits-large pt-15 ${styles.light}`} >
-          {isLoading ? '...' : numberOrder}
+          {(isLoadingOrder || !order) ? '...' : order.number}
         </p>
         <p className="text text_type_main-medium pt-8">идентификатор заказа</p>
         <p className='pt-15 pb-15'><img src='/images/imageDone.gif' alt="done"/></p>
@@ -19,12 +18,7 @@ function OrderDetails(){
         </p>
       </section>
   </>           
-)}
-
-OrderDetails.propTypes={
-  ComponentContext: PropTypes.shape({
-  numberOrder: PropTypes.number,
-  isLoading:PropTypes.bool
-})
+)
 }
+
 export default OrderDetails;

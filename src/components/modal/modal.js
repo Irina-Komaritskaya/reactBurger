@@ -13,7 +13,6 @@ function Modal({isOpen, children, onClick, onCloseClick, title}){
         break; 
     } 
   } 
-
   useEffect(() => { 
     document.addEventListener('keydown', onKeydown); 
     return () => document.removeEventListener('keydown', onKeydown); 
