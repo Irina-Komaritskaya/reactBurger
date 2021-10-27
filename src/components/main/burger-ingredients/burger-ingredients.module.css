@@ -5,7 +5,7 @@
 .productPanel h1, h2{
     text-align: start;
 }
-.ingridients{
+.ingredients{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

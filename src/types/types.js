@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const dataItemProps = PropTypes.shape({
+export const dataItemProps = PropTypes.shape({
   _id:PropTypes.string.isRequired,
   name:PropTypes.string.isRequired,
   type:PropTypes.string.isRequired,
@@ -15,4 +15,12 @@ const dataItemProps = PropTypes.shape({
   __v:PropTypes.number,
 });
 
-export default dataItemProps;
+export const orderItemProps = PropTypes.shape({
+    totalSum: PropTypes.number.isRequired,
+    numberOrder: PropTypes.number,
+    bun: dataItemProps.isRequired,
+    ingredients: PropTypes.arrayOf(dataItemProps.isRequired).isRequired,
+    setConfirmOrder: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool,
+    hasError: PropTypes.bool
+  });

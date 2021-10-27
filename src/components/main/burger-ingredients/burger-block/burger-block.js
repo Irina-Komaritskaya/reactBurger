@@ -1,5 +1,5 @@
 import style from './burger-block.module.css'
-import dataItemProps from '../../../../types/types';
+import {dataItemProps} from '../../../../types/types';
 import PropTypes from 'prop-types';
 import { CurrencyIcon,
          Counter}  from '@ya.praktikum/react-developer-burger-ui-components';

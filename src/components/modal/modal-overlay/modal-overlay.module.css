@@ -1,16 +1,15 @@
-.modal{
-  background: black;
+.overlay{
+  background-color: rgba(0,0,0, 0.6) ;
+  position: fixed;
   display: flex;
-  overflow: hidden;
-  text-align: center;
-  flex-direction: column;
-  border-radius: 40px;
-  background-color: #1C1C21;
-}
-
-.title{
-  display: flex;
-  justify-content: space-between;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
   align-items: center;
-}
+ }
+ 
 
