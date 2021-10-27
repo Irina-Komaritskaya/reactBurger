@@ -3,7 +3,6 @@ export const initialState = {
   isLoadingIngredient: false,
   hasErrorIngredient: false,
   ingredients: [],
-  currentIngredient: null,
   //#endregion
 
   //region order
@@ -16,4 +15,7 @@ export const initialState = {
   hasErrorOrder: false,
   //#endregion
 
-}
+  user: null,
+  isRecoverEmail: null,
+  isResetPassword: null,
+};
