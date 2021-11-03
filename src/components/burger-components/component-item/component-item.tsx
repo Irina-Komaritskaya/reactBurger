@@ -3,7 +3,7 @@ import { useDrop, useDrag } from 'react-dnd';
 import React, { useRef } from 'react';
 import { DEL_COMPONENT } from '../../../services/burger-component/actions';
 import PropTypes, { number } from 'prop-types';
-import { TDataItem} from '../../../types/types';
+import { TDataItem } from '../../../types/types';
 import {
   DragIcon,
   ConstructorElement,
@@ -12,9 +12,13 @@ import {
 interface IComponentItemProps {
   item: TDataItem;
   index: number;
-  moveListItem: (dragIndex: any, hoverIndex: any) => void;
+  moveListItem: (dragIndex: number, hoverIndex: number) => void;
 }
-export const ComponentItem: React.FC<IComponentItemProps>= ({ item, index, moveListItem }) => {
+export const ComponentItem: React.FC<IComponentItemProps> = ({
+  item,
+  index,
+  moveListItem,
+}) => {
   const dispatch = useDispatch();
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -25,7 +29,7 @@ export const ComponentItem: React.FC<IComponentItemProps>= ({ item, index, moveL
     }),
   });
 
-  const [, dropRef] = useDrop<any, any, any>({
+  const [, dropRef] = useDrop<IComponentItemProps, HTMLDivElement, null>({
     accept: 'item',
     hover: (item, monitor) => {
       if (!ref.current) {
@@ -52,7 +56,7 @@ export const ComponentItem: React.FC<IComponentItemProps>= ({ item, index, moveL
     },
   });
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   dragRef(dropRef(ref));
   const opacity = isDragging ? 0 : 1;
 
@@ -74,7 +78,7 @@ export const ComponentItem: React.FC<IComponentItemProps>= ({ item, index, moveL
       />
     </div>
   );
-}
+};
 
 // ComponentItem.propTypes = {
 //   item: dataItemProps.isRequired,
