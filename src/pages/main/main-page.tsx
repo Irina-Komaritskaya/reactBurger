@@ -5,7 +5,7 @@ import BurgerIngredients from '../../components/burger-ingredients/burger-ingred
 import BurgerComponents from '../../components/burger-components/burger-components';
 import { loadIngredients } from '../../services/ingredient/actions';
 
-export const MainPage = () => {
+export const MainPage: React.FC = () => {
   const isLoadingIngredient = useSelector(
     (store: any) => store.ingredient.isLoadingIngredient
   );

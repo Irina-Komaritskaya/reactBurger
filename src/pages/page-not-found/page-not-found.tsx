@@ -1,6 +1,7 @@
 import styles from './page-not-found.module.css';
 import { Link } from 'react-router-dom';
-export function PageNotFound() {
+
+export const PageNotFound: React.FC = () => {
   return (
     <div className={styles.wrap}>
       <p className="text_type_main-large">Страница не найдена</p>
@@ -10,4 +11,4 @@ export function PageNotFound() {
       </Link>
     </div>
   );
-}
+};
