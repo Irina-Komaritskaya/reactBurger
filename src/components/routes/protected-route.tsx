@@ -1,8 +1,9 @@
 import { Route, useLocation } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
+import React from 'react';
 
-export function ProtectedRoute({ children, ...rest }) {
+export const ProtectedRoute: React.FC = ({ children, ...rest }) => {
   const [user, isLoadedUser] = useAuth();
   const location = useLocation();
 
@@ -22,4 +23,4 @@ export function ProtectedRoute({ children, ...rest }) {
   }
 
   return <Route {...rest} render={() => children} />;
-}
+};

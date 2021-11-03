@@ -9,7 +9,7 @@ import styles from './profile.module.css';
 import { getCookie } from '../../utils/cookie';
 import { TUser } from '../../types/types';
 
-export const Profile = () => {
+export const Profile: React.FC = () => {
   const user = useSelector((store: any) => store.auth.user);
  
   const [value, setValue] = useState<TUser>({

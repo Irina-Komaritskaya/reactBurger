@@ -2,7 +2,14 @@ import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
 
-export function RedirectAuthRoute({ children, redirect, ...rest }) {
+interface IRedirectAuthRoute {
+  redirect: string;
+}
+export const RedirectAuthRoute: React.FC<IRedirectAuthRoute> = ({
+  children,
+  redirect,
+  ...rest
+}) => {
   const [user, isLoadedUser] = useAuth();
 
   if (!isLoadedUser) {
@@ -14,4 +21,4 @@ export function RedirectAuthRoute({ children, redirect, ...rest }) {
   }
 
   return <Route {...rest} render={() => children} />;
-}
+};
