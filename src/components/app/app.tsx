@@ -3,6 +3,7 @@ import AppHeader from '../app-Header/app-Header';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
+import {Location} from 'history';
 import { ProtectedRoute } from '../routes/protected-route';
 import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details';
 import { ModalIngredient } from '../burger-ingredients/modal-ingredient';
@@ -17,9 +18,14 @@ import {
   PageNotFound,
 } from '../../pages/index';
 
-function App() {
+
+interface LocationState {
+  modal: boolean,
+  prevPath: Location
+};
+const App: React.FC = () => {
   const history = useHistory();
-  const location = useLocation();
+  const location = useLocation<LocationState>();
   const action = history.action === 'PUSH' || history.action === 'REPLACE';
   const isModal = action && location.state && location.state.modal;
   return (

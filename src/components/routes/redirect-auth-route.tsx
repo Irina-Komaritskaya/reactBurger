@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 interface IRedirectAuthRoute {
   redirect: string;
 }
-export const RedirectAuthRoute: React.FC<IRedirectAuthRoute> = ({
+export const RedirectAuthRoute: React.FC<IRedirectAuthRoute & Record<string,any>> = ({
   children,
   redirect,
   ...rest

@@ -7,7 +7,7 @@ import {
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function AppHeader() {
+const AppHeader: React.FC = () => {
   const loginLink = useRouteMatch('/login');
   const isLoginPage = loginLink && loginLink.path === '/login';
 
@@ -52,6 +52,6 @@ function AppHeader() {
       </NavLink>
     </header>
   );
-}
+};
 
 export default AppHeader;
