@@ -6,9 +6,9 @@ import { Order } from '..';
 import { useDispatch } from 'react-redux';
 import { Profile } from '../../components/profile/profile';
 
-export function ProfilePage() {
+export const ProfilePage: React.FC = () => {
   const dispatch = useDispatch();
-  const onClickExit = (e) => {
+  const onClickExit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const accessToken = getCookie('accessToken');
     const refreshToken = getCookie('refreshToken');
@@ -53,4 +53,4 @@ export function ProfilePage() {
       </Switch>
     </div>
   );
-}
+};
