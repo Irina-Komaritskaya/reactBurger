@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import { useAuth } from '../../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import React from 'react';
 
-function OrderDetails() {
-  const { order, isLoadingOrder } = useSelector((store) => store.order);
+const OrderDetails: React.FC =  () => {
+  const { order, isLoadingOrder } = useSelector((store: any) => store.order);
   const [user, isLoadedUser] = useAuth();
 
   if (!isLoadedUser) {

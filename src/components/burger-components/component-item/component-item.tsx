@@ -1,15 +1,20 @@
 import { useDispatch } from 'react-redux';
 import { useDrop, useDrag } from 'react-dnd';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { DEL_COMPONENT } from '../../../services/burger-component/actions';
-import PropTypes from 'prop-types';
-import { dataItemProps } from '../../../types/types';
+import PropTypes, { number } from 'prop-types';
+import { TDataItem} from '../../../types/types';
 import {
   DragIcon,
   ConstructorElement,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-export function ComponentItem({ item, index, moveListItem }) {
+interface IComponentItemProps {
+  item: TDataItem;
+  index: number;
+  moveListItem: (dragIndex: any, hoverIndex: any) => void;
+}
+export const ComponentItem: React.FC<IComponentItemProps>= ({ item, index, moveListItem }) => {
   const dispatch = useDispatch();
 
   const [{ isDragging }, dragRef] = useDrag({
@@ -20,7 +25,7 @@ export function ComponentItem({ item, index, moveListItem }) {
     }),
   });
 
-  const [, dropRef] = useDrop({
+  const [, dropRef] = useDrop<any, any, any>({
     accept: 'item',
     hover: (item, monitor) => {
       if (!ref.current) {
@@ -71,8 +76,8 @@ export function ComponentItem({ item, index, moveListItem }) {
   );
 }
 
-ComponentItem.propTypes = {
-  item: dataItemProps.isRequired,
-  index: PropTypes.number,
-  moveListItem: PropTypes.func,
-};
+// ComponentItem.propTypes = {
+//   item: dataItemProps.isRequired,
+//   index: PropTypes.number,
+//   moveListItem: PropTypes.func,
+// };

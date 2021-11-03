@@ -18,13 +18,14 @@ import {
   CurrencyIcon,
   ConstructorElement,
 } from '@ya.praktikum/react-developer-burger-ui-components';
+import { TDataItem } from '../../types/types';
 
 //BurgerComponents- компонент для корзины заказа
-function BurgerComponents() {
-  const bun = useSelector((store) => store.component.bun);
-  const components = useSelector((store) => store.component.components);
-  const totalSum = useSelector((store) => store.component.totalSum);
-  const confirmOrder = useSelector((store) => store.order.confirmOrder);
+const BurgerComponents: React.FC = () => {
+  const bun = useSelector((store: any) => store.component.bun);
+  const components = useSelector((store: any) => store.component.components);
+  const totalSum = useSelector((store: any) => store.component.totalSum);
+  const confirmOrder = useSelector((store: any) => store.order.confirmOrder);
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [user, isLoadedUser] = useAuth();
@@ -35,7 +36,7 @@ function BurgerComponents() {
 
   useEffect(() => {
     if (confirmOrder) {
-      const idIngredients = components.map((x) => x._id);
+      const idIngredients = components.map((x: any) => x._id);
       const idBun = bun._id;
       dispatch(loadOrder(idIngredients, idBun));
       dispatch({
@@ -92,7 +93,7 @@ function BurgerComponents() {
         />
 
         <ul className={`pr-8 ${styles.componentList}`}>
-          {components.map((x, index) => {
+          {components.map((x: TDataItem, index: number) => {
             return (
               <li key={x.key}>
                 <ComponentItem
