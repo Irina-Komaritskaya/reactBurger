@@ -8,20 +8,20 @@ import { Link, Redirect } from 'react-router-dom';
 import { forgotPasswordUser } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-export function ForgotPasswordPage() {
+export const ForgotPasswordPage: React.FC = () => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
-  const isRecoverEmail = useSelector((store) => store.password.isRecoverEmail);
+  const isRecoverEmail = useSelector((store: any) => store.password.isRecoverEmail);
 
   useEffect(() => {
     const button = document.getElementById('recoverButton');
-    button?.setAttribute('type', 'submit');
+    button?.children[0].setAttribute('type', 'submit');
   }, []);
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(forgotPasswordUser(value));
   };
@@ -42,9 +42,11 @@ export function ForgotPasswordPage() {
           name={'email'}
           size={'default'}
         />
-        <Button type="primary" size="large" id="recoverButton">
+        <span id="recoverButton">
+        <Button type="primary" size="large">
           Восстановить
         </Button>
+        </span>
         <p className="mt-20 text text_type_main-default text_color_inactive">
           Вспомнили пароль?
           <Link to="/login" className="text_color_accent">
