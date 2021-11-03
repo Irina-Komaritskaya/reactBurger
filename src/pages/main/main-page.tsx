@@ -5,14 +5,14 @@ import BurgerIngredients from '../../components/burger-ingredients/burger-ingred
 import BurgerComponents from '../../components/burger-components/burger-components';
 import { loadIngredients } from '../../services/ingredient/actions';
 
-export function MainPage() {
+export const MainPage = () => {
   const isLoadingIngredient = useSelector(
-    (store) => store.ingredient.isLoadingIngredient
+    (store: any) => store.ingredient.isLoadingIngredient
   );
   const hasErrorIngredient = useSelector(
-    (store) => store.ingredient.hasErrorIngredient
+    (store: any) => store.ingredient.hasErrorIngredient
   );
-  const ingredients = useSelector((store) => store.ingredient.ingredients);
+  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
 
   const dispatch = useDispatch();
 
@@ -32,4 +32,4 @@ export function MainPage() {
       )}
     </main>
   );
-}
+};
