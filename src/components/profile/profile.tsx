@@ -7,14 +7,17 @@ import { updateProfileUser } from '../../services/profile/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './profile.module.css';
 import { getCookie } from '../../utils/cookie';
+import { TUser } from '../../types/types';
 
-export function Profile() {
-  const user = useSelector((store) => store.auth.user);
-  const [value, setValue] = useState({
+export const Profile = () => {
+  const user = useSelector((store: any) => store.auth.user);
+ 
+  const [value, setValue] = useState<TUser>({
     name: user.name,
     email: user.email,
     password: '',
   });
+  
   const [disabled, setDisabled] = useState({
     name: true,
     email: true,
@@ -26,13 +29,13 @@ export function Profile() {
   useEffect(() => {
     if (isSaveVisible) {
       const button = document.getElementById('saveButton');
-      button?.setAttribute('type', 'submit');
+      button?.children[0].setAttribute('type', 'submit');
     }
   }, [isSaveVisible]);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newValue = {};
+    const newValue = { name: '', email: '', password: '' };
     if (user.name !== value.name) {
       newValue['name'] = value.name;
     }
@@ -48,13 +51,13 @@ export function Profile() {
     setisSaveVisible(false);
   };
 
-  const onClickCancel = (e) => {
+  const onClickCancel = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setValue({ name: user.name, email: user.email, password: '' });
     setDisabled({ name: true, email: true, password: true });
     setisSaveVisible(false);
   };
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
@@ -106,11 +109,14 @@ export function Profile() {
         icon={'EditIcon'}
         onIconClick={onIconClickPassword}
       />
+
       {isSaveVisible ? (
         <div className={styles.button}>
-          <Button type="primary" size="small" id="saveButton">
-            Сохранить
-          </Button>
+          <span id="saveButton">
+            <Button type="primary" size="small">
+              Сохранить
+            </Button>
+          </span>
           <Button type="secondary" size="medium" onClick={onClickCancel}>
             Отмена
           </Button>
@@ -120,4 +126,4 @@ export function Profile() {
       )}
     </form>
   );
-}
+};

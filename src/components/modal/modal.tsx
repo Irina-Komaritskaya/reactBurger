@@ -9,7 +9,7 @@ interface IModalProps {
   onClick(): void;
   onCloseClick(): void;
   title?: string;
-  chidren: React.ReactElement;
+  children: React.ReactElement;
 }
 const Modal: React.FC<IModalProps> = ({
   isOpen,

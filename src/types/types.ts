@@ -15,6 +15,11 @@ export type TDataItem = {
   key: string
 };
 
+export type TUser = {
+  name: string,
+  email: string,
+  password: string
+}
 // export type orderItemProps = {
 //   totalSum: number,
 //   numberOrder: number,
