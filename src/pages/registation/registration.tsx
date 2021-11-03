@@ -3,25 +3,31 @@ import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registrationUser } from '../../services/auth/actions';
 
-export function RegistrationPage() {
+export const RegistrationPage: React.FC = () => {
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.auth.user);
+  const user = useSelector((store: any) => store.auth.user);
   const [value, setValue] = useState({ name: '', email: '', password: '' });
-  const [typeInput, setTypeInput] = useState('password');
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
 
-  const onChange = (e) => {
+  useEffect(() => {
+    const button = document.getElementById('enterButton');
+    button?.children[0].setAttribute('type', 'submit');
+  }, []);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const onIconClick = () => {
-    setTypeInput(typeInput === 'password' ? 'text' : 'password');
+    setIsPasswordShow(!isPasswordShow);
   };
-  const onClick = (e) => {
+
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(registrationUser(value));
   };
@@ -51,7 +57,7 @@ export function RegistrationPage() {
           size={'default'}
         />
         <Input
-          type={typeInput}
+          type={isPasswordShow ? 'text' : 'password'}
           placeholder={'пароль'}
           onChange={onChange}
           value={value.password}
@@ -60,9 +66,11 @@ export function RegistrationPage() {
           icon={'ShowIcon'}
           onIconClick={onIconClick}
         />
-        <Button type="primary" size="large" onClick={onClick}>
+        <span id='enterButton'>
+        <Button type="primary" size="large" onClick={onSubmit}>
           Зарегистрироваться
         </Button>
+        </span>
         <span className="mt-20 text text_type_main-default text_color_inactive">
           Уже зарегистрированы?
           <Link to="/login" className="text_color_accent">
