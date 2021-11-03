@@ -5,8 +5,7 @@ import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { TDataItem } from '../../types/types';
 
-
-function BurgerIngredients() {
+const BurgerIngredients: React.FC = () => {
   const ingredients = useSelector((store: any) => store.ingredient.ingredients);
   const [current, setCurrent] = useState('bun'); //Tab
   const buns = ingredients.filter((x: any) => x.type === 'bun');
@@ -91,7 +90,7 @@ function BurgerIngredients() {
           </h2>
           <div className={style.ingredients}>
             {buns.map((x: TDataItem) => (
-                <BurgerItem data={x} key={x._id}/>
+              <BurgerItem data={x} key={x._id} />
             ))}
           </div>
 
@@ -100,7 +99,7 @@ function BurgerIngredients() {
           </h2>
           <div className={style.ingredients}>
             {sauces.map((x: TDataItem) => (
-                <BurgerItem data={x} key={x._id}/>
+              <BurgerItem data={x} key={x._id} />
             ))}
           </div>
 
@@ -109,14 +108,13 @@ function BurgerIngredients() {
           </h2>
           <div className={style.ingredients}>
             {mains.map((x: TDataItem) => (
-                <BurgerItem data={x} key={x._id} />
-
+              <BurgerItem data={x} key={x._id} />
             ))}
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default BurgerIngredients;

@@ -1,5 +1,5 @@
 import style from './burger-item.module.css';
-import { dataItemProps } from '../../../types/types';
+import { TDataItem } from '../../../types/types';
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
@@ -8,9 +8,11 @@ import {
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
-
-function BurgerItem({ data }) {
-  const { components, bun } = useSelector((store) => store.ingredient);
+interface IBurgerItem {
+  data: TDataItem
+}
+const BurgerItem: React.FC<IBurgerItem> = ({ data }) => {
+  const { components, bun } = useSelector((store: any) => store.ingredient);
 
   const [{ opacity }, dragRef] = useDrag({
     type: 'ingredient',
@@ -23,7 +25,7 @@ function BurgerItem({ data }) {
   const counter =
     bun && bun._id === data._id
       ? 2
-      : components.filter((x) => x._id === data._id).length;
+      : components.filter((x: TDataItem) => x._id === data._id).length;
 
   return (
     <div ref={dragRef}>
@@ -52,8 +54,8 @@ function BurgerItem({ data }) {
   );
 }
 
-BurgerItem.propTypes = {
-  data: dataItemProps.isRequired,
-  onClick: PropTypes.func,
-};
+// BurgerItem.propTypes = {
+//   data: dataItemProps.isRequired,
+//   onClick: PropTypes.func,
+// };
 export default BurgerItem;

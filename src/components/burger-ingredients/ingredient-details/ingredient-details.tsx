@@ -1,14 +1,15 @@
 import style from './ingredient-details.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { loadIngredients } from '../../../services/ingredient/actions';
+import { TDataItem } from '../../../types/types';
 
-function IngredientDetails() {
-  const { id } = useParams();
-  const ingredients = useSelector((store) => store.ingredient.ingredients);
+const IngredientDetails: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
   const dispatch = useDispatch();
-  const currentIngredient = ingredients.find((x) => x._id === id);
+  const currentIngredient = ingredients.find((x: TDataItem) => x._id === id);
 
   useEffect(() => {
     if (ingredients.length === 0) {
@@ -48,6 +49,6 @@ function IngredientDetails() {
       </section>
     </div>
   );
-}
+};
 
 export default IngredientDetails;

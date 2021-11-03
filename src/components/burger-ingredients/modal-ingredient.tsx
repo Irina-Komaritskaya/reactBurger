@@ -2,7 +2,7 @@ import Modal from '../modal/modal';
 import { useHistory } from 'react-router-dom';
 import IngredientDetails from './ingredient-details/ingredient-details';
 
-export function ModalIngredient() {
+export const ModalIngredient: React.FC = () => {
   const history = useHistory();
   const handleClick = () => {
     history.goBack();
