@@ -9,30 +9,34 @@ import { useDispatch } from 'react-redux';
 import { authUser } from '../../services/auth/actions';
 import { useAuth } from '../../hooks/useAuth';
 
-export function LoginPage() {
+type LocationState = {
+  from: Location;
+};
+
+export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '', email: '' });
-  const [typeInput, setTypeInput] = useState('password');
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
   const [isError, setIsError] = useState({ email: false, password: false });
   const [isSubmitted, setIsSubmited] = useState(false);
   const [user, isLoadedUser] = useAuth();
-  const location = useLocation();
+  const location = useLocation<LocationState>();
   const from = location.state?.from?.pathname;
 
   useEffect(() => {
     const button = document.getElementById('enterButton');
-    button?.setAttribute('type', 'submit');
+    button?.children[0].setAttribute('type', 'submit');
   }, []);
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    setIsError(false);
+    setIsError({ email: false, password: false });
   };
 
   const onIconClick = () => {
-    setTypeInput(typeInput === 'password' ? 'text' : 'password');
+    setIsPasswordShow(!isPasswordShow);
   };
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!value.password || !value.email) {
       setIsError({
@@ -53,7 +57,7 @@ export function LoginPage() {
     if (isSubmitted) {
       return <Redirect to={from || '/'} />;
     } else {
-      return <Redirect to='/profile' />;
+      return <Redirect to="/profile" />;
     }
   }
   return (
@@ -71,7 +75,7 @@ export function LoginPage() {
           errorText={'Заполните поле'}
         />
         <Input
-          type={typeInput}
+          type={isPasswordShow ? 'text' : 'password'}
           placeholder="пароль"
           onChange={onChange}
           value={value.password}
@@ -82,9 +86,11 @@ export function LoginPage() {
           error={isError.password}
           errorText={'Заполните поле'}
         />
-        <Button type="primary" size="large" id="enterButton">
-          Войти
-        </Button>
+        <span id="enterButton">
+          <Button type="primary" size="large">
+            Войти
+          </Button>
+        </span>
         <p className="mt-20 text text_type_main-default text_color_inactive">
           Вы - новый пользователь?
           <Link to="/register" className="text_color_accent">
@@ -101,4 +107,4 @@ export function LoginPage() {
       </form>
     </div>
   );
-}
+};

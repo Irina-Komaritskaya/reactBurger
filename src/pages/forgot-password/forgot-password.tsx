@@ -11,7 +11,9 @@ import { useDispatch, useSelector } from 'react-redux';
 export const ForgotPasswordPage: React.FC = () => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
-  const isRecoverEmail = useSelector((store: any) => store.password.isRecoverEmail);
+  const isRecoverEmail = useSelector(
+    (store: any) => store.password.isRecoverEmail
+  );
 
   useEffect(() => {
     const button = document.getElementById('recoverButton');
@@ -43,9 +45,9 @@ export const ForgotPasswordPage: React.FC = () => {
           size={'default'}
         />
         <span id="recoverButton">
-        <Button type="primary" size="large">
-          Восстановить
-        </Button>
+          <Button type="primary" size="large">
+            Восстановить
+          </Button>
         </span>
         <p className="mt-20 text text_type_main-default text_color_inactive">
           Вспомнили пароль?
@@ -57,5 +59,4 @@ export const ForgotPasswordPage: React.FC = () => {
       </form>
     </div>
   );
-}
-
+};
