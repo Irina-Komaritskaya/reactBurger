@@ -1,13 +1,25 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import style from './modal.module.css';
-import PropTypes from 'prop-types';
 import ModalOverlay from './modal-overlay/modal-overlay';
 import ReactDOM from 'react-dom';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function Modal({ isOpen, children, onClick, onCloseClick, title }) {
-  const onKeydown = ({ key }) => {
-    switch (key) {
+interface IModalProps {
+  isOpen: boolean;
+  onClick(): void;
+  onCloseClick(): void;
+  title?: string;
+  chidren: React.ReactElement;
+}
+const Modal: React.FC<IModalProps> = ({
+  isOpen,
+  children,
+  onClick,
+  onCloseClick,
+  title,
+}) => {
+  const onKeydown = (e: KeyboardEvent) => {
+    switch (e.code) {
       case 'Escape': {
         onCloseClick();
         break;
@@ -36,15 +48,8 @@ function Modal({ isOpen, children, onClick, onCloseClick, title }) {
         <div className="pr-25 pl-25">{children}</div>
       </div>
     </ModalOverlay>,
-    document.getElementById('modal')
+    document.getElementById('modal')!
   );
-}
-
-Modal.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.element,
-  onCloseClick: PropTypes.func,
-  onClick: PropTypes.func,
-  isOpen: PropTypes.bool,
 };
+
 export default Modal;
