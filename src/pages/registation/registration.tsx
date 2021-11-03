@@ -66,10 +66,10 @@ export const RegistrationPage: React.FC = () => {
           icon={'ShowIcon'}
           onIconClick={onIconClick}
         />
-        <span id='enterButton'>
-        <Button type="primary" size="large" onClick={onSubmit}>
-          Зарегистрироваться
-        </Button>
+        <span id="enterButton">
+          <Button type="primary" size="large" onClick={onSubmit}>
+            Зарегистрироваться
+          </Button>
         </span>
         <span className="mt-20 text text_type_main-default text_color_inactive">
           Уже зарегистрированы?
@@ -80,4 +80,4 @@ export const RegistrationPage: React.FC = () => {
       </form>
     </div>
   );
-}
+};

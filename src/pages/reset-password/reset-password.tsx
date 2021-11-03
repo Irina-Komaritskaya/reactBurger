@@ -11,27 +11,29 @@ import {
 } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-export function ResetPasswordPage() {
+export const ResetPasswordPage: React.FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState({ password: '', token: '' });
   const isResetPassword = useSelector(
-    (store) => store.password.isResetPassword
+    (store: any) => store.password.isResetPassword
   );
-  const isRecoverEmail = useSelector((store) => store.password.isRecoverEmail);
+  const isRecoverEmail = useSelector(
+    (store: any) => store.password.isRecoverEmail
+  );
 
   useEffect(() => {
     const button = document.getElementById('saveButon');
-    button?.setAttribute('type', 'submit');
+    button?.children[0].setAttribute('type', 'submit');
   }, []);
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   if (!isRecoverEmail) {
     return <Redirect to={'/profile'} />;
   }
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(resetPasswordUser(value));
   };
@@ -62,10 +64,12 @@ export function ResetPasswordPage() {
           name={'token'}
           size={'default'}
         />
-        <Button type="primary" size="large" id="saveButton">
-          Сохранить
-        </Button>
+        <span id="saveButton">
+          <Button type="primary" size="large">
+            Сохранить
+          </Button>
+        </span>
       </form>
     </div>
   );
-}
+};
