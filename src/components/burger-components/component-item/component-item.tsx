@@ -42,7 +42,7 @@ export const ComponentItem: React.FC<IComponentItemProps>= ({ item, index, moveL
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const hoverActualY = monitor.getClientOffset().y - hoverBoundingRect.top;
+      const hoverActualY = monitor.getClientOffset()!.y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverActualY < hoverMiddleY) return;
       if (dragIndex > hoverIndex && hoverActualY > hoverMiddleY) return;

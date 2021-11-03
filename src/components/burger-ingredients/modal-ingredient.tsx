@@ -1,22 +1,20 @@
 import Modal from '../modal/modal';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import IngredientDetails from './ingredient-details/ingredient-details';
 
-export function ModalIngredient(){
+export function ModalIngredient() {
   const history = useHistory();
-  const handleClick = () =>{
+  const handleClick = () => {
     history.goBack();
-  }
-  return(
+  };
+  return (
     <Modal
-      isOpen={true} 
-      onClick={handleClick} 
-      title={"Детали ингридиента"}
+      isOpen={true}
+      onClick={handleClick}
+      title={'Детали ингридиента'}
       onCloseClick={handleClick}
     >
-      <IngredientDetails/>
+      <IngredientDetails />
     </Modal>
-  )
-  
+  );
 }
-

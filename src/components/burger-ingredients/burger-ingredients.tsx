@@ -3,28 +3,29 @@ import { useSelector } from 'react-redux';
 import BurgerItem from './burger-item/burger-item';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { TDataItem } from '../../types/types';
 
 
 function BurgerIngredients() {
-  const ingredients = useSelector((store) => store.ingredient.ingredients);
+  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
   const [current, setCurrent] = useState('bun'); //Tab
-  const buns = ingredients.filter((x) => x.type === 'bun');
-  const mains = ingredients.filter((x) => x.type === 'main');
-  const sauces = ingredients.filter((x) => x.type === 'sauce');
+  const buns = ingredients.filter((x: any) => x.type === 'bun');
+  const mains = ingredients.filter((x: any) => x.type === 'main');
+  const sauces = ingredients.filter((x: any) => x.type === 'sauce');
 
-  const bunsAncor = useRef(null);
-  const mainsAncor = useRef(null);
-  const saucesAncor = useRef(null);
+  const bunsAncor = useRef<HTMLDivElement>(null);
+  const mainsAncor = useRef<HTMLDivElement>(null);
+  const saucesAncor = useRef<HTMLDivElement>(null);
 
-  const ingredientRef = useRef(null);
+  const ingredientRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const positionScroll = ingredientRef.current.getBoundingClientRect().top;
+      const positionScroll = ingredientRef.current!.getBoundingClientRect().top;
       const positionMains =
-        mainsAncor.current.getBoundingClientRect().top - positionScroll;
+        mainsAncor.current!.getBoundingClientRect().top - positionScroll;
       const positionSauces =
-        saucesAncor.current.getBoundingClientRect().top - positionScroll;
+        saucesAncor.current!.getBoundingClientRect().top - positionScroll;
 
       if (positionMains < 0) {
         setCurrent('main');
@@ -35,7 +36,7 @@ function BurgerIngredients() {
       }
     };
     if (ingredientRef != null) {
-      ingredientRef.current.addEventListener('scroll', handleScroll, {
+      ingredientRef.current!.addEventListener('scroll', handleScroll, {
         passive: true,
       });
     }
@@ -57,7 +58,7 @@ function BurgerIngredients() {
             active={current === 'bun'}
             onClick={(e) => {
               setCurrent(e);
-              bunsAncor.current.scrollIntoView({ behavior: 'smooth' });
+              bunsAncor.current!.scrollIntoView({ behavior: 'smooth' });
             }}
           >
             Булки
@@ -67,7 +68,7 @@ function BurgerIngredients() {
             active={current === 'sauces'}
             onClick={(e) => {
               setCurrent(e);
-              saucesAncor.current.scrollIntoView({ behavior: 'smooth' });
+              saucesAncor.current!.scrollIntoView({ behavior: 'smooth' });
             }}
           >
             Соусы
@@ -77,7 +78,7 @@ function BurgerIngredients() {
             active={current === 'main'}
             onClick={(e) => {
               setCurrent(e);
-              mainsAncor.current.scrollIntoView({ behavior: 'smooth' });
+              mainsAncor.current!.scrollIntoView({ behavior: 'smooth' });
             }}
           >
             Начинка
@@ -89,7 +90,7 @@ function BurgerIngredients() {
             Булки
           </h2>
           <div className={style.ingredients}>
-            {buns.map((x) => (
+            {buns.map((x: TDataItem) => (
                 <BurgerItem data={x} key={x._id}/>
             ))}
           </div>
@@ -98,7 +99,7 @@ function BurgerIngredients() {
             Соусы
           </h2>
           <div className={style.ingredients}>
-            {sauces.map((x) => (
+            {sauces.map((x: TDataItem) => (
                 <BurgerItem data={x} key={x._id}/>
             ))}
           </div>
@@ -107,7 +108,7 @@ function BurgerIngredients() {
             Начинки
           </h2>
           <div className={style.ingredients}>
-            {mains.map((x) => (
+            {mains.map((x: TDataItem) => (
                 <BurgerItem data={x} key={x._id} />
 
             ))}
