@@ -1,16 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import BurgerItem from './burger-item/burger-item';
+import { BurgerItems } from './burger-items/burger-items';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { TDataItem } from '../../types/types';
 
 const BurgerIngredients: React.FC = () => {
-  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
   const [current, setCurrent] = useState<string>('bun'); //Tab
-  const buns = ingredients.filter((x: any) => x.type === 'bun');
-  const mains = ingredients.filter((x: any) => x.type === 'main');
-  const sauces = ingredients.filter((x: any) => x.type === 'sauce');
 
   const bunsAncor = useRef<HTMLDivElement>(null);
   const mainsAncor = useRef<HTMLDivElement>(null);
@@ -83,35 +80,12 @@ const BurgerIngredients: React.FC = () => {
             Начинка
           </Tab>
         </div>
-
-        <div className={`pr-3 ${style.productList}`} ref={ingredientRef}>
-          <h2 className="mt-10 mb-6" ref={bunsAncor}>
-            Булки
-          </h2>
-          <div className={style.ingredients}>
-            {buns.map((x: TDataItem) => (
-              <BurgerItem data={x} key={x._id} />
-            ))}
-          </div>
-
-          <h2 className="mt-10 mb-6" ref={saucesAncor}>
-            Соусы
-          </h2>
-          <div className={style.ingredients}>
-            {sauces.map((x: TDataItem) => (
-              <BurgerItem data={x} key={x._id} />
-            ))}
-          </div>
-
-          <h2 className="mt-10 mb-6" ref={mainsAncor}>
-            Начинки
-          </h2>
-          <div className={style.ingredients}>
-            {mains.map((x: TDataItem) => (
-              <BurgerItem data={x} key={x._id} />
-            ))}
-          </div>
-        </div>
+        <BurgerItems
+          ingredientRef={ingredientRef}
+          bunsAncor={bunsAncor}
+          saucesAncor={saucesAncor}
+          mainsAncor={mainsAncor}
+        />
       </div>
     </>
   );
