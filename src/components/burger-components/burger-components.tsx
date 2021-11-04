@@ -27,7 +27,7 @@ const BurgerComponents: React.FC = () => {
   const totalSum = useSelector((store: any) => store.component.totalSum);
   const confirmOrder = useSelector((store: any) => store.order.confirmOrder);
   const dispatch = useDispatch();
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [user, isLoadedUser] = useAuth();
 
   const handleClick = () => {

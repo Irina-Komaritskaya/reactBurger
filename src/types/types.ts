@@ -20,12 +20,4 @@ export type TUser = {
   email: string,
   password: string
 }
-// export type orderItemProps = {
-//   totalSum: number,
-//   numberOrder: number,
-//   bun: dataItemProps,
-//   ingredients: .arrayOf(dataItemProps.isRequired).isRequired,
-//   setConfirmOrder: func,
-//   isLoading: bool,
-//   hasError: bool,
-// });
+

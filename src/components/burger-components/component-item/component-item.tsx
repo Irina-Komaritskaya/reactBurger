@@ -80,8 +80,3 @@ export const ComponentItem: React.FC<IComponentItemProps> = ({
   );
 };
 
-// ComponentItem.propTypes = {
-//   item: dataItemProps.isRequired,
-//   index: PropTypes.number,
-//   moveListItem: PropTypes.func,
-// };

@@ -7,12 +7,13 @@ import { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registrationUser } from '../../services/auth/actions';
+import { TUser } from '../../types/types';
 
 export const RegistrationPage: React.FC = () => {
   const dispatch = useDispatch();
   const user = useSelector((store: any) => store.auth.user);
-  const [value, setValue] = useState({ name: '', email: '', password: '' });
-  const [isPasswordShow, setIsPasswordShow] = useState(false);
+  const [value, setValue] = useState<TUser>({ name: '', email: '', password: '' });
+  const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
 
   useEffect(() => {
     const button = document.getElementById('enterButton');

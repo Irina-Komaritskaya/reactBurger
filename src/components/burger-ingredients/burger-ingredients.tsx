@@ -7,7 +7,7 @@ import { TDataItem } from '../../types/types';
 
 const BurgerIngredients: React.FC = () => {
   const ingredients = useSelector((store: any) => store.ingredient.ingredients);
-  const [current, setCurrent] = useState('bun'); //Tab
+  const [current, setCurrent] = useState<string>('bun'); //Tab
   const buns = ingredients.filter((x: any) => x.type === 'bun');
   const mains = ingredients.filter((x: any) => x.type === 'main');
   const sauces = ingredients.filter((x: any) => x.type === 'sauce');
@@ -16,7 +16,7 @@ const BurgerIngredients: React.FC = () => {
   const mainsAncor = useRef<HTMLDivElement>(null);
   const saucesAncor = useRef<HTMLDivElement>(null);
 
-  const ingredientRef = useRef<HTMLDivElement | null>(null);
+  const ingredientRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {

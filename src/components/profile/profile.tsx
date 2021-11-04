@@ -9,6 +9,12 @@ import styles from './profile.module.css';
 import { getCookie } from '../../utils/cookie';
 import { TUser } from '../../types/types';
 
+type TDisabled = {
+  name: boolean;
+  email: boolean;
+  password: boolean;
+}
+
 export const Profile: React.FC = () => {
   const user = useSelector((store: any) => store.auth.user);
  
@@ -18,12 +24,12 @@ export const Profile: React.FC = () => {
     password: '',
   });
   
-  const [disabled, setDisabled] = useState({
+  const [disabled, setDisabled] = useState<TDisabled>({
     name: true,
     email: true,
     password: true,
   });
-  const [isSaveVisible, setisSaveVisible] = useState(false);
+  const [isSaveVisible, setisSaveVisible] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,13 +43,13 @@ export const Profile: React.FC = () => {
     e.preventDefault();
     const newValue = { name: '', email: '', password: '' };
     if (user.name !== value.name) {
-      newValue['name'] = value.name;
+      newValue.name = value.name;
     }
     if (user.email !== value.email) {
-      newValue['email'] = value.email;
+      newValue.email = value.email;
     }
     if (value.password !== '') {
-      newValue['password'] = value.password;
+      newValue.password = value.password;
     }
     const token = getCookie('accessToken');
     dispatch(updateProfileUser(newValue, token));

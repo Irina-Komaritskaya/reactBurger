@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export function useAuth() {
   const dispatch = useDispatch();
-  const [hasError, setError] = useState(false);
+  const [hasError, setError] = useState<boolean>(false);
 
   const accessToken = getCookie('accessToken');
   const refreshToken = getCookie('refreshToken');
 
   const user = useSelector((store: any) => store.auth.user);
-  const [isLoadedUser, setIsLoadedUser] = useState(false);
+  const [isLoadedUser, setIsLoadedUser] = useState<boolean>(false);
 
   useEffect(() => {
     //#region func

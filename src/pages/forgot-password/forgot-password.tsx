@@ -9,7 +9,7 @@ import { forgotPasswordUser } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const ForgotPasswordPage: React.FC = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
   const dispatch = useDispatch();
   const isRecoverEmail = useSelector(
     (store: any) => store.password.isRecoverEmail

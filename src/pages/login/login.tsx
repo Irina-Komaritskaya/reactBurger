@@ -13,12 +13,22 @@ type LocationState = {
   from: Location;
 };
 
+type TValueInput = {
+  password: string;
+  email: string
+}
+
+type TIsErrorInput = {
+  email: boolean;
+  password: boolean;
+}
+
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState({ password: '', email: '' });
-  const [isPasswordShow, setIsPasswordShow] = useState(false);
-  const [isError, setIsError] = useState({ email: false, password: false });
-  const [isSubmitted, setIsSubmited] = useState(false);
+  const [value, setValue] = useState<TValueInput>({ password: '', email: '' });
+  const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
+  const [isError, setIsError] = useState<TIsErrorInput>({ email: false, password: false });
+  const [isSubmitted, setIsSubmited] = useState<boolean>(false);
   const [user, isLoadedUser] = useAuth();
   const location = useLocation<LocationState>();
   const from = location.state?.from?.pathname;

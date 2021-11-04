@@ -10,10 +10,13 @@ import {
   CLEAR_RESET_PASSWORD,
 } from '../../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
-
+type TValueForm={
+  password: string,
+  token: string
+}
 export const ResetPasswordPage: React.FC = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState({ password: '', token: '' });
+  const [value, setValue] = useState<TValueForm>({ password: '', token: '' });
   const isResetPassword = useSelector(
     (store: any) => store.password.isResetPassword
   );
