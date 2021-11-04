@@ -1,4 +1,3 @@
-import styles from './login.module.css';
 import {
   Input,
   Button,
@@ -6,8 +5,9 @@ import {
 import { useState, useEffect } from 'react';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { authUser } from '../../services/auth/actions';
-import { useAuth } from '../../hooks/useAuth';
+import { authUser } from '../services/auth/actions';
+import { useAuth } from '../hooks/useAuth';
+import {Form} from '../components/form/form'
 
 type LocationState = {
   from: Location;
@@ -26,9 +26,11 @@ type TIsErrorInput = {
 export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState<TValueInput>({ password: '', email: '' });
+  
   const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
   const [isError, setIsError] = useState<TIsErrorInput>({ email: false, password: false });
   const [isSubmitted, setIsSubmited] = useState<boolean>(false);
+  
   const [user, isLoadedUser] = useAuth();
   const location = useLocation<LocationState>();
   const from = location.state?.from?.pathname;
@@ -71,8 +73,7 @@ export const LoginPage: React.FC = () => {
     }
   }
   return (
-    <div className={styles.wrapper}>
-      <form onSubmit={onSubmit} className={styles.form}>
+    <Form onSubmit = {onSubmit}>
         <h1 className="text text_type_main-medium">Войти</h1>
         <Input
           type="email"
@@ -114,7 +115,6 @@ export const LoginPage: React.FC = () => {
             Восстановить пароль
           </Link>
         </p>
-      </form>
-    </div>
+      </Form>
   );
 };

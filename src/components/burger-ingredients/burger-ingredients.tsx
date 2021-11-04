@@ -1,10 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import BurgerItem from './burger-item/burger-item';
 import { BurgerItems } from './burger-items/burger-items';
 import style from './burger-ingredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import { TDataItem } from '../../types/types';
 
 const BurgerIngredients: React.FC = () => {
   const [current, setCurrent] = useState<string>('bun'); //Tab
