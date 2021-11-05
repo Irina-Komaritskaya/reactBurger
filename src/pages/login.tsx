@@ -35,11 +35,6 @@ export const LoginPage: React.FC = () => {
   const location = useLocation<LocationState>();
   const from = location.state?.from?.pathname;
 
-  useEffect(() => {
-    const button = document.getElementById('enterButton');
-    button?.children[0].setAttribute('type', 'submit');
-  }, []);
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });
     setIsError({ email: false, password: false });
@@ -73,7 +68,7 @@ export const LoginPage: React.FC = () => {
     }
   }
   return (
-    <Form onSubmit = {onSubmit}>
+    <Form onSubmit = {onSubmit} idButton = 'enterButton'>
         <h1 className="text text_type_main-medium">Войти</h1>
         <Input
           type="email"

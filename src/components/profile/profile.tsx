@@ -63,6 +63,7 @@ export const Profile: React.FC = () => {
     setDisabled({ name: true, email: true, password: true });
     setisSaveVisible(false);
   };
+  
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };

@@ -8,8 +8,9 @@ import { Redirect } from 'react-router-dom';
 import {
   resetPasswordUser,
   CLEAR_RESET_PASSWORD,
-} from '../../services/reset-password/actions';
+} from '../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Form } from '../components/form/form';
 type TValueForm={
   password: string,
   token: string
@@ -23,11 +24,6 @@ export const ResetPasswordPage: React.FC = () => {
   const isRecoverEmail = useSelector(
     (store: any) => store.password.isRecoverEmail
   );
-
-  useEffect(() => {
-    const button = document.getElementById('saveButon');
-    button?.children[0].setAttribute('type', 'submit');
-  }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -47,8 +43,7 @@ export const ResetPasswordPage: React.FC = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <form onSubmit={onSubmit} className={styles.form}>
+      <Form onSubmit={onSubmit} idButton='saveButton'>
         <h1 className="text text_type_main-medium">Восстановление пароля</h1>
         <Input
           type="password"
@@ -72,7 +67,6 @@ export const ResetPasswordPage: React.FC = () => {
             Сохранить
           </Button>
         </span>
-      </form>
-    </div>
+      </Form>
   );
 };
