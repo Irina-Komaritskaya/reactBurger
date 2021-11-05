@@ -2,12 +2,12 @@ import style from './burger-item.module.css';
 import { TDataItem } from '../../../types/types';
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
-import PropTypes from 'prop-types';
 import {
   CurrencyIcon,
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
+
 interface IBurgerItem {
   data: TDataItem
 }
@@ -54,8 +54,4 @@ const BurgerItem: React.FC<IBurgerItem> = ({ data }) => {
   );
 }
 
-// BurgerItem.propTypes = {
-//   data: dataItemProps.isRequired,
-//   onClick: PropTypes.func,
-// };
 export default BurgerItem;

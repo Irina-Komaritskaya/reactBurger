@@ -18,9 +18,9 @@ export const BurgerItems: React.FC<IBurgerItemsProps> = ({
   mainsAncor,
 }) => {
   const ingredients = useSelector((store: any) => store.ingredient.ingredients);
-  const buns = ingredients.filter((x: any) => x.type === 'bun');
-  const mains = ingredients.filter((x: any) => x.type === 'main');
-  const sauces = ingredients.filter((x: any) => x.type === 'sauce');
+  const buns = ingredients.filter((x: TDataItem) => x.type === 'bun');
+  const mains = ingredients.filter((x: TDataItem) => x.type === 'main');
+  const sauces = ingredients.filter((x: TDataItem) => x.type === 'sauce');
 
   return (
     <div className={`pr-3 ${style.productList}`} ref={ingredientRef}>

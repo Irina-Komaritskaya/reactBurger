@@ -1,4 +1,3 @@
-import styles from './reset-password.module.css';
 import {
   Input,
   Button,
@@ -11,6 +10,7 @@ import {
 } from '../services/reset-password/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '../components/form/form';
+
 type TValueForm={
   password: string,
   token: string
