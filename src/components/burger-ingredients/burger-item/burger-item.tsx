@@ -12,7 +12,7 @@ interface IBurgerItem {
   data: TDataItem
 }
 const BurgerItem: React.FC<IBurgerItem> = ({ data }) => {
-  const { components, bun } = useSelector((store: any) => store.ingredient);
+  const { components, bun } = useSelector((store: any) => store.component);
 
   const [{ opacity }, dragRef] = useDrag({
     type: 'ingredient',

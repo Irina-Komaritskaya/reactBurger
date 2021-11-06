@@ -1,16 +1,18 @@
 .productList {
   overflow-y: scroll;
-  height: 500px;
   scrollbar-color: #696969 #8585ad;
   scrollbar-width: thin;
+  height: 75%;
 }
 
 .productList::-webkit-scrollbar {
   width: 12px;
+  
 }
 .productList::-webkit-scrollbar-track {
   background: #2f2f37;
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 .productList::-webkit-scrollbar-thumb {
   background: #8585ad;
@@ -23,10 +25,4 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-@media screen and (min-height: 768px) {
-  .productList {
-    height: 50vh;
-  }
 }
