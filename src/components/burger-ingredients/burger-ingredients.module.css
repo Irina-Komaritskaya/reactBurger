@@ -1,42 +1,13 @@
-.productPanel{
-    width: 600px;
+.productPanel {
+  width: 600px;
+  height: 100vh;
 }
 
-.productPanel h1, h2{
-    text-align: start;
-}
-.ingredients{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;  
-}
-.productList{
-    overflow-y: scroll;
-    height: 500px;
-    scrollbar-color: #696969 #8585AD;
-    scrollbar-width: thin;
+.productPanel h1,
+h2 {
+  text-align: start;
 }
 
-.productList::-webkit-scrollbar {
-    width: 12px;
-}
-.productList::-webkit-scrollbar-track {
-    background: #2F2F37;
-    margin-top: 40px;
-}
-.productList::-webkit-scrollbar-thumb {
-    background: #8585AD;
-    border: 3px solid #2F2F37;
-    border-radius: 6px;
-}
-
-.overlay{
-  background-color: rgba(0,0,0,0.5); 
-}
-
-@media screen and (min-height: 768px) {
-    .productList{
-        height: 50vh;
-    }
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
 }
