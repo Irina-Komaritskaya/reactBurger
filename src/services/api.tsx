@@ -22,14 +22,18 @@ export const getIngredients = async () => {
 
 export const getOrder = async (
   idIngredients: readonly string[],
-  idBun: string
+  idBun: string,
+  token: string
 ) => {
   const url = urlApi + 'orders';
   const result = await getData(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    headers: { 'Content-Type': 'application/json;charset=utf-8', 
+    Authorization: token,
+  },
     body: JSON.stringify({
       ingredients: [...idIngredients, idBun],
+      token: token
     }),
   });
   return result;
@@ -98,6 +102,7 @@ export const resetPassword = async (password: string, token: string) => {
 
 export const updateProfile = async (value: TUser, token: string) => {
   const url = urlApi + 'auth/user';
+  
   const result = await getData(url, {
     method: 'PATCH',
     headers: {

@@ -41,7 +41,7 @@ export const Profile: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newValue = { name: '', email: '', password: '' };
+    const newValue:Partial<TUser> = {};
     if (user.name !== value.name) {
       newValue.name = value.name;
     }

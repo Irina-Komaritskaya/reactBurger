@@ -4,9 +4,9 @@ import { MainPage } from './main/main-page';
 import { ProfilePage } from './profile/profile';
 import { RegistrationPage } from './registration';
 import { ResetPasswordPage } from './reset-password';
-import { Order } from './order';
+import { Order } from './orders/order';
 import { PageNotFound } from './page-not-found/page-not-found';
-
+import { FeedPage } from './feed/feed';
 export {
   MainPage,
   LoginPage,
@@ -16,4 +16,5 @@ export {
   ProfilePage,
   Order,
   PageNotFound,
+  FeedPage
 };

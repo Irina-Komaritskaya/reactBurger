@@ -16,7 +16,8 @@ export function updateProfileUser(value, token) {
     fetchUpdateProfile().catch(() =>
       dispatch({
         type: UPDATE_PROFILE_FAILED,
-      })
+      }),
+
     );
   };
 }

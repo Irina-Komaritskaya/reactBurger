@@ -21,3 +21,12 @@ export type TUser = {
   password: string
 }
 
+export type TOrders = {
+  ingredients: string[],
+  _id: string,
+  status:string,
+  number: number,
+  createdAt: string,
+  updatedAt: string,
+  name: string
+}

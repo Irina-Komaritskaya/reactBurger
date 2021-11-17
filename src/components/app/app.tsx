@@ -16,6 +16,7 @@ import {
   ResetPasswordPage,
   ProfilePage,
   PageNotFound,
+  FeedPage
 } from '../../pages/index';
 
 
@@ -38,6 +39,7 @@ const App: React.FC = () => {
           <Route path="/register" exact={true} component={RegistrationPage} />
           <Route path="/login" exact={true} component={LoginPage} />
           <Route path="/reset" exact={true} component={ResetPasswordPage} />
+          <Route path="/feed" exact={true} component={FeedPage} />
           <Route
             path="/ingredient/:id"
             exact={true}

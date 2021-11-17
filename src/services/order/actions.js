@@ -5,10 +5,10 @@ export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
 export const CONFIRM_ORDER = 'CONFIRM_ORDER';
 
-export function loadOrder(idIngredients, idBun) {
+export function loadOrder(idIngredients, idBun, token) {
   return function (dispatch) {
     const fetchOrder = async () => {
-      const res = await getOrder(idIngredients, idBun);
+      const res = await getOrder(idIngredients, idBun, token);
       dispatch({
         type: GET_ORDER_SUCCESS,
         value: { order: res.order, idIngredients, idBun },

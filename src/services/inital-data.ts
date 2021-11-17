@@ -18,4 +18,7 @@ export const initialState = {
   user: null,
   isRecoverEmail: null,
   isResetPassword: null,
+
+  wsConnected: false,
+  messages: []
 };

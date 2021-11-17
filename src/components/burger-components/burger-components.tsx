@@ -13,6 +13,7 @@ import OrderDetails from './order-details/order-details';
 import { ComponentItem } from './component-item/component-item';
 import Modal from '../modal/modal';
 import { useAuth } from '../../hooks/useAuth';
+import { getCookie } from '../../utils/cookie';
 import {
   Button,
   CurrencyIcon,
@@ -29,7 +30,7 @@ const BurgerComponents: React.FC = () => {
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [user, isLoadedUser] = useAuth();
-
+  const token = getCookie('accessToken');
   const handleClick = () => {
     setIsOpenModal(false);
   };
@@ -38,7 +39,7 @@ const BurgerComponents: React.FC = () => {
     if (confirmOrder) {
       const idIngredients = components.map((x: any) => x._id);
       const idBun = bun._id;
-      dispatch(loadOrder(idIngredients, idBun));
+      dispatch(loadOrder(idIngredients, idBun, token));
       dispatch({
         type: CLEAR_COMPONENTS,
       });
