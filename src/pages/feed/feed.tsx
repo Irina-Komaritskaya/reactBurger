@@ -2,7 +2,7 @@ import { OrderFeed } from "../../components/order-feed/order-feed"
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {WS_CONNECTION_START} from '../../services/websoket/action'
-
+import styles from './feed.module.css'
 export const FeedPage = () => {
   const message = useSelector((store: any) => store.orders.messages || [])
   const [orders, setOrders] = useState([])
@@ -20,8 +20,10 @@ export const FeedPage = () => {
 
    console.log(orders)
   return(
+    <div className={styles.orders}>
    <OrderFeed 
    orders = {orders}
    />
+   </div>
   )
 }

@@ -29,11 +29,10 @@ export const getOrder = async (
   const result = await getData(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json;charset=utf-8', 
-    Authorization: token,
+    Authorization:  'Bearer ' + token,
   },
     body: JSON.stringify({
       ingredients: [...idIngredients, idBun],
-      token: token
     }),
   });
   return result;
