@@ -8,7 +8,7 @@
 }
 
 .orderWrap{
-    max-width: 608px;
+    width: 608px;
     overflow-y: scroll;
     scrollbar-color: #696969 #8585ad;
     scrollbar-width: thin;
