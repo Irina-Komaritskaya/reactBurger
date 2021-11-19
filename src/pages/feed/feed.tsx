@@ -1,29 +1,43 @@
-import { OrderFeed } from "../../components/order-feed/order-feed"
+import { OrderFeed } from '../../components/order-feed/order-feed';
+import { OrderStats } from '../../components/order-stats/order-stats';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {WS_CONNECTION_START} from '../../services/websoket/action'
-import styles from './feed.module.css'
+import { WS_CONNECTION_START } from '../../services/websoket/action';
+import styles from './feed.module.css';
+
 export const FeedPage = () => {
-  const message = useSelector((store: any) => store.orders.messages || [])
-  const [orders, setOrders] = useState([])
+  const message = useSelector((store: any) => store.orders.messages || []);
+  const [orders, setOrders] = useState([]);
+  const [total, setTotal] = useState(0)
+  const [totalDay, setTotalDay] = useState(0)
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch({ type: WS_CONNECTION_START });
-  }, [])
+    //сделать размонтирование
+  }, []);
 
-  useEffect(()=> {
-    console.log(message)
-    if(message.length > 0){
-      setOrders(message[message.length-1].orders)
+  useEffect(() => {
+    if (message.length > 0) {
+      setOrders(message[message.length - 1].orders);
+      setTotal(message[message.length - 1].total);
+      setTotalDay(message[message.length - 1].totalToday)
     }
-  }, [message])
+  }, [message]);
 
-   console.log(orders)
-  return(
-    <div className={styles.orders}>
-   <OrderFeed 
-   orders = {orders}
-   />
-   </div>
-  )
-}
+  return (
+    <>
+    <h2 className="text text_type_main-large mt-10 ml-10">Лента заказов</h2>
+    <div className={styles.wrap}>
+      <div className={`mt-5 mr-15 ${styles.orderWrap}`}>
+        <div className={`mr-2 ${styles.orders}`}>
+          <OrderFeed orders={orders} />
+        </div>
+      </div>
+      <div className={` mt-5 ${styles.stats}`}>
+        <OrderStats orders={orders} total={total} totalDay={totalDay}/>
+      </div>
+    </div>
+    </>
+  );
+};
