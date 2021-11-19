@@ -1,5 +1,5 @@
-import { OrderFeed } from '../../components/order-feed/order-feed';
-import { OrderStats } from '../../components/order-stats/order-stats';
+import { OrdersFeed } from '../../components/orders-feed/orders-feed';
+import { OrdersStats } from '../../components/orders-stats/orders-stats';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { WS_CONNECTION_START } from '../../services/websoket/action';
@@ -31,11 +31,11 @@ export const FeedPage = () => {
     <div className={styles.wrap}>
       <div className={`mt-5 mr-15 ${styles.orderWrap}`}>
         <div className={`mr-2 ${styles.orders}`}>
-          <OrderFeed orders={orders} />
+          <OrdersFeed orders={orders} />
         </div>
       </div>
       <div className={` mt-5 ${styles.stats}`}>
-        <OrderStats orders={orders} total={total} totalDay={totalDay}/>
+        <OrdersStats orders={orders} total={total} totalDay={totalDay}/>
       </div>
     </div>
     </>

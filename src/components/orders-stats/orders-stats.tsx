@@ -1,12 +1,12 @@
 import React from 'react';
 import { TOrders } from '../../types/types';
-import styles from './order-stats.module.css';
+import styles from './orders-stats.module.css';
 interface IOrdersStatsProps {
   orders: TOrders[];
   total: number;
   totalDay: number;
 }
-export const OrderStats: React.FC<IOrdersStatsProps> = ({
+export const OrdersStats: React.FC<IOrdersStatsProps> = ({
   orders,
   total,
   totalDay,

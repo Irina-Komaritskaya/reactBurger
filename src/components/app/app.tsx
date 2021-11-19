@@ -6,7 +6,9 @@ import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import {Location, History } from 'history';
 import { ProtectedRoute } from '../routes/protected-route';
 import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details';
+import { FeedOrderDetails } from '../orders-feed/feed-orders-detalis/feed-order-details';
 import { ModalIngredient } from '../burger-ingredients/modal-ingredient';
+import { ModalOrderFeed } from '../orders-feed/modal-feed-order';
 import {RedirectAuthRoute} from '../routes/redirect-auth-route';
 import {
   MainPage,
@@ -45,6 +47,11 @@ const App: React.FC = () => {
             exact={true}
             component={IngredientDetails}
           />
+          <Route
+            path="/feed/:id"
+            exact={true}
+            component={FeedOrderDetails}
+          />
           <RedirectAuthRoute
             path="/forgot-password"
             exact={true}
@@ -58,6 +65,9 @@ const App: React.FC = () => {
         </Switch>
         {isModal && (
           <Route exact path="/ingredient/:id" component={ModalIngredient} />
+        )}
+        {isModal && (
+          <Route exact path="/feed/:id" component={ModalOrderFeed} />
         )}
       </div>
     </DndProvider>
