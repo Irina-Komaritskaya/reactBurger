@@ -9,39 +9,45 @@ export const Images: React.FC<IimagesProps> = ({
   ingredients,
   orderIngredients,
 }) => {
+  const maxElemImgs = 5;
+  const countTake = orderIngredients.length > maxElemImgs ? maxElemImgs : orderIngredients.length;
+  const countRest = orderIngredients.length - countTake;
+  const showCount = countRest > 0;
 
-  const getImage = (arr: string[]): any => {
-    const maxElemImgs = 6;
-    const count = arr.length >= maxElemImgs ? maxElemImgs : arr.length;
-    let srcImages = arr.map((i: string) => {
-      const imgs = ingredients.find((x: any) => x._id === i);
-      return imgs.image_mobile;
-    });
-    srcImages = srcImages.slice(0, count)
-    return srcImages;
-  };
+  const mainIngridients = orderIngredients.slice(0, countTake);
 
-  const getCounter = (arr: string[]) => {
-    if (arr.length > 5) {
-      const counter = arr.length - 5;
-      return counter;
-    }
-  };
+  const getImageForElement = (id: number) => {
+    const ingridient = ingredients.find((x: any) => x._id === id);
+    return ingridient.image_mobile;
+  }
+
+  const elementWithCount = showCount
+    ? orderIngredients.slice(maxElemImgs, maxElemImgs + 1)[0]
+    : null;
+
+
   return (
     <span className={styles.images}>
-      {getImage(orderIngredients).map((i: any) => (
-        <div className={styles.image}>
-          <span className={styles.imgPrew}>
-          {getCounter(orderIngredients) && (
-            <span className={styles.counter}>
-              {getCounter(orderIngredients)}
-            </span>
-          )}
-            <img className={styles.img} src={i} alt="" />
+      
+      {showCount && (
+        <div className={styles.image} key={elementWithCount._id}>
+          <span className= {`${styles.imgPrew} ${styles.imgOverlay}`} >
+              <span className={`text text_type_main-default ${styles.counter}`}>
+                +{countRest}
+              </span>
+            <img className={styles.img} src={getImageForElement(elementWithCount)} alt="" />
           </span>
-
+        </div>
+      )}
+      
+      {mainIngridients.map((x: any) => (
+        <div className={styles.image} key={x._id}>
+          <span className={styles.imgPrew}>
+            <img className={styles.img} src={getImageForElement(x)} alt="" />
+          </span>
         </div>
       ))}
+
     </span>
   );
 };

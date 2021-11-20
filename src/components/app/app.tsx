@@ -32,6 +32,7 @@ const App: React.FC = () => {
   const location = useLocation<LocationState>();
   const action = history.action === 'PUSH' || history.action === 'REPLACE';
   const isModal = action && location.state && location.state.modal;
+  console.log(isModal)
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style.app}>
@@ -52,7 +53,10 @@ const App: React.FC = () => {
             exact={true}
             component={FeedOrderDetails}
           />
-          
+          <Route  path="/feed/:id">
+            <FeedOrderDetails isModal={isModal}/>
+          </Route>
+
           <ProtectedRoute path="/profile/order/:id" exact={true}>
             <FeedOrderDetails />
           </ProtectedRoute>

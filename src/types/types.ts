@@ -21,10 +21,15 @@ export type TUser = {
   password: string
 }
 
+export enum EStatus{
+  Done = 'done',
+  Created = 'created', 
+  Pending = 'pending'
+}
 export type TOrders = {
   ingredients: string[],
   _id: string,
-  status:string,
+  status: EStatus,
   number: number,
   createdAt: string,
   updatedAt: string,

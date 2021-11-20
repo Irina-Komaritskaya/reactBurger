@@ -22,6 +22,7 @@ export const OrdersStats: React.FC<IOrdersStatsProps> = ({
           {doneOrders.map((x) => (
             <span
               className={`text text_type_digits-default mt-2 ${styles.doneNumber}`}
+              key={x._id}
             >
               {x.number}
             </span>
@@ -30,7 +31,7 @@ export const OrdersStats: React.FC<IOrdersStatsProps> = ({
         <div className={styles.ordersColumn}>
           <span className="text text_type_main-medium mb-8">В работе:</span>
           {inWorkOrders.map((x) => (
-            <span className="text text_type_digits-default mt-2">
+            <span className="text text_type_digits-default mt-2" key={x._id}>
               {x.number}
             </span>
           ))}
