@@ -12,7 +12,7 @@ export const ProfilePage: React.FC = () => {
     e.preventDefault();
     const accessToken = getCookie('accessToken');
     const refreshToken = getCookie('refreshToken');
-    dispatch(logOutUser(accessToken, refreshToken));
+    dispatch(logOutUser(accessToken!, refreshToken!));
   };
 
   return (

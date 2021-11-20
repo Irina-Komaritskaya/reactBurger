@@ -8,20 +8,20 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAILED,
   RESTORE_USER,
-} from './actions';
+} from './constants';
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_REG_SUCCESS: {
-      const { accessToken, refreshToken } = action.value;
+      const { accessToken, refreshToken } = action;
       setCookie('accessToken', accessToken, { expires: 20 * 60 });
       setCookie('refreshToken', refreshToken, { expires: 30 * 24 * 60 });
       alert('Вы успешно зарегистрировались');
       return {
         ...state,
         user: {
-          name: action.value.name,
-          email: action.value.email,
+          name: action.name,
+          email: action.email,
         },
       };
     }
@@ -30,15 +30,15 @@ export const authReducer = (state = initialState, action) => {
       return state;
     }
     case GET_AUTH_SUCCESS: {
-      const { accessToken, refreshToken } = action.value;
+      console.log(action)
+      const { accessToken, refreshToken } = action;
       setCookie('accessToken', accessToken, { expires: 20 * 60 });
       setCookie('refreshToken', refreshToken, { expires: 30 * 24 * 60 });
-
       return {
         ...state,
         user: {
-          name: action.value.name,
-          email: action.value.email,
+          name: action.name,
+          email: action.email,
         },
       };
     }

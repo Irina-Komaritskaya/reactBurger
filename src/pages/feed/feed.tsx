@@ -6,7 +6,7 @@ import { WS_CONNECTION_START } from '../../services/websoket/action';
 import styles from './feed.module.css';
 
 export const FeedPage = () => {
-  const message = useSelector((store: any) => store.orders.messages || []);
+  const message = useSelector((store: any) => store.orders.messages || {});
   const [orders, setOrders] = useState([]);
   const [total, setTotal] = useState(0)
   const [totalDay, setTotalDay] = useState(0)
@@ -18,10 +18,10 @@ export const FeedPage = () => {
   }, []);
 
   useEffect(() => {
-    if (message.length > 0) {
-      setOrders(message[message.length - 1].orders);
-      setTotal(message[message.length - 1].total);
-      setTotalDay(message[message.length - 1].totalToday)
+    if (message) {
+      setOrders(message.orders);
+      setTotal(message.total);
+      setTotalDay(message.totalToday)
     }
   }, [message]);
 

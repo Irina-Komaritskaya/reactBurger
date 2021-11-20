@@ -41,11 +41,10 @@ export const wsReducer = (state = initialState, action) => {
     // Обработка происходит, когда с сервера возвращаются данные
     // В messages передадим данные, которые пришли с сервера
     case WS_GET_MESSAGE:
-        console.log(action.payload)
       return {
         ...state,
         error: undefined,
-        messages: [...state.messages, action.payload],
+        messages:  action.payload,
       }
       
     default:

@@ -9,7 +9,7 @@ export const ModalOrderFeed: React.FC = () => {
   const history = useHistory<History>();
   const { id } = useParams<{ id: string }>();
     const message = useSelector((store: any) => store.orders.messages);
-    const orders = message[message.length - 1].orders
+    const orders = message.orders
     const currentOrder = orders.find((x: any) => x.number === parseInt(id));
 
   const handleClick = () => {

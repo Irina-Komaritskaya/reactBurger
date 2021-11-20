@@ -14,31 +14,28 @@ export const FeedOrderDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!ingredients) {
+    if (ingredients.length === 0) {
       dispatch(loadIngredients());
     }
-    if (message.length === 0) {
+    if (!message) {
       dispatch(loadOrder(id));
     }
   }, [dispatch]);
 
-  const orders =
-    message.length > 0 ? message[message.length - 1].orders : orderState;
-    
+  const orders = message ? message.orders : orderState;
+
   if (!orders) {
     return null;
   }
-  const currentOrder =
-    message.length > 0
-      ? orders.find((x: any) => x.number === parseInt(id))
-      : orderState;
-console.log(currentOrder.ingredients)
+  const currentOrder = message
+    ? orders.find((x: any) => x.number === parseInt(id))
+    : orderState;
+
   const orderIngredientsId = currentOrder.ingredients;
   const orderIngredients = ingredients.filter((x: any) =>
     orderIngredientsId.some((y: any) => y === x._id)
   );
 
-  console.log(orderIngredients)
   const count = orderIngredientsId.reduce((acc: any, el: any) => {
     acc[el] = (acc[el] || 0) + 1;
     return acc;

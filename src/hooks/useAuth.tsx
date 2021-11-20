@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../utils/cookie';
-import { RESTORE_USER } from '../services/auth/actions';
+import { RESTORE_USER } from '../services/auth/constants';
 import { getUser, getNewAccessToken } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 

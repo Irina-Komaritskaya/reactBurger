@@ -5,7 +5,7 @@ import {WS_CONNECTION_START} from '../../services/websoket/action'
 import { OrdersFeed } from '../../components/orders-feed/orders-feed';
 
 export function Order() {
-  const message = useSelector((store: any) => store.orders.messages || []);
+  const message = useSelector((store: any) => store.orders.messages || {});
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
 
@@ -15,8 +15,8 @@ export function Order() {
   }, []);
 
   useEffect(() => {
-    if (message.length > 0) {
-      setOrders(message[message.length - 1].orders);
+    if (message) {
+      setOrders(message.orders);
     }
   }, [message]);
   return (
