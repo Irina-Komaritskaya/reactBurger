@@ -52,7 +52,7 @@ export const Profile: React.FC = () => {
       newValue.password = value.password;
     }
     const token = getCookie('accessToken');
-    dispatch(updateProfileUser(newValue, token));
+    dispatch(updateProfileUser(newValue, token!));
     setDisabled({ name: true, email: true, password: true });
     setisSaveVisible(false);
   };

@@ -1,4 +1,4 @@
-import { TDataItem, TUser } from '../../types/types';
+import { TOrders, TUser } from '../../types/types';
 import {
   SEND_ORDER_SUCCESS,
   SEND_ORDER_REQUEST,
@@ -11,7 +11,7 @@ import {
 
 export interface ISendOrderSuccess {
   readonly type: typeof SEND_ORDER_SUCCESS;
-  order: TOrder & {owner:TUser} ;
+  order: TOrders & {owner:TUser} ;
   idIngredients: string[];
   idBun: string;
 }
@@ -29,7 +29,7 @@ export interface IGetOrderRequest {
 }
 export interface IGetOrderSuccess {
   readonly type: typeof GET_ORDER_SUCCESS,
-  order: TOrder
+  order: TOrders
 }
 export interface IConfirmOrder {
   readonly type: typeof CONFIRM_ORDER;
@@ -45,7 +45,7 @@ export type TOrder =
   | IConfirmOrder;
 
 export const SendOrderSuccessAction = (
-  order: TOrder & {owner:TUser},
+  order: TOrders & {owner:TUser},
   idIngredients: string[],
   idBun: string
 ): ISendOrderSuccess => ({
@@ -66,7 +66,7 @@ export const GetOrderFailedAction = (): IGetOrderFailed => ({
 export const GetOrderRequestAction = (): IGetOrderRequest => ({
   type: GET_ORDER_REQUEST,
 });
-export const GetOrderSuccessAction = (order: TOrder): IGetOrderSuccess => ({
+export const GetOrderSuccessAction = (order: TOrders): IGetOrderSuccess => ({
   type: GET_ORDER_SUCCESS,
   order
 });

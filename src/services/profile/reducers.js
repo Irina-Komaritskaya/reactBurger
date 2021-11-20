@@ -1,5 +1,5 @@
 import { initialState } from '../inital-data';
-import { UPDATE_PROFILE_FAILED, UPDATE_PROFILE_SUCCESS } from './actions';
+import { UPDATE_PROFILE_FAILED, UPDATE_PROFILE_SUCCESS } from './constants';
 
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -105,7 +105,7 @@ export const resetPassword = async (password: string, token: string) => {
   return result;
 };
 
-export const updateProfile = async (value: TUser, token: string) => {
+export const updateProfile = async (value: Partial<TUser>, token: string) => {
   const url = urlApi + 'auth/user';
   
   const result = await getData(url, {
