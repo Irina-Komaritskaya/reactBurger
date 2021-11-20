@@ -2,7 +2,7 @@ import { OrdersFeed } from '../../components/orders-feed/orders-feed';
 import { OrdersStats } from '../../components/orders-stats/orders-stats';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { WS_CONNECTION_START } from '../../services/websoket/action';
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from '../../services/websoket/action';
 import styles from './feed.module.css';
 
 export const FeedPage = () => {
@@ -13,8 +13,10 @@ export const FeedPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: WS_CONNECTION_START });
-    //сделать размонтирование
+    dispatch({ type: WS_CONNECTION_START, withToken: false });
+    return ()=> {
+      dispatch({type: WS_CONNECTION_CLOSED})
+    }
   }, []);
 
   useEffect(() => {
