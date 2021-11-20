@@ -52,6 +52,11 @@ const App: React.FC = () => {
             exact={true}
             component={FeedOrderDetails}
           />
+          
+          <ProtectedRoute path="/profile/order/:id" exact={true}>
+            <FeedOrderDetails />
+          </ProtectedRoute>
+
           <RedirectAuthRoute
             path="/forgot-password"
             exact={true}
@@ -68,6 +73,9 @@ const App: React.FC = () => {
         )}
         {isModal && (
           <Route exact path="/feed/:id" component={ModalOrderFeed} />
+        )}
+        {isModal && (
+          <Route exact path="/profile/order/:id" component={ModalOrderFeed} />
         )}
       </div>
     </DndProvider>

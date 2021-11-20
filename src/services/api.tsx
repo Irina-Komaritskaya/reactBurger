@@ -23,7 +23,6 @@ export const getIngredients = async () => {
 export const getOrder = async (numberOrder: string) => {
   const url = urlApi + 'orders/' + numberOrder;
   const result = await getData(url);
-  console.log(result)
   return result;
 };
 

@@ -10,8 +10,9 @@ import { Link } from 'react-router-dom';
 
 interface IOrderFeedProps {
   orders: TOrders[];
+  url: string
 }
-export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders }) => {
+export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
   const ingredients = useSelector((store: any) => store.ingredient.ingredients);
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders }) => {
       {orders.map((x: TOrders) => (
         <Link
           to={{
-            pathname: `/feed/${x.number}`,
+            pathname: `/${url}/${x.number}`,
             state: { modal: true },
           }}
           className={styles.link}

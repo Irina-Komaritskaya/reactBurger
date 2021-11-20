@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './orders.module.css'
-import {WS_CONNECTION_START} from '../../services/websoket/action'
+import styles from './orders.module.css';
+import { WS_CONNECTION_START } from '../../services/websoket/action';
 import { OrdersFeed } from '../../components/orders-feed/orders-feed';
 
 export function Order() {
-  const message = useSelector((store: any) => store.orders.messages || {});
+  const message = useSelector((store: any) => store.orders.messages);
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
 
@@ -16,14 +16,15 @@ export function Order() {
 
   useEffect(() => {
     if (message) {
+      console.log(message)
       setOrders(message.orders);
     }
   }, [message]);
   return (
     <div className={styles.orders}>
       <div className={`${styles.orderWrap}`}>
-    <OrdersFeed orders={orders}/>
-    </div>
+        <OrdersFeed orders={orders} url='profile/order'/>
+      </div>
     </div>
   );
 }

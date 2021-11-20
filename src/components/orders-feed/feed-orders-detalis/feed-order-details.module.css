@@ -46,7 +46,7 @@
   .ingredients{
     height: 280px;
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-color: #696969 #8585ad;
     scrollbar-width: thin;
 }

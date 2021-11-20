@@ -6,7 +6,7 @@ import { WS_CONNECTION_START } from '../../services/websoket/action';
 import styles from './feed.module.css';
 
 export const FeedPage = () => {
-  const message = useSelector((store: any) => store.orders.messages || {});
+  const message = useSelector((store: any) => store.orders.messages);
   const [orders, setOrders] = useState([]);
   const [total, setTotal] = useState(0)
   const [totalDay, setTotalDay] = useState(0)
@@ -31,7 +31,7 @@ export const FeedPage = () => {
     <div className={styles.wrap}>
       <div className={`mt-5 mr-15 ${styles.orderWrap}`}>
         <div className={`mr-2 ${styles.orders}`}>
-          <OrdersFeed orders={orders} />
+          <OrdersFeed orders={orders} url='feed'/>
         </div>
       </div>
       <div className={` mt-5 ${styles.stats}`}>

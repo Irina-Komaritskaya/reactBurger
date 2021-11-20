@@ -32,7 +32,6 @@ export function authUser({
   email,
   password,
 }: Pick<TUser, 'email' | 'password'>) {
-  console.log(email, password)
   return function (dispatch: any) {
     const fetchAuth = async () => {
       const res = await authorization({ email, password });

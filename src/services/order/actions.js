@@ -35,7 +35,6 @@ export function loadOrder(numberOrder) {
   return function (dispatch) {
     const fetchOrder = async () => {
       const res = await getOrder(numberOrder);
-      console.log(res.orders[0])
       dispatch({
         type: GET_ORDER_SUCCESS,
         value: { order: res.orders[0] },

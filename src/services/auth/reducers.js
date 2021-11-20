@@ -30,7 +30,6 @@ export const authReducer = (state = initialState, action) => {
       return state;
     }
     case GET_AUTH_SUCCESS: {
-      console.log(action)
       const { accessToken, refreshToken } = action;
       setCookie('accessToken', accessToken, { expires: 20 * 60 });
       setCookie('refreshToken', refreshToken, { expires: 30 * 24 * 60 });
