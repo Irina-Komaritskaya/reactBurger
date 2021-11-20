@@ -13,7 +13,6 @@ interface IOrderFeedProps {
 }
 export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders }) => {
   const ingredients = useSelector((store: any) => store.ingredient.ingredients);
-  console.log(orders);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders }) => {
       {orders.map((x: TOrders) => (
         <Link
           to={{
-            pathname: `/feed/${x._id}`,
+            pathname: `/feed/${x.number}`,
             state: { modal: true },
           }}
           className={styles.link}

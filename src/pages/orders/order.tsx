@@ -1,25 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './orders.module.css'
-import {WS_CONNECTION_START, WS_GET_MESSAGE} from '../../services/websoket/action'
+import {WS_CONNECTION_START} from '../../services/websoket/action'
+import { OrdersFeed } from '../../components/orders-feed/orders-feed';
 
 export function Order() {
-  const message = useSelector((store: any) => store.orders.messages || [])
+  const message = useSelector((store: any) => store.orders.messages || []);
+  const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch({ type: WS_CONNECTION_START });
-  }, [])
+    //сделать размонтирование
+  }, []);
+
+  useEffect(() => {
+    if (message.length > 0) {
+      setOrders(message[message.length - 1].orders);
+    }
+  }, [message]);
   return (
-    <ul>
-      <li>
-    <div className={styles.backgroundBox}>
-      <span  className={styles.numberOrder}>111111</span>
-      <span className={styles.date}>Сегодня, 16:20 i-GMT+3</span>
-      <span className={styles.createText}>Создан</span>
-      <span className={styles.image}>Создан</span>
-      <span className={styles.price}>480</span>
+    <div className={styles.orders}>
+      <div className={`${styles.orderWrap}`}>
+    <OrdersFeed orders={orders}/>
     </div>
-    </li>
-    </ul>
+    </div>
   );
 }

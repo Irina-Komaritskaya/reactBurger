@@ -27,7 +27,7 @@ export const OrdersStats: React.FC<IOrdersStatsProps> = ({
             </span>
           ))}
         </div>
-        <div className={styles.OrdersColumn}>
+        <div className={styles.ordersColumn}>
           <span className="text text_type_main-medium mb-8">В работе:</span>
           {inWorkOrders.map((x) => (
             <span className="text text_type_digits-default mt-2">

@@ -7,7 +7,7 @@ import {
   CLEAR_COMPONENTS,
 } from '../../services/burger-component/actions';
 import { CONFIRM_ORDER } from '../../services/order/actions';
-import { loadOrder } from '../../services/order/actions';
+import { orderSend } from '../../services/order/actions';
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
 import { ComponentItem } from './component-item/component-item';
@@ -39,7 +39,7 @@ const BurgerComponents: React.FC = () => {
     if (confirmOrder) {
       const idIngredients = components.map((x: any) => x._id);
       const idBun = bun._id;
-      dispatch(loadOrder(idIngredients, idBun, token));
+      dispatch(orderSend(idIngredients, idBun, token));
       dispatch({
         type: CLEAR_COMPONENTS,
       });

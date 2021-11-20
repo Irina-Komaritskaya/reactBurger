@@ -1,18 +1,44 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import styles from './feed-order-details.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useEffect } from 'react';
+import { loadIngredients } from '../../../services/ingredient/actions';
+import { loadOrder } from '../../../services/order/actions';
 
 export const FeedOrderDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const message = useSelector((store: any) => store.orders.messages);
+  const message = useSelector((store: any) => store.order.messages);
+  const orderState = useSelector((store: any) => store.order.order);
   const ingredients = useSelector((store: any) => store.ingredient.ingredients);
-  const orders = message[message.length - 1].orders;
-  const currentOrder = orders.find((x: any) => x._id === id);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!ingredients) {
+      dispatch(loadIngredients());
+    }
+    if (message.length === 0) {
+      dispatch(loadOrder(id));
+    }
+  }, [dispatch]);
+
+  const orders =
+    message.length > 0 ? message[message.length - 1].orders : orderState;
+    
+  if (!orders) {
+    return null;
+  }
+  const currentOrder =
+    message.length > 0
+      ? orders.find((x: any) => x.number === parseInt(id))
+      : orderState;
+console.log(currentOrder.ingredients)
   const orderIngredientsId = currentOrder.ingredients;
   const orderIngredients = ingredients.filter((x: any) =>
     orderIngredientsId.some((y: any) => y === x._id)
   );
+
+  console.log(orderIngredients)
   const count = orderIngredientsId.reduce((acc: any, el: any) => {
     acc[el] = (acc[el] || 0) + 1;
     return acc;
@@ -30,39 +56,41 @@ export const FeedOrderDetails = () => {
 
   return (
     <div className={styles.wrap}>
-      <span className="text text_type_main-medium mt-5">
-        {currentOrder.name}
-      </span>
-      <span className={`${styles.status} text text_type_main-default mt-1`}>
-        {currentOrder.status}
-      </span>
-      <span className="mt-15 text text_type_main-medium">Состав:</span>
-      <div className={`${styles.ingredients} mt-6 pr-6`}>
-        {orderIngredients.map((x: any) => (
-          <div className={styles.ingredient}>
-            <span className={styles.row}>
-              <span className={`${styles.imgPrew} mr-4`}>
-                <img className={styles.img} src={x.image_mobile} alt="" />
+      <div className={styles.order}>
+        <span className="text text_type_main-medium mt-5">
+          {currentOrder.name}
+        </span>
+        <span className={`${styles.status} text text_type_main-default mt-1`}>
+          {currentOrder.status}
+        </span>
+        <span className="mt-15 text text_type_main-medium">Состав:</span>
+        <div className={`${styles.ingredients} mt-6 pr-6`}>
+          {orderIngredients.map((x: any) => (
+            <div className={styles.ingredient}>
+              <span className={styles.row}>
+                <span className={`${styles.imgPrew} mr-4`}>
+                  <img className={styles.img} src={x.image_mobile} alt="" />
+                </span>
+                <span className="text text_type_main-default">{x.name}</span>
               </span>
-              <span className="text text_type_main-default">{x.name}</span>
-            </span>
-            <span className={styles.row}>
-              <span className="text text_type_digits-default mr-2">
-                {x.count} x {x.price}
+              <span className={styles.row}>
+                <span className="text text_type_digits-default mr-2">
+                  {x.count} x {x.price}
+                </span>
+                <CurrencyIcon type="primary" />
               </span>
-              <CurrencyIcon type="primary" />
-            </span>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+        <span className={`${styles.footer} mt-10 mb-10`}>
+          <span className="text text_type_main-default text_color_inactive">
+            {currentOrder.createdAt}
+          </span>
+          <span className="text text_type_digits-default">
+            {totalPrice} <CurrencyIcon type="primary" />
+          </span>
+        </span>
       </div>
-      <span className={`${styles.footer} mt-10 mb-10`}>
-        <span className="text text_type_main-default text_color_inactive">
-          {currentOrder.createdAt}
-        </span>
-        <span className="text text_type_digits-default">
-          {totalPrice} <CurrencyIcon type="primary" />
-        </span>
-      </span>
     </div>
   );
 };

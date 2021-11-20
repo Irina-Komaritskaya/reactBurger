@@ -20,7 +20,14 @@ export const getIngredients = async () => {
   return result;
 };
 
-export const getOrder = async (
+export const getOrder = async (numberOrder: string) => {
+  const url = urlApi + 'orders/' + numberOrder;
+  const result = await getData(url);
+  console.log(result)
+  return result;
+};
+
+export const sendOrder = async (
   idIngredients: readonly string[],
   idBun: string,
   token: string
