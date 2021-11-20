@@ -22,7 +22,7 @@ export const ModalOrderFeed: React.FC = () => {
       onClick={handleClick}
       onCloseClick={handleClick}
     >
-      <FeedOrderDetails />
+      <FeedOrderDetails isModal={true}/>
     </Modal>
   );
 }

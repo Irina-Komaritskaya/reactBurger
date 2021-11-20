@@ -7,14 +7,14 @@ import {
   GET_ORDER_REQUEST,
   GET_ORDER_FAILED,
   CONFIRM_ORDER,
-} from './actions';
+} from './constants';
 
 export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_ORDER_SUCCESS: {
       return {
         ...state,
-        order: action.value.order,
+        order: action.order,
         isLoadingOrder: false,
         confirmOrder: false,
       };
@@ -42,7 +42,7 @@ export const orderReducer = (state = initialState, action) => {
     case GET_ORDER_SUCCESS: {
       return {
         ...state,
-        order: action.value.order,
+        order: action.order,
         isLoadingOrder: false,
         confirmOrder: false,
       };

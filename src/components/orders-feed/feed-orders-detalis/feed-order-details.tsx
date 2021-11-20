@@ -52,7 +52,7 @@ export const FeedOrderDetails = ({isModal} : any) => {
     return total;
   }, 0);
 
-  
+  console.log(isModal)
   return (
     <div className={styles.wrap}>
       <div className={styles.order}>

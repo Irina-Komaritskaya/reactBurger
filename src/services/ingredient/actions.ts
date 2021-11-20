@@ -9,7 +9,6 @@ export function loadIngredients() {
   return function (dispatch: any) {
     const fetchIngredients = async () => {
       const res = await getIngredients();
-      console.log(res.data);
       dispatch(IngredientsSuccessAction(res.data));
       return res;
     };
