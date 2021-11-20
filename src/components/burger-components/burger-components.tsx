@@ -5,7 +5,7 @@ import {
   ADD_COMPONENT,
   UPDATE_COMPONENT,
   CLEAR_COMPONENTS,
-} from '../../services/burger-component/actions';
+} from '../../services/burger-component/constants';
 import { CONFIRM_ORDER } from '../../services/order/actions';
 import { orderSend } from '../../services/order/actions';
 import styles from './burger-components.module.css';

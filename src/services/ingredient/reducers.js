@@ -3,14 +3,14 @@ import {
   GET_INGREDIENT_FAILED,
   GET_INGREDIENT_REQUEST,
   GET_INGREDIENT_SUCCESS,
-} from './actions';
+} from './constants';
 
 export const ingredientReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INGREDIENT_SUCCESS: {
       return {
         ...state,
-        ingredients: action.value,
+        ingredients: action.data,
         isLoadingIngredient: false,
       };
     }

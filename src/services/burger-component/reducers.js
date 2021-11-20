@@ -5,11 +5,12 @@ import {
   DEL_COMPONENT,
   UPDATE_COMPONENT,
   CLEAR_COMPONENTS,
-} from './actions';
+} from './constants';
 
 export const componentReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_COMPONENT: {
+      console.log(1)
       if (action.value.type === 'bun') {
         return {
           ...state,
