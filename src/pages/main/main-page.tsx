@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../types/hooks';
 import { useEffect } from 'react';
 import style from './main.module.css';
 import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients';

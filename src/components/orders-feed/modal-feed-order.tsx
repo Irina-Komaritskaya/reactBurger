@@ -1,5 +1,5 @@
 import Modal from '../modal/modal';
-import { useSelector } from "react-redux";
+import { useSelector } from '../../types/hooks';
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { History } from 'history';

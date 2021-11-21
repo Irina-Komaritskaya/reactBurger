@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../types/hooks';
 import { useDrop } from 'react-dnd';
 import {
   ADD_COMPONENT,

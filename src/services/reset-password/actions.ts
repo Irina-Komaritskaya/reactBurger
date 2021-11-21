@@ -1,3 +1,4 @@
+import { AppThunk } from '../../types';
 import { forgotPassword, resetPassword } from '../api';
 import {
   ForgotSuccessAction,
@@ -5,7 +6,8 @@ import {
   ResetFailedAction,
   ResetSuccessAction,
 } from './action-type';
-export function forgotPasswordUser(email: string) {
+
+export const forgotPasswordUser: AppThunk = (email: string) => {
   return function (dispatch: any) {
     const fetchForgot = async () => {
       const res = await forgotPassword(email);
@@ -14,16 +16,16 @@ export function forgotPasswordUser(email: string) {
     };
     fetchForgot().catch(() => dispatch(ForgotFailedAction()));
   };
-}
+};
 
 interface IResetPasswordUserParams {
   password: string;
   token: string;
 }
-export function resetPasswordUser({
+export const resetPasswordUser: AppThunk = ({
   password,
   token,
-}: IResetPasswordUserParams) {
+}: IResetPasswordUserParams) => {
   return function (dispatch: any) {
     const fetchReset = async () => {
       const res = await resetPassword(password, token);
@@ -32,4 +34,4 @@ export function resetPasswordUser({
     };
     fetchReset().catch(() => dispatch(ResetFailedAction()));
   };
-}
+};

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../../types/hooks';
 import { useDrop, useDrag } from 'react-dnd';
 import React, { useRef } from 'react';
 import { DEL_COMPONENT } from '../../../services/burger-component/constants';

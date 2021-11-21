@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { CLEAR_RESET_PASSWORD } from '../services/reset-password/constants';
 import { resetPasswordUser } from '../services/reset-password/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../types/hooks';
 import { Form } from '../components/form/form';
 
 type TValueForm = {

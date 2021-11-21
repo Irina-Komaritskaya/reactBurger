@@ -1,5 +1,5 @@
 import style from './ingredient-details.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../../types/hooks';
 import { useParams } from 'react-router';
 import React, { useEffect } from 'react';
 import { loadIngredients } from '../../../services/ingredient/actions';

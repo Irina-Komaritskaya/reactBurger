@@ -1,5 +1,4 @@
 import { getCookie } from "../../utils/cookie";
-import { TWs } from "./action-type";
 import { wsActions as wsActionTypes } from "../store";
 import { Middleware } from "redux";
 import { RootState } from "../../types";

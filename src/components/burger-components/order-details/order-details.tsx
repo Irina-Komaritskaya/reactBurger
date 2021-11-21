@@ -1,5 +1,5 @@
 import styles from './order-details.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../types/hooks';
 import { useAuth } from '../../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';

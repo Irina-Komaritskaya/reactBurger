@@ -1,6 +1,6 @@
 import style from './burger-item.module.css';
 import { TDataItem } from '../../../types/data';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../types/hooks';
 import { useDrag } from 'react-dnd';
 import {
   CurrencyIcon,

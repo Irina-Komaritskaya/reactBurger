@@ -1,3 +1,4 @@
+import { AppThunk } from '../../types';
 import { sendOrder, getOrder } from '../api';
 import {
   SendOrderSuccessAction,
@@ -8,7 +9,7 @@ import {
   GetOrderFailedAction
 } from './action-type';
 
-export function orderSend(idIngredients: string[], idBun: string, token: string) {
+export const orderSend: AppThunk = (idIngredients: string[], idBun: string, token: string) => {
   return function (dispatch: any) {
     const fetchOrder = async () => {
       const res = await sendOrder(idIngredients, idBun, token);
@@ -23,7 +24,7 @@ export function orderSend(idIngredients: string[], idBun: string, token: string)
   };
 }
 
-export function loadOrder(numberOrder: string) {
+export const loadOrder: AppThunk = (numberOrder: string) => {
   return function (dispatch: any) {
     const fetchOrder = async () => {
       const res = await getOrder(numberOrder);

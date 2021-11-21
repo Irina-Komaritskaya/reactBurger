@@ -4,7 +4,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../types/hooks';
 import { registrationUser } from '../services/auth/actions';
 import { Form } from '../components/form/form';
 import { TUser } from '../types/data';

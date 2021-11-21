@@ -1,7 +1,7 @@
 import { OrdersFeed } from '../../components/orders-feed/orders-feed';
 import { OrdersStats } from '../../components/orders-stats/orders-stats';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../types/hooks';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from '../../services/websoket/constants';
 import styles from './feed.module.css';
 

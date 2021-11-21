@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../utils/cookie';
 import { restoreUser } from '../services/auth/actions';
-import { getUser, getNewAccessToken } from '../services/api';
-import { useDispatch, useSelector } from 'react-redux';
+import { getNewAccessToken } from '../services/api';
+import { useDispatch, useSelector } from '../types/hooks';
 
 export function useAuth() {
   const dispatch = useDispatch();

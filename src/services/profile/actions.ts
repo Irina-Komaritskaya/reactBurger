@@ -1,9 +1,10 @@
+import { AppThunk } from '../../types';
 import { TUser } from '../../types/data';
 import { updateProfile } from '../api';
 import {UdateProfileFailedAction, UdateProfileSuccessAction} from './action-type'
 
 
-export function updateProfileUser(value: Partial<TUser>, token: string) {
+export const updateProfileUser: AppThunk = (value: Partial<TUser>, token: string) => {
   return function (dispatch: any) {
     const fetchUpdateProfile = async () => {
       const res = await updateProfile(value, token);

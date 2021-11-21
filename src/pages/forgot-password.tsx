@@ -5,7 +5,7 @@ import {
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { forgotPasswordUser } from '../services/reset-password/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../types/hooks';
 import { Form } from '../components/form/form';
 
 export const ForgotPasswordPage: React.FC = () => {

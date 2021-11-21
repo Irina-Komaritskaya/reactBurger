@@ -12,7 +12,11 @@ import {
   RestoreUserFailedAction,
 } from './action-type';
 
-export const registrationUser: AppThunk = ({ name, email, password }: TUser) => {
+export const registrationUser: AppThunk = ({
+  name,
+  email,
+  password,
+}: TUser) => {
   return function (dispatch: AppDispatch) {
     const fetchReg = async () => {
       const res = await registration({ name, email, password });
@@ -29,12 +33,12 @@ export const registrationUser: AppThunk = ({ name, email, password }: TUser) => 
     };
     fetchReg().catch(() => dispatch(getRegFailedAction()));
   };
-}
+};
 
-export function authUser({
+export const authUser: AppThunk = ({
   email,
   password,
-}: Pick<TUser, 'email' | 'password'>) {
+}: Pick<TUser, 'email' | 'password'>) => {
   return function (dispatch: any) {
     const fetchAuth = async () => {
       const res = await authorization({ email, password });
@@ -51,30 +55,29 @@ export function authUser({
     };
     fetchAuth().catch(() => dispatch(getAuthFailedAction()));
   };
-}
+};
 
-export function logOutUser(accessToken: string, refreshToken: string) {
+export const logOutUser: AppThunk = (
+  accessToken: string,
+  refreshToken: string
+) => {
   return function (dispatch: any) {
     const fetchOut = async () => {
       const res = await logOut(refreshToken);
       dispatch(logoutSuccessAction(accessToken, refreshToken));
       return res;
     };
-    fetchOut().catch(() =>
-      dispatch(logoutFailedAction())
-    );
+    fetchOut().catch(() => dispatch(logoutFailedAction()));
   };
-}
+};
 
-export function restoreUser(accessToken: string) {
+export const restoreUser: AppThunk = (accessToken: string) => {
   return function (dispatch: any) {
     const fetchRestore = async () => {
       const res = await getUser(accessToken);
       dispatch(RestoreUserSuccessAction(res.user));
       return res;
     };
-    return fetchRestore().catch(() =>
-      dispatch(RestoreUserFailedAction())
-    );
+    return fetchRestore().catch(() => dispatch(RestoreUserFailedAction()));
   };
-}
+};
