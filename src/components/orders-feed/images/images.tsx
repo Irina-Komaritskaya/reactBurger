@@ -1,9 +1,10 @@
 import styles from './images.module.css';
 import React from 'react';
+import { TDataItem } from '../../../types/data';
 
 interface IimagesProps {
-  ingredients: any;
-  orderIngredients: any;
+  ingredients: TDataItem[];
+  orderIngredients: string[];
 }
 export const Images: React.FC<IimagesProps> = ({
   ingredients,
@@ -16,9 +17,9 @@ export const Images: React.FC<IimagesProps> = ({
 
   const mainIngridients = orderIngredients.slice(0, countTake);
 
-  const getImageForElement = (id: number) => {
-    const ingridient = ingredients.find((x: any) => x._id === id);
-    return ingridient.image_mobile;
+  const getImageForElement = (id: string) => {
+    const ingridient = ingredients.find((x) => x._id === id);
+    return ingridient!.image_mobile;
   }
 
   const elementWithCount = showCount
@@ -30,18 +31,18 @@ export const Images: React.FC<IimagesProps> = ({
     <span className={styles.images}>
       
       {showCount && (
-        <div className={styles.image} key={elementWithCount._id}>
+        <div className={styles.image} key={elementWithCount}>
           <span className= {`${styles.imgPrew} ${styles.imgOverlay}`} >
               <span className={`text text_type_main-default ${styles.counter}`}>
                 +{countRest}
               </span>
-            <img className={styles.img} src={getImageForElement(elementWithCount)} alt="" />
+            <img className={styles.img} src={getImageForElement(elementWithCount!)} alt="" />
           </span>
         </div>
       )}
       
-      {mainIngridients.map((x: any) => (
-        <div className={styles.image} key={x._id}>
+      {mainIngridients.map((x) => (
+        <div className={styles.image} key={x}>
           <span className={styles.imgPrew}>
             <img className={styles.img} src={getImageForElement(x)} alt="" />
           </span>

@@ -16,11 +16,11 @@ type TDisabled = {
 }
 
 export const Profile: React.FC = () => {
-  const user = useSelector((store: any) => store.auth.user);
+  const user = useSelector(store => store.auth.user);
  
   const [value, setValue] = useState<TUser>({
-    name: user.name,
-    email: user.email,
+    name: user!.name,
+    email: user!.email,
     password: '',
   });
   
@@ -42,10 +42,10 @@ export const Profile: React.FC = () => {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newValue:Partial<TUser> = {};
-    if (user.name !== value.name) {
+    if (user!.name !== value.name) {
       newValue.name = value.name;
     }
-    if (user.email !== value.email) {
+    if (user!.email !== value.email) {
       newValue.email = value.email;
     }
     if (value.password !== '') {
@@ -59,7 +59,7 @@ export const Profile: React.FC = () => {
 
   const onClickCancel = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setValue({ name: user.name, email: user.email, password: '' });
+    setValue({ name: user!.name, email: user!.email, password: '' });
     setDisabled({ name: true, email: true, password: true });
     setisSaveVisible(false);
   };

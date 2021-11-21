@@ -7,7 +7,7 @@ import { TDataItem } from '../../../types/data';
 
 const IngredientDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
+  const ingredients = useSelector(store => store.ingredient.ingredients);
   const dispatch = useDispatch();
   const currentIngredient = ingredients.find((x: TDataItem) => x._id === id);
 

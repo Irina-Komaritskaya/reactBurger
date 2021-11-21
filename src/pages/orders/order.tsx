@@ -6,10 +6,11 @@ import {
   WS_CONNECTION_CLOSED,
 } from '../../services/websoket/constants';
 import { OrdersFeed } from '../../components/orders-feed/orders-feed';
+import { TOrders } from '../../types/data';
 
 export function Order() {
-  const message = useSelector((store: any) => store.orders.messages);
-  const [orders, setOrders] = useState([]);
+  const message = useSelector(store => store.orders.messages);
+  const [orders, setOrders] = useState<TOrders[]>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export function Order() {
 
   useEffect(() => {
     if (message) {
-      setOrders(message.orders);
+      setOrders(message!.orders!);
     }
   }, [message]);
 

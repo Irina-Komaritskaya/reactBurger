@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from '../../types/hooks';
 import { useEffect } from 'react';
-import { TOrders } from '../../types/data';
+import { TDataItem, TOrders } from '../../types/data';
 import styles from './orders-feed.module.css';
 import { loadIngredients } from '../../services/ingredient/actions';
 import { Images } from './images/images';
@@ -14,7 +14,7 @@ interface IOrderFeedProps {
   url: string
 }
 export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
-  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
+  const ingredients = useSelector(store => store.ingredient.ingredients);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
 
   const totalPrice = (arr: string[]) => {
     const totalPrice = arr.reduce((total, curr) => {
-      const { price } = ingredients.find((x: any) => x._id === curr);
+      const { price } = ingredients.find((x: TDataItem) => x._id === curr)!;
       total += price;
       return total;
     }, 0);

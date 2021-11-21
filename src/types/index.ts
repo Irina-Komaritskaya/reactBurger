@@ -10,7 +10,16 @@ import { TResetPassword } from '../services/reset-password/action-type';
 import { TWs } from '../services/websoket/action-type';
 import { TInitialState } from './data';
 
-export type RootState = TInitialState
+export type RootState = {
+  ingredient: TInitialState,
+  component: TInitialState,
+  order:TInitialState,
+  auth: TInitialState,
+  password: TInitialState,
+  profile: TInitialState,
+  orders: TInitialState
+  
+}
 type TApplicationActions = TAuth | TComponent | TIngredient | TOrder | TProfile | TResetPassword | TWs
 export type AppDispatch = Dispatch<TApplicationActions>
 export type AppThunk<ReturnType = void> = ActionCreator<

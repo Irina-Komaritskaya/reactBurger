@@ -1,4 +1,4 @@
-import { AppThunk } from '../../types';
+import { AppDispatch, AppThunk } from '../../types';
 import { getIngredients } from '../api';
 import {
   IngredientsSuccessAction,
@@ -7,7 +7,7 @@ import {
 } from './action-type';
 
 export const loadIngredients: AppThunk = () => {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     const fetchIngredients = async () => {
       const res = await getIngredients();
       dispatch(IngredientsSuccessAction(res.data));

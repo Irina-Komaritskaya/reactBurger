@@ -22,5 +22,6 @@ export const initialState: TInitialState = {
   isResetPassword: false,
 
   wsConnected: false,
-  messages: []
+  messages: null
+    
 };

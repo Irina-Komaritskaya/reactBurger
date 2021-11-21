@@ -1,4 +1,4 @@
-import { AppThunk } from '../../types';
+import { AppDispatch, AppThunk } from '../../types';
 import { sendOrder, getOrder } from '../api';
 import {
   SendOrderSuccessAction,
@@ -10,7 +10,7 @@ import {
 } from './action-type';
 
 export const orderSend: AppThunk = (idIngredients: string[], idBun: string, token: string) => {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     const fetchOrder = async () => {
       const res = await sendOrder(idIngredients, idBun, token);
       console.log(res.order)
@@ -25,7 +25,7 @@ export const orderSend: AppThunk = (idIngredients: string[], idBun: string, toke
 }
 
 export const loadOrder: AppThunk = (numberOrder: string) => {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     const fetchOrder = async () => {
       const res = await getOrder(numberOrder);
       console.log(res.orders[0])

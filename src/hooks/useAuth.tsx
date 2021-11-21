@@ -11,7 +11,7 @@ export function useAuth() {
   const accessToken = getCookie('accessToken');
   const refreshToken = getCookie('refreshToken');
 
-  const user = useSelector((store: any) => store.auth.user);
+  const user = useSelector(store => store.auth.user);
   const [isLoadedUser, setIsLoadedUser] = useState<boolean>(false);
 
   useEffect(() => {

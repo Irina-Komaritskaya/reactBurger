@@ -12,7 +12,7 @@ export const ForgotPasswordPage: React.FC = () => {
   const [value, setValue] = useState<string>('');
   const dispatch = useDispatch();
   const isRecoverEmail = useSelector(
-    (store: any) => store.password.isRecoverEmail
+    store=> store.password.isRecoverEmail
   );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

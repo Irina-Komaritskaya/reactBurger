@@ -1,4 +1,4 @@
-import { AppThunk } from '../../types';
+import { AppDispatch, AppThunk } from '../../types';
 import { forgotPassword, resetPassword } from '../api';
 import {
   ForgotSuccessAction,
@@ -8,7 +8,7 @@ import {
 } from './action-type';
 
 export const forgotPasswordUser: AppThunk = (email: string) => {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     const fetchForgot = async () => {
       const res = await forgotPassword(email);
       dispatch(ForgotSuccessAction());
@@ -26,7 +26,7 @@ export const resetPasswordUser: AppThunk = ({
   password,
   token,
 }: IResetPasswordUserParams) => {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     const fetchReset = async () => {
       const res = await resetPassword(password, token);
       dispatch(ResetSuccessAction());

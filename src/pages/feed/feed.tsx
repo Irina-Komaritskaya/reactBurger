@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from '../../types/hooks';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from '../../services/websoket/constants';
 import styles from './feed.module.css';
+import { TOrders } from '../../types/data';
 
 export const FeedPage = () => {
-  const message = useSelector((store: any) => store.orders.messages);
-  const [orders, setOrders] = useState([]);
-  const [total, setTotal] = useState(0)
-  const [totalDay, setTotalDay] = useState(0)
+  const message = useSelector(store => store.orders.messages);
+  const [orders, setOrders] = useState<TOrders[]>([]);
+  const [total, setTotal] = useState<number>(0)
+  const [totalDay, setTotalDay] = useState<number>(0)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export const FeedPage = () => {
 
   useEffect(() => {
     if (message) {
-      setOrders(message.orders);
+      setOrders(message!.orders!);
       setTotal(message.total);
       setTotalDay(message.totalToday)
     }

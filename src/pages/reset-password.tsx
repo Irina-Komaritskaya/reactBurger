@@ -17,11 +17,9 @@ export const ResetPasswordPage: React.FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState<TValueForm>({ password: '', token: '' });
   const isResetPassword = useSelector(
-    (store: any) => store.password.isResetPassword
+    (store) => store.password.isResetPassword
   );
-  const isRecoverEmail = useSelector(
-    (store: any) => store.password.isRecoverEmail
-  );
+  const isRecoverEmail = useSelector(store => store.password.isRecoverEmail);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...value, [e.target.name]: e.target.value });

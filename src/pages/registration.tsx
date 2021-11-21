@@ -11,7 +11,7 @@ import { TUser } from '../types/data';
 
 export const RegistrationPage: React.FC = () => {
   const dispatch = useDispatch();
-  const user = useSelector((store: any) => store.auth.user);
+  const user = useSelector(store => store.auth.user);
   const [value, setValue] = useState<TUser>({ name: '', email: '', password: '' });
   const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
 

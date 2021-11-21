@@ -7,12 +7,12 @@ import { loadIngredients } from '../../services/ingredient/actions';
 
 export const MainPage: React.FC = () => {
   const isLoadingIngredient = useSelector(
-    (store: any) => store.ingredient.isLoadingIngredient
+    store => store.ingredient.isLoadingIngredient
   );
   const hasErrorIngredient = useSelector(
-    (store: any) => store.ingredient.hasErrorIngredient
+    store => store.ingredient.hasErrorIngredient
   );
-  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
+  const ingredients = useSelector(store => store.ingredient.ingredients);
 
   const dispatch = useDispatch();
 

@@ -23,10 +23,10 @@ import { TDataItem } from '../../types/data';
 
 //BurgerComponents- компонент для корзины заказа
 const BurgerComponents: React.FC = () => {
-  const bun = useSelector((store: any) => store.component.bun);
-  const components = useSelector((store: any) => store.component.components);
-  const totalSum = useSelector((store: any) => store.component.totalSum);
-  const confirmOrder = useSelector((store: any) => store.order.confirmOrder);
+  const bun = useSelector(store => store.component.bun);
+  const components = useSelector(store => store.component.components);
+  const totalSum = useSelector(store => store.component.totalSum);
+  const confirmOrder = useSelector(store => store.order.confirmOrder);
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [user, isLoadedUser] = useAuth();
@@ -37,8 +37,8 @@ const BurgerComponents: React.FC = () => {
 
   useEffect(() => {
     if (confirmOrder) {
-      const idIngredients = components.map((x: any) => x._id);
-      const idBun = bun._id;
+      const idIngredients = components.map((x: TDataItem) => x._id);
+      const idBun = bun!._id;
       dispatch(orderSend(idIngredients, idBun, token!));
       dispatch({
         type: CLEAR_COMPONENTS,
