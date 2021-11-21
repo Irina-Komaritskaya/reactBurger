@@ -7,10 +7,12 @@ import {
   GET_AUTH_FAILED,
   LOGOUT_SUCCESS,
   LOGOUT_FAILED,
-  RESTORE_USER,
+  RESTORE_USER_SUCCESS,
+  RESTORE_USER_FAILED,
 } from './constants';
+import { TAuth } from './action-type';
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: TAuth) => {
   switch (action.type) {
     case GET_REG_SUCCESS: {
       const { accessToken, refreshToken } = action;
@@ -57,11 +59,16 @@ export const authReducer = (state = initialState, action) => {
       alert('Что-то пошло не так, выйти не удалось');
       return state;
     }
-    case RESTORE_USER: {
+    case RESTORE_USER_SUCCESS: {
+      
       return {
         ...state,
         user: action.user,
       };
+    }
+    case RESTORE_USER_FAILED: {
+      alert('Что-то пошло не так, получить пользователя не удалось');
+      return state;
     }
     default: {
       return state;

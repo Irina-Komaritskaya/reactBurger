@@ -3,10 +3,8 @@ import {
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
-} from './action'
-
+} from './constants'
 import { initialState } from '../inital-data';
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 
 // Создадим редьюсер для WebSocket
 export const wsReducer = (state = initialState, action) => {

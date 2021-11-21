@@ -1,4 +1,6 @@
-export const initialState = {
+import { TInitialState } from "../types/types";
+
+export const initialState: TInitialState = {
   //#region ingredient
   isLoadingIngredient: false,
   hasErrorIngredient: false,
@@ -16,9 +18,9 @@ export const initialState = {
   //#endregion
 
   user: null,
-  isRecoverEmail: null,
-  isResetPassword: null,
+  isRecoverEmail: false,
+  isResetPassword: false,
 
   wsConnected: false,
-  messages: null
+  messages: []
 };

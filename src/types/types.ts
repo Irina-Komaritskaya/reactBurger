@@ -35,3 +35,28 @@ export type TOrders = {
   updatedAt: string,
   name: string
 }
+
+export type TInitialState = {
+    //#region ingredient
+    isLoadingIngredient: boolean,
+    hasErrorIngredient: boolean,
+    ingredients: TDataItem[],
+    //#endregion
+  
+    //region order
+    order: TOrders | null,
+    totalSum: number,
+    bun: TDataItem | null,
+    components: string[],
+    confirmOrder: boolean,
+    isLoadingOrder: boolean,
+    hasErrorOrder: boolean,
+    //#endregion
+  
+    user: TUser | null,
+    isRecoverEmail: boolean,
+    isResetPassword: boolean,
+  
+    wsConnected: boolean,
+    messages: TOrders[] 
+}

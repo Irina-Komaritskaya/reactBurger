@@ -5,7 +5,7 @@ import {
   RESET_SUCCESS,
   RESET_FAILED,
   CLEAR_RESET_PASSWORD,
-} from './actions';
+} from './constants';
 
 export const passwordReducer = (state = initialState, action) => {
   switch (action.type) {

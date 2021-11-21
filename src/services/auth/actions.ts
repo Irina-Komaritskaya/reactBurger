@@ -1,12 +1,14 @@
 import { TUser } from '../../types/types';
-import { registration, authorization, logOut } from '../api';
+import { registration, authorization, logOut, getUser } from '../api';
 import {
   getRegSuccessAction,
   getRegFailedAction,
   getAuthSuccessAction,
   getAuthFailedAction,
   logoutSuccessAction,
-  logoutFailedAction
+  logoutFailedAction,
+  RestoreUserSuccessAction,
+  RestoreUserFailedAction,
 } from './action-type';
 
 export function registrationUser({ name, email, password }: TUser) {
@@ -59,6 +61,19 @@ export function logOutUser(accessToken: string, refreshToken: string) {
     };
     fetchOut().catch(() =>
       dispatch(logoutFailedAction())
+    );
+  };
+}
+
+export function restoreUser(accessToken: string) {
+  return function (dispatch: any) {
+    const fetchRestore = async () => {
+      const res = await getUser(accessToken);
+      dispatch(RestoreUserSuccessAction(res.user));
+      return res;
+    };
+    return fetchRestore().catch(() =>
+      dispatch(RestoreUserFailedAction())
     );
   };
 }

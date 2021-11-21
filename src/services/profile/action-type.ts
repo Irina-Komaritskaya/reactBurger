@@ -10,7 +10,7 @@ export interface IUdateProfileSuccess {
   user: Partial<TUser>;
 }
 
-export type TProfile= IUdateProfileFailed | IUdateProfileSuccess
+export type TProfile = IUdateProfileFailed | IUdateProfileSuccess
 
 export const UdateProfileFailedAction = (): IUdateProfileFailed => ({
     type: UPDATE_PROFILE_FAILED,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../utils/cookie';
-import { RESTORE_USER } from '../services/auth/constants';
+import { restoreUser } from '../services/auth/actions';
 import { getUser, getNewAccessToken } from '../services/api';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,20 +17,15 @@ export function useAuth() {
   useEffect(() => {
     //#region func
     const saveUser = async (token: string) => {
-      const res = await getUser(token);
-      dispatch({
-        type: RESTORE_USER,
-        user: res.user,
-      });
-      setIsLoadedUser(true);
+      return dispatch(restoreUser(token));
     };
-
     const getToken = async (token: string) => {
       const res = await getNewAccessToken(token);
       const newAccessToken = res.accessToken.split(' ')[1];
       setCookie('refreshToken', res.refreshToken);
       setCookie('accessToken', newAccessToken);
       await saveUser(newAccessToken);
+      setIsLoadedUser(true);
     };
     //#endregion
 
@@ -38,7 +33,9 @@ export function useAuth() {
       if (user) {
         setIsLoadedUser(true);
       } else {
-        saveUser(accessToken).catch(() => setError(true));
+        saveUser(accessToken)
+          .then(() => setIsLoadedUser(true))
+          .catch(() => setError(true));
       }
     } else if (refreshToken) {
       getToken(refreshToken).catch(() => setError(true));

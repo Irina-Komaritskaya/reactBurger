@@ -1,3 +1,4 @@
+import { TUser } from '../../types/types';
 import {
   GET_REG_SUCCESS,
   GET_REG_FAILED,
@@ -5,12 +6,19 @@ import {
   GET_AUTH_FAILED,
   LOGOUT_SUCCESS,
   LOGOUT_FAILED,
-  RESTORE_USER,
+  RESTORE_USER_SUCCESS,
+  RESTORE_USER_FAILED
 } from './constants';
 
-export interface IRestoreUser{
-    readonly type: typeof  RESTORE_USER;
+export interface IRestoreUserSuccess{
+    readonly type: typeof  RESTORE_USER_SUCCESS,
+    user: TUser;
 }
+
+export interface IRestoreUserFailed{
+  readonly type: typeof  RESTORE_USER_FAILED;
+}
+
 export interface IGetRegSuccess {
   readonly type: typeof GET_REG_SUCCESS;
   accessToken: string;
@@ -52,7 +60,8 @@ export type TAuth =
   | IGetAuthFailed
   | ILogoutSuccess
   | ILogoutFailed
-  | IRestoreUser;
+  | IRestoreUserSuccess
+  | IRestoreUserFailed;
 
 export const getRegSuccessAction = (
   accessToken: string,
@@ -99,4 +108,13 @@ export const getAuthSuccessAction = (
 
   export const logoutFailedAction = (): ILogoutFailed => ({
     type: LOGOUT_FAILED,
+  });
+
+  export const RestoreUserSuccessAction = (user: TUser): IRestoreUserSuccess => ({
+    type: RESTORE_USER_SUCCESS,
+    user
+  });
+
+  export const RestoreUserFailedAction = (): IRestoreUserFailed => ({
+    type: RESTORE_USER_FAILED
   });
