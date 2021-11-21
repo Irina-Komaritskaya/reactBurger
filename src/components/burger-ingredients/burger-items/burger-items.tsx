@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../types/hooks'
 import BurgerItem from '../burger-item/burger-item';
 import style from './burger-items.module.css';
 import { TDataItem } from '../../../types/data';

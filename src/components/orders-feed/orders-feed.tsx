@@ -30,6 +30,9 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
     return totalPrice;
   };
 
+  if(!orders){
+    return null
+  }
   return (
     <ul className={styles.orders}>
       {orders.map((x: TOrders) => (

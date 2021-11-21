@@ -12,7 +12,7 @@ import {
 
 const wsUrl = 'wss://norma.nomoreparties.space/orders';
 
-const wsActions = {
+export const wsActions = {
   wsInit: WS_CONNECTION_START,
   onOpen: WS_CONNECTION_SUCCESS,
   onClose: WS_CONNECTION_CLOSED,

@@ -1,7 +1,11 @@
 import { getCookie } from "../../utils/cookie";
-export const socketMiddleware = (wsUrl, wsActions) => {
+import { TWs } from "./action-type";
+import { wsActions as wsActionTypes } from "../store";
+import { Middleware } from "redux";
+import { RootState } from "../../types";
+export const socketMiddleware = (wsUrl: string, wsActions: typeof wsActionTypes ): Middleware<{}, RootState> => {
     return ((store) => {
-        let socket = null;
+        let socket: WebSocket | null = null;
     return next => (action) => {
       const { dispatch } = store;
       const { type, payload, withToken } = action;
