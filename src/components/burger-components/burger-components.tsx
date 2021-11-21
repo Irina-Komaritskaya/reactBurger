@@ -67,7 +67,7 @@ const BurgerComponents: React.FC = () => {
     drop: (item) => {
       dispatch({
         type: ADD_COMPONENT,
-        value: item,
+        item,
       });
     },
   });

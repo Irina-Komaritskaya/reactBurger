@@ -6,19 +6,20 @@ import {
   UPDATE_COMPONENT,
   CLEAR_COMPONENTS,
 } from './constants';
+import { TComponent } from './action-type';
 
-export const componentReducer = (state = initialState, action) => {
+export const componentReducer = (state = initialState, action: TComponent) => {
   switch (action.type) {
     case ADD_COMPONENT: {
-      console.log(1)
-      if (action.value.type === 'bun') {
+      console.log(action.item)
+      if (action.item.type === 'bun') {
         return {
           ...state,
-          bun: action.value,
+          bun: action.item,
           totalSum:
             state.totalSum -
             (state.bun ? state.bun.price * 2 : 0) +
-            action.value.price * 2,
+            action.item.price * 2,
         };
       } else {
         return {
@@ -26,21 +27,21 @@ export const componentReducer = (state = initialState, action) => {
           components: [
             ...state.components,
             {
-              ...action.value,
+              ...action.item,
               key: generateKey(),
             },
           ],
-          totalSum: state.totalSum + action.value.price,
+          totalSum: state.totalSum + action.item.price,
         };
       }
     }
     case DEL_COMPONENT: {
       let newComponents = [...state.components];
-      newComponents.splice(action.value.index, 1);
+      newComponents.splice(action.item.index, 1);
 
       return {
         ...state,
-        totalSum: state.totalSum - action.value.price,
+        totalSum: state.totalSum - action.item.price,
         components: newComponents,
       };
     }

@@ -72,7 +72,7 @@ export const ComponentItem: React.FC<IComponentItemProps> = ({
         handleClose={() => {
           dispatch({
             type: DEL_COMPONENT,
-            value: { price: price, index: index },
+            item: { price: price, index: index },
           });
         }}
       />
