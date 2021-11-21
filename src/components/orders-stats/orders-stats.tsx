@@ -1,5 +1,5 @@
 import React from 'react';
-import { TOrders } from '../../types/types';
+import { TOrders } from '../../types/data';
 import styles from './orders-stats.module.css';
 interface IOrdersStatsProps {
   orders: TOrders[];

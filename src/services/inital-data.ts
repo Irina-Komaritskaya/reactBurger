@@ -1,4 +1,4 @@
-import { TInitialState } from "../types/types";
+import { TInitialState } from "../types/data";
 
 export const initialState: TInitialState = {
   //#region ingredient

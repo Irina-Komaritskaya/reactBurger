@@ -1,5 +1,5 @@
 import style from './burger-item.module.css';
-import { TDataItem } from '../../../types/types';
+import { TDataItem } from '../../../types/data';
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import {

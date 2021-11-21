@@ -1,4 +1,5 @@
 import { initialState } from '../inital-data';
+import { TResetPassword } from './action-type';
 import {
   FORGOT_SUCCESS,
   FORGOT_FAILED,
@@ -7,7 +8,7 @@ import {
   CLEAR_RESET_PASSWORD,
 } from './constants';
 
-export const passwordReducer = (state = initialState, action) => {
+export const passwordReducer = (state = initialState, action: TResetPassword) => {
   switch (action.type) {
     case FORGOT_SUCCESS: {
       return {

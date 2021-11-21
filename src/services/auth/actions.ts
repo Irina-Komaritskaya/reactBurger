@@ -1,4 +1,5 @@
-import { TUser } from '../../types/types';
+import { AppDispatch, AppThunk } from '../../types';
+import { TUser } from '../../types/data';
 import { registration, authorization, logOut, getUser } from '../api';
 import {
   getRegSuccessAction,
@@ -11,8 +12,8 @@ import {
   RestoreUserFailedAction,
 } from './action-type';
 
-export function registrationUser({ name, email, password }: TUser) {
-  return function (dispatch: any) {
+export const registrationUser: AppThunk = ({ name, email, password }: TUser) => {
+  return function (dispatch: AppDispatch) {
     const fetchReg = async () => {
       const res = await registration({ name, email, password });
       const accessToken = res.accessToken.split(' ')[1];

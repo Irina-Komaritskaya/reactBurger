@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { TOrders } from '../../types/types';
+import { TOrders } from '../../types/data';
 import styles from './orders-feed.module.css';
 import { loadIngredients } from '../../services/ingredient/actions';
 import { Images } from './images/images';

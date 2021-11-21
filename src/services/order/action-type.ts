@@ -1,4 +1,4 @@
-import { TOrders, TUser } from '../../types/types';
+import { TOrders, TUser } from '../../types/data';
 import {
   SEND_ORDER_SUCCESS,
   SEND_ORDER_REQUEST,
@@ -32,7 +32,8 @@ export interface IGetOrderSuccess {
   order: TOrders
 }
 export interface IConfirmOrder {
-  readonly type: typeof CONFIRM_ORDER;
+  readonly type: typeof CONFIRM_ORDER,
+  value: boolean;
 }
 
 export type TOrder =
@@ -70,6 +71,7 @@ export const GetOrderSuccessAction = (order: TOrders): IGetOrderSuccess => ({
   type: GET_ORDER_SUCCESS,
   order
 });
-export const ConfirmOrderAction = (): IConfirmOrder => ({
+export const ConfirmOrderAction = (value: boolean): IConfirmOrder => ({
   type: CONFIRM_ORDER,
+  value
 });

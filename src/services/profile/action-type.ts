@@ -1,4 +1,4 @@
-import { TUser } from '../../types/types';
+import { TUser } from '../../types/data';
 import { UPDATE_PROFILE_FAILED, UPDATE_PROFILE_SUCCESS } from './constants';
 
 export interface IUdateProfileFailed {

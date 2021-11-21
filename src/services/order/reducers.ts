@@ -1,4 +1,5 @@
 import { initialState } from '../inital-data';
+import { TOrder } from './action-type';
 import {
   SEND_ORDER_SUCCESS,
   SEND_ORDER_REQUEST,
@@ -9,7 +10,7 @@ import {
   CONFIRM_ORDER,
 } from './constants';
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action: TOrder) => {
   switch (action.type) {
     case SEND_ORDER_SUCCESS: {
       return {

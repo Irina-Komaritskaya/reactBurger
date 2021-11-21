@@ -1,4 +1,4 @@
-import { TDataItem } from '../../types/types';
+import { TDataItem } from '../../types/data';
 import {
     GET_INGREDIENT_FAILED,
     GET_INGREDIENT_REQUEST,

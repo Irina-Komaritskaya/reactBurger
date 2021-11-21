@@ -1,4 +1,4 @@
-import { TUser } from '../../types/types';
+import { TUser } from '../../types/data';
 import { updateProfile } from '../api';
 import {UdateProfileFailedAction, UdateProfileSuccessAction} from './action-type'
 

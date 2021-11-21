@@ -7,7 +7,7 @@ import { updateProfileUser } from '../../services/profile/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './profile.module.css';
 import { getCookie } from '../../utils/cookie';
-import { TUser } from '../../types/types';
+import { TUser } from '../../types/data';
 
 type TDisabled = {
   name: boolean;

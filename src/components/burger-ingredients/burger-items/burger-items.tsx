@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import BurgerItem from '../burger-item/burger-item';
 import style from './burger-items.module.css';
-import { TDataItem } from '../../../types/types';
+import { TDataItem } from '../../../types/data';
 
 interface IBurgerItemsProps {
   ingredientRef: React.RefObject<HTMLDivElement>;

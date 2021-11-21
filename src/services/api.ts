@@ -1,4 +1,4 @@
-import { TUser } from '../types/types';
+import { TUser } from '../types/data';
 
 const urlApi = 'https://norma.nomoreparties.space/api/';
 const getData = async (url: string, params?: RequestInit) => {

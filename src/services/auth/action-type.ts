@@ -1,4 +1,4 @@
-import { TUser } from '../../types/types';
+import { TUser } from '../../types/data';
 import {
   GET_REG_SUCCESS,
   GET_REG_FAILED,

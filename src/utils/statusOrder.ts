@@ -1,4 +1,4 @@
-import { EStatus } from '../types/types';
+import { EStatus } from '../types/data';
 export const formatStatusOrder = (status: EStatus) => {
   switch (status) {
     case EStatus.Created: {

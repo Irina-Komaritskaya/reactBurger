@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { authUser } from '../services/auth/actions';
 import { useAuth } from '../hooks/useAuth';
 import { Form } from '../components/form/form';
-import { TUser } from '../types/types';
+import { TUser } from '../types/data';
 
 type LocationState = {
   from: Location;

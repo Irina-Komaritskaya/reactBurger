@@ -1,4 +1,4 @@
-import { TDataItem } from '../../types/types';
+import { TDataItem } from '../../types/data';
 import {
   ADD_COMPONENT,
   DEL_COMPONENT,

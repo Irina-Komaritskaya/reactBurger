@@ -19,7 +19,7 @@ import {
   CurrencyIcon,
   ConstructorElement,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { TDataItem } from '../../types/types';
+import { TDataItem } from '../../types/data';
 
 //BurgerComponents- компонент для корзины заказа
 const BurgerComponents: React.FC = () => {

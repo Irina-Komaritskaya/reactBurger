@@ -5,9 +5,10 @@ import {
   WS_GET_MESSAGE,
 } from './constants'
 import { initialState } from '../inital-data';
+import { TWs } from './action-type';
 
 // Создадим редьюсер для WebSocket
-export const wsReducer = (state = initialState, action) => {
+export const wsReducer = (state = initialState, action: TWs) => {
   switch (action.type) {
     // Опишем обработку экшена с типом WS_CONNECTION_SUCCESS
     // Установим флаг wsConnected в состояние true

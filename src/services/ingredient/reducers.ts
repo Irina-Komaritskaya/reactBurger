@@ -1,11 +1,12 @@
 import { initialState } from '../inital-data';
+import { TIngredient } from './action-type';
 import {
   GET_INGREDIENT_FAILED,
   GET_INGREDIENT_REQUEST,
   GET_INGREDIENT_SUCCESS,
 } from './constants';
 
-export const ingredientReducer = (state = initialState, action) => {
+export const ingredientReducer = (state = initialState, action: TIngredient) => {
   switch (action.type) {
     case GET_INGREDIENT_SUCCESS: {
       return {

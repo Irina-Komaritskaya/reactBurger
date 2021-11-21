@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import React, { useEffect } from 'react';
 import { loadIngredients } from '../../../services/ingredient/actions';
-import { TDataItem } from '../../../types/types';
+import { TDataItem } from '../../../types/data';
 
 const IngredientDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

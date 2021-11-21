@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registrationUser } from '../services/auth/actions';
 import { Form } from '../components/form/form';
-import { TUser } from '../types/types';
+import { TUser } from '../types/data';
 
 export const RegistrationPage: React.FC = () => {
   const dispatch = useDispatch();

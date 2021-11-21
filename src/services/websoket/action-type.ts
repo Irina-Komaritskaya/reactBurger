@@ -1,4 +1,4 @@
-import { TOrders } from '../../types/types';
+import { TOrders } from '../../types/data';
 import {
     WS_CONNECTION_SUCCESS,
     WS_CONNECTION_ERROR,
@@ -11,7 +11,8 @@ import {
   }
 
   export interface IWsConnectionError {
-    readonly type: typeof WS_CONNECTION_ERROR;
+    readonly type: typeof WS_CONNECTION_ERROR,
+    payload: any;
   }
 
   export interface IWsConnectionClosed {
@@ -34,8 +35,9 @@ import {
       type: WS_CONNECTION_SUCCESS
   });
   
-  export const wsConnectionError = (): IWsConnectionError  => ({
-      type: WS_CONNECTION_ERROR
+  export const wsConnectionError = (payload: any): IWsConnectionError  => ({
+      type: WS_CONNECTION_ERROR,
+      payload
   });
   
   export const wsConnectionClosed = (): IWsConnectionClosed  => ({
