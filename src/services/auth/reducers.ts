@@ -67,7 +67,7 @@ export const authReducer = (state = initialState, action: TAuth) => {
       };
     }
     case RESTORE_USER_FAILED: {
-      alert('Что-то пошло не так, получить пользователя не удалось');
+     console.log('restore user failed')
       return state;
     }
     default: {

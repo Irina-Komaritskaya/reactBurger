@@ -13,7 +13,6 @@ export const orderSend: AppThunk = (idIngredients: string[], idBun: string, toke
   return function (dispatch: AppDispatch) {
     const fetchOrder = async () => {
       const res = await sendOrder(idIngredients, idBun, token);
-      console.log(res.order)
       dispatch(SendOrderSuccessAction(res.order, idIngredients, idBun));
       return res;
     };
@@ -28,7 +27,6 @@ export const loadOrder: AppThunk = (numberOrder: string) => {
   return function (dispatch: AppDispatch) {
     const fetchOrder = async () => {
       const res = await getOrder(numberOrder);
-      console.log(res.orders[0])
       dispatch(GetOrderSuccessAction(res.orders[0]));
       return res;
     };

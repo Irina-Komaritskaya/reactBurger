@@ -38,8 +38,6 @@ export const OrdersStats: React.FC<IOrdersStatsProps> = ({
   const doneOrdersAggregate = getAggregate(doneOrders, countAggregate);
   const inWorkOrdersAggregate = getAggregate(inWorkOrders, countAggregate);
 
-  console.log(doneOrdersAggregate);
-
   return (
     <div className={styles.wrap}>
       <div className={styles.orders}>

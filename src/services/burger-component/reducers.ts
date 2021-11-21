@@ -11,7 +11,6 @@ import { TComponent } from './action-type';
 export const componentReducer = (state = initialState, action: TComponent) => {
   switch (action.type) {
     case ADD_COMPONENT: {
-      console.log(action.item)
       if (action.item.type === 'bun') {
         return {
           ...state,

@@ -13,29 +13,20 @@ export const socketMiddleware = (wsUrl: string, wsActions: typeof wsActionTypes 
       const token = withToken ? accessCookie : '';
 
       if (type === wsInit) {
-            // объект класса WebSocket
             socket = new WebSocket(withToken ? `${wsUrl}?token=${token}` : `${wsUrl}/all`);
-            console.log(withToken ? `${wsUrl}?token=${token}` : wsUrl)
       }
       if (socket) {
-
-                // функция, которая вызывается при открытии сокета
         socket.onopen = event => {
           dispatch({ type: onOpen, payload: event });
         };
-
-                // функция, которая вызывается при ошибке соединения
         socket.onerror = event => {
           dispatch({ type: onError, payload: event });
         };
-
-                // функция, которая вызывается при получения события от сервера
         socket.onmessage = event => {
           const { data } = event;
           const parsedData = JSON.parse(data);
           dispatch({ type: onMessage, payload: parsedData });
         };
-                // функция, которая вызывается при закрытии соединения
         socket.onclose = event => {
           dispatch({ type: onClose, payload: event });
         };

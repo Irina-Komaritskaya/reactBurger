@@ -13,7 +13,6 @@ export const FeedOrderDetails = () => {
   const orderState = useSelector(store => store.order.order);
   const ingredients = useSelector(store => store.ingredient.ingredients);
   const dispatch = useDispatch();
-console.log(message)
 
   useEffect(() => {
     if (ingredients.length === 0) {
