@@ -1,7 +1,7 @@
 import styles from './images.module.css';
 import React from 'react';
 import { TDataItem } from '../../../types/data';
-
+import { v4 as generateKey } from 'uuid';
 interface IimagesProps {
   ingredients: TDataItem[];
   orderIngredients: string[];
@@ -31,7 +31,7 @@ export const Images: React.FC<IimagesProps> = ({
     <span className={styles.images}>
       
       {showCount && (
-        <div className={styles.image} key={elementWithCount}>
+        <div className={styles.image}>
           <span className= {`${styles.imgPrew} ${styles.imgOverlay}`} >
               <span className={`text text_type_main-default ${styles.counter}`}>
                 +{countRest}
@@ -42,7 +42,7 @@ export const Images: React.FC<IimagesProps> = ({
       )}
       
       {mainIngridients.map((x) => (
-        <div className={styles.image} key={x}>
+        <div className={styles.image} key={generateKey()}>
           <span className={styles.imgPrew}>
             <img className={styles.img} src={getImageForElement(x)} alt="" />
           </span>

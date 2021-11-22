@@ -21,6 +21,9 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
     dispatch(loadIngredients());
   }, [dispatch]);
 
+  if(ingredients.length===0){
+    return null
+  }
   const totalPrice = (arr: string[]) => {
     const totalPrice = arr.reduce((total, curr) => {
       const { price } = ingredients.find((x: TDataItem) => x._id === curr)!;
@@ -33,6 +36,11 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
   if(!orders){
     return null
   }
+
+  orders.sort((a, b) => a.createdAt == b.createdAt 
+    ? 0 
+    : (a.createdAt > b.createdAt ? -1 : 1));
+
   return (
     <ul className={styles.orders}>
       {orders.map((x: TOrders) => (
