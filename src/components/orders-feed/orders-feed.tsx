@@ -7,22 +7,22 @@ import { loadIngredients } from '../../services/ingredient/actions';
 import { Images } from './images/images';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
-import {getFormattedDate} from '../../utils/formatDate'
-import {formatStatusOrder} from '../../utils/statusOrder'
+import { getFormattedDate } from '../../utils/formatDate';
+import { formatStatusOrder } from '../../utils/statusOrder';
 interface IOrderFeedProps {
   orders: TOrders[];
-  url: string
+  url: string;
 }
 export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
-  const ingredients = useSelector(store => store.ingredient.ingredients);
+  const ingredients = useSelector((store) => store.ingredient.ingredients);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadIngredients());
   }, [dispatch]);
 
-  if(ingredients.length===0){
-    return null
+  if (ingredients.length === 0) {
+    return null;
   }
   const totalPrice = (arr: string[]) => {
     const totalPrice = arr.reduce((total, curr) => {
@@ -33,13 +33,16 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
     return totalPrice;
   };
 
-  if(!orders){
-    return null
+  if (!orders) {
+    return null;
   }
-
-  orders.sort((a, b) => a.createdAt == b.createdAt 
-    ? 0 
-    : (a.createdAt > b.createdAt ? -1 : 1));
+  orders.forEach((x) => {
+    x.ingredients = x.ingredients.filter((i) => i !== null || i !== undefined);
+  });
+  
+  orders.sort((a, b) =>
+    a.createdAt == b.createdAt ? 0 : a.createdAt > b.createdAt ? -1 : 1
+  );
 
   return (
     <ul className={styles.orders}>
@@ -56,11 +59,13 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
             <span className={styles.row}>
               <span className="text text_type_digits-default">{`#${x.number}`}</span>
               <span className="text text_type_main-default text_color_inactive">
-              {getFormattedDate(x.createdAt)}
+                {getFormattedDate(x.createdAt)}
               </span>
             </span>
             <span className="mt-6 text text_type_main-medium">{x.name}</span>
-            <span className="mt-2 text text_type_main-default">{formatStatusOrder(x.status)}</span>
+            <span className="mt-2 text text_type_main-default">
+              {formatStatusOrder(x.status)}
+            </span>
             <span className={`mt-6 ${styles.row}`}>
               <Images
                 ingredients={ingredients}
