@@ -37,7 +37,7 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
     return null;
   }
   orders.forEach((x) => {
-    x.ingredients = x.ingredients.filter((i) => i !== null || i !== undefined);
+    x.ingredients = x.ingredients.filter((i)=> i);
   });
   
   orders.sort((a, b) =>
