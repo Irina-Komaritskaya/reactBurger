@@ -30,7 +30,7 @@ export type TOrders = {
   _id: string;
   status: EStatus;
   number: number;
-  createdAt: string;
+  createdAt: Date;
   updatedAt: string;
   name: string;
 };

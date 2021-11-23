@@ -1,35 +1,16 @@
-import { format } from 'date-fns';
-export const getFormattedDate = (data: string) => {
-  const currDate = new Date();
-  const parseDate = new Date(data);
+import { format, isToday, isYesterday, formatDistance } from "date-fns";
+import { ru } from "date-fns/locale";
 
-  const formatDate =
-    format(parseDate, 'HH:mm ') + 'i-GMT ' + format(parseDate, 'X');
-
-  currDate.setHours(0);
-  currDate.setMinutes(0);
-  currDate.setSeconds(0);
-  currDate.setMilliseconds(0);
-
-  parseDate.setHours(0);
-  parseDate.setMinutes(0);
-  parseDate.setSeconds(0);
-  parseDate.setMilliseconds(0);
-
-  const diffTime = Math.abs(parseDate.getTime() - currDate.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
-  let prefix = '';
-  if (diffDays === 0) {
-    prefix = 'Сегодня';
-  } else if (diffDays === 1) {
-    prefix = 'Вчера';
-  } else if (diffDays < 5) {
-    prefix = `${diffDays} дня назад`;
-  } else {
-    prefix = `${diffDays} дней назад`;
+export function getFormattedDate(d: Date) {
+  if (isToday(d)) {
+    return `Сегодня, ${format(d, "kk:mm", { locale: ru })}`;
   }
-  
-  const result = `${prefix}, ${formatDate}`;
-  return result;
-};
+
+  if (isYesterday(d)) {
+    return `Вчера, ${format(d, "kk:mm", { locale: ru })}`;
+  }
+
+  return `${formatDistance(new Date(d), Date.now(), { locale: ru })} назад`;
+}
+
+
