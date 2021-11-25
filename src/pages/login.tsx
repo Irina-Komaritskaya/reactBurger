@@ -4,11 +4,11 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useEffect } from 'react';
 import { Link, Redirect, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../types/hooks';
 import { authUser } from '../services/auth/actions';
 import { useAuth } from '../hooks/useAuth';
 import { Form } from '../components/form/form';
-import { TUser } from '../types/types';
+import { TUser } from '../types/data';
 
 type LocationState = {
   from: Location;

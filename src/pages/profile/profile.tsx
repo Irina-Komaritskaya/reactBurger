@@ -3,7 +3,7 @@ import { getCookie } from '../../utils/cookie';
 import { logOutUser } from '../../services/auth/actions';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import { Order } from '..';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../types/hooks';
 import { Profile } from '../../components/profile/profile';
 
 export const ProfilePage: React.FC = () => {
@@ -12,7 +12,7 @@ export const ProfilePage: React.FC = () => {
     e.preventDefault();
     const accessToken = getCookie('accessToken');
     const refreshToken = getCookie('refreshToken');
-    dispatch(logOutUser(accessToken, refreshToken));
+    dispatch(logOutUser(accessToken!, refreshToken!));
   };
 
   return (

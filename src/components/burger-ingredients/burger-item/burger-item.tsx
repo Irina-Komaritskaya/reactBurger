@@ -1,6 +1,6 @@
 import style from './burger-item.module.css';
-import { TDataItem } from '../../../types/types';
-import { useSelector } from 'react-redux';
+import { TDataItem } from '../../../types/data';
+import { useSelector } from '../../../types/hooks';
 import { useDrag } from 'react-dnd';
 import {
   CurrencyIcon,
@@ -12,7 +12,7 @@ interface IBurgerItem {
   data: TDataItem
 }
 const BurgerItem: React.FC<IBurgerItem> = ({ data }) => {
-  const { components, bun } = useSelector((store: any) => store.component);
+  const { components, bun } = useSelector(store => store.component);
 
   const [{ opacity }, dragRef] = useDrag({
     type: 'ingredient',

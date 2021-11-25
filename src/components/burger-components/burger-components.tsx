@@ -1,44 +1,45 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../types/hooks';
 import { useDrop } from 'react-dnd';
 import {
   ADD_COMPONENT,
   UPDATE_COMPONENT,
   CLEAR_COMPONENTS,
-} from '../../services/burger-component/actions';
-import { CONFIRM_ORDER } from '../../services/order/actions';
-import { loadOrder } from '../../services/order/actions';
+} from '../../services/burger-component/constants';
+import { CONFIRM_ORDER } from '../../services/order/constants';
+import { orderSend } from '../../services/order/actions';
 import styles from './burger-components.module.css';
 import OrderDetails from './order-details/order-details';
 import { ComponentItem } from './component-item/component-item';
 import Modal from '../modal/modal';
 import { useAuth } from '../../hooks/useAuth';
+import { getCookie } from '../../utils/cookie';
 import {
   Button,
   CurrencyIcon,
   ConstructorElement,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { TDataItem } from '../../types/types';
+import { TDataItem } from '../../types/data';
 
 //BurgerComponents- компонент для корзины заказа
 const BurgerComponents: React.FC = () => {
-  const bun = useSelector((store: any) => store.component.bun);
-  const components = useSelector((store: any) => store.component.components);
-  const totalSum = useSelector((store: any) => store.component.totalSum);
-  const confirmOrder = useSelector((store: any) => store.order.confirmOrder);
+  const bun = useSelector(store => store.component.bun);
+  const components = useSelector(store => store.component.components);
+  const totalSum = useSelector(store => store.component.totalSum);
+  const confirmOrder = useSelector(store => store.order.confirmOrder);
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [user, isLoadedUser] = useAuth();
-
+  const token = getCookie('accessToken');
   const handleClick = () => {
     setIsOpenModal(false);
   };
 
   useEffect(() => {
     if (confirmOrder) {
-      const idIngredients = components.map((x: any) => x._id);
-      const idBun = bun._id;
-      dispatch(loadOrder(idIngredients, idBun));
+      const idIngredients = components.map((x: TDataItem) => x._id);
+      const idBun = bun!._id;
+      dispatch(orderSend(idIngredients, idBun, token!));
       dispatch({
         type: CLEAR_COMPONENTS,
       });
@@ -66,7 +67,7 @@ const BurgerComponents: React.FC = () => {
     drop: (item) => {
       dispatch({
         type: ADD_COMPONENT,
-        value: item,
+        item,
       });
     },
   });

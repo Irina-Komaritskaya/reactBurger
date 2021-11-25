@@ -4,14 +4,14 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../types/hooks';
 import { registrationUser } from '../services/auth/actions';
 import { Form } from '../components/form/form';
-import { TUser } from '../types/types';
+import { TUser } from '../types/data';
 
 export const RegistrationPage: React.FC = () => {
   const dispatch = useDispatch();
-  const user = useSelector((store: any) => store.auth.user);
+  const user = useSelector(store => store.auth.user);
   const [value, setValue] = useState<TUser>({ name: '', email: '', password: '' });
   const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
 

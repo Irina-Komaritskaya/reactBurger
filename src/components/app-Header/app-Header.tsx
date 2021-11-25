@@ -23,13 +23,16 @@ const AppHeader: React.FC = () => {
           <BurgerIcon type="primary" />
           <span className="pl-2">Конструктор</span>
         </NavLink>
-        <a
-          href="#"
-          className={`pl-5 text text_type_main-default text_color_inactive ${style.iconText}`}
+
+        <NavLink
+          exact
+          to="/feed"
+          className={`pl-5 mr-2 text text_type_main-default text_color_inactive ${style.iconText}`}
+          activeStyle={{ color: 'white' }}
         >
           <ListIcon type="secondary" />
           <span className="pl-2">Лента заказов</span>
-        </a>
+        </NavLink>
       </nav>
       <Link to="/">
         <span className={style.logo}>

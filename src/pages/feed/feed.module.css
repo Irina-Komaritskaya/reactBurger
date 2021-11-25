@@ -1,0 +1,34 @@
+.wrap{
+    display: flex;
+    flex-direction: row;
+    
+}
+.orders{
+    height: 100vh;
+}
+
+.orderWrap{
+    width: 608px;
+    overflow-y: scroll;
+    scrollbar-color: #696969 #8585ad;
+    scrollbar-width: thin;
+    height: 75%;
+}
+
+.orderWrap::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  
+.orderWrap::-webkit-scrollbar-track {
+    background: #2f2f37;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  
+.orderWrap::-webkit-scrollbar-thumb {
+    background: #8585ad;
+    border: 3px solid #2f2f37;
+    border-radius: 6px;
+  }
+

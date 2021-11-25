@@ -5,14 +5,14 @@ import {
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { forgotPasswordUser } from '../services/reset-password/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../types/hooks';
 import { Form } from '../components/form/form';
 
 export const ForgotPasswordPage: React.FC = () => {
   const [value, setValue] = useState<string>('');
   const dispatch = useDispatch();
   const isRecoverEmail = useSelector(
-    (store: any) => store.password.isRecoverEmail
+    store=> store.password.isRecoverEmail
   );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

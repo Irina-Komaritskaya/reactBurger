@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../../types/hooks'
 import BurgerItem from '../burger-item/burger-item';
 import style from './burger-items.module.css';
-import { TDataItem } from '../../../types/types';
+import { TDataItem } from '../../../types/data';
 
 interface IBurgerItemsProps {
   ingredientRef: React.RefObject<HTMLDivElement>;
@@ -17,7 +17,7 @@ export const BurgerItems: React.FC<IBurgerItemsProps> = ({
   saucesAncor,
   mainsAncor,
 }) => {
-  const ingredients = useSelector((store: any) => store.ingredient.ingredients);
+  const ingredients = useSelector(store => store.ingredient.ingredients);
   const buns = ingredients.filter((x: TDataItem) => x.type === 'bun');
   const mains = ingredients.filter((x: TDataItem) => x.type === 'main');
   const sauces = ingredients.filter((x: TDataItem) => x.type === 'sauce');

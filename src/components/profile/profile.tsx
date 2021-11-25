@@ -4,10 +4,10 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useState, useEffect } from 'react';
 import { updateProfileUser } from '../../services/profile/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../types/hooks';
 import styles from './profile.module.css';
 import { getCookie } from '../../utils/cookie';
-import { TUser } from '../../types/types';
+import { TUser } from '../../types/data';
 
 type TDisabled = {
   name: boolean;
@@ -16,11 +16,11 @@ type TDisabled = {
 }
 
 export const Profile: React.FC = () => {
-  const user = useSelector((store: any) => store.auth.user);
+  const user = useSelector(store => store.auth.user);
  
   const [value, setValue] = useState<TUser>({
-    name: user.name,
-    email: user.email,
+    name: user!.name,
+    email: user!.email,
     password: '',
   });
   
@@ -41,25 +41,25 @@ export const Profile: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newValue = { name: '', email: '', password: '' };
-    if (user.name !== value.name) {
+    const newValue:Partial<TUser> = {};
+    if (user!.name !== value.name) {
       newValue.name = value.name;
     }
-    if (user.email !== value.email) {
+    if (user!.email !== value.email) {
       newValue.email = value.email;
     }
     if (value.password !== '') {
       newValue.password = value.password;
     }
     const token = getCookie('accessToken');
-    dispatch(updateProfileUser(newValue, token));
+    dispatch(updateProfileUser(newValue, token!));
     setDisabled({ name: true, email: true, password: true });
     setisSaveVisible(false);
   };
 
   const onClickCancel = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setValue({ name: user.name, email: user.email, password: '' });
+    setValue({ name: user!.name, email: user!.email, password: '' });
     setDisabled({ name: true, email: true, password: true });
     setisSaveVisible(false);
   };
