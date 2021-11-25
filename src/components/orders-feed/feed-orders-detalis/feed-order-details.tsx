@@ -45,8 +45,6 @@ export const FeedOrderDetails = () => {
     return acc;
   }, []);
 
-
-
   const totalPrice = orderIngredients.reduce<number>((total, curr) => {
     const sumIngredients = curr.price * count[curr._id];
     total += sumIngredients;
