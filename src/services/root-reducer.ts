@@ -5,7 +5,7 @@ import { orderReducer } from './order/reducers';
 import { authReducer } from './auth/reducers';
 import { passwordReducer } from './reset-password/reducers';
 import { profileReducer } from './profile/reducers';
-import {wsReducer} from './websoket/redusers'
+import {wsReducer} from './websocket/redusers'
 
 export const rootReducer = combineReducers({
   ingredient: ingredientReducer,

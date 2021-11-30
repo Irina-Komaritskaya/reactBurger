@@ -2,7 +2,7 @@ import { initialState } from '../inital-data';
 import { TResetPassword } from './action-type';
 import {
   FORGOT_SUCCESS,
-  FORGOT_FAILED,
+  FORGOT_FAILED, 
   RESET_SUCCESS,
   RESET_FAILED,
   CLEAR_RESET_PASSWORD,
@@ -17,11 +17,11 @@ export const passwordReducer = (state = initialState, action: TResetPassword) =>
       };
     }
     case FORGOT_FAILED: {
-      alert('Что-то пошло не так, не удалось сбросить пароль');
+      //alert('Что-то пошло не так, не удалось сбросить пароль');
       return state;
     }
     case RESET_SUCCESS: {
-      alert('Пароль изменен');
+      //alert('Пароль изменен');
       return {
         ...state,
         isRecoverEmail: false,
@@ -29,7 +29,7 @@ export const passwordReducer = (state = initialState, action: TResetPassword) =>
       };
     }
     case RESET_FAILED: {
-      alert('Что-то пошло не так, не удалось задать новый пароль');
+     // alert('Что-то пошло не так, не удалось задать новый пароль');
       return state;
     }
     case CLEAR_RESET_PASSWORD: {

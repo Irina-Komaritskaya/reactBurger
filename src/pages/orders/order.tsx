@@ -4,7 +4,7 @@ import styles from './orders.module.css';
 import {
   WS_CONNECTION_START,
   WS_CONNECTION_CLOSED,
-} from '../../services/websoket/constants';
+} from '../../services/websocket/constants';
 import { OrdersFeed } from '../../components/orders-feed/orders-feed';
 import { TOrders } from '../../types/data';
 
