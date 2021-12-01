@@ -27,7 +27,7 @@ export const BurgerItems: React.FC<IBurgerItemsProps> = ({
       <h2 className="mt-10 mb-6" ref={bunsAncor}>
         Булки
       </h2>
-      <div className={style.ingredients}>
+      <div className={`bun ${style.ingredients}`}>
         {buns.map((x: TDataItem) => (
           <BurgerItem data={x} key={x._id} />
         ))}
