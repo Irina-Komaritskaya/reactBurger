@@ -32,7 +32,7 @@ const App: React.FC = () => {
   const location = useLocation<LocationState>();
   const action = history.action === 'PUSH' || history.action === 'REPLACE';
   const isModal = action && location.state && location.state.modal;
-  
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style.app}>
