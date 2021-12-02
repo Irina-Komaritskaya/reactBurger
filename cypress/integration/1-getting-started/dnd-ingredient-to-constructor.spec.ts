@@ -1,6 +1,3 @@
-/// <reference types="cypress" />
-// @ts-check
-
 describe('dnd ingredient to constructor', function () {
   before(function () {
     cy.visit('http://localhost:3000');
@@ -8,15 +5,7 @@ describe('dnd ingredient to constructor', function () {
   it('dnd ingredient', function () {
     cy.get('[class^=burger-items_ingredients__]').children().first().as('item');
     cy.get('[class*=panel]').as('dropBox');
-
-    // перетаскивание
-    cy.get('@item').trigger('dragstart').trigger('dragleave');
-    cy.get('@dropBox')
-      .trigger('dragenter')
-      .trigger('dragover')
-      .trigger('drop')
-      .trigger('dragend');
-
+    cy.dnd('@item');
     // счетчик в ингредиентах
     cy.get('@item').find('[class*=counter]').should('contain', '1');
 
@@ -31,24 +20,19 @@ describe('dnd ingredient to constructor', function () {
     cy.get('@item')
       .find('img')
       .then(($img) => {
-        imgUrlItem = $img.attr('src');
+        imgUrlItem = $img.attr('src')!;
       });
 
     cy.get('@constructor-element')
       .find('img')
       .then(($img) => {
-        imgUrlTopItemConstructor = $img.attr('src');
+        imgUrlTopItemConstructor = $img.attr('src')!;
+        //@ts-ignore
         expect(imgUrlItem).to.equal(imgUrlTopItemConstructor);
       });
 
     // перетаскивание второго ингредиента
-    cy.get('@item').trigger('dragstart').trigger('dragleave');
-    cy.get('@dropBox')
-      .trigger('dragenter')
-      .trigger('dragover')
-      .trigger('drop')
-      .trigger('dragend');
-
+    cy.dnd('@item');
     // проверка что два элемента в корзине
     cy.get('[class*=burger-components_componentList__]')
       .find('li')
@@ -67,13 +51,14 @@ describe('dnd ingredient to constructor', function () {
     cy.get('@item')
       .find('img')
       .then(($img) => {
-        imgUrlItem = $img.attr('src');
+        imgUrlItem = $img.attr('src')!;
       });
 
     cy.get('@constructor-element')
       .find('img')
       .then(($img) => {
-        imgUrlTopItemConstructor = $img.attr('src');
+        imgUrlTopItemConstructor = $img.attr('src')!;
+        //@ts-ignore
         expect(imgUrlItem).to.equal(imgUrlTopItemConstructor);
       });
   });

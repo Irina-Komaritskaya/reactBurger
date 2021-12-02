@@ -1,6 +1,3 @@
-/// <reference types="cypress" />
-// @ts-check
-
 describe('changes price', function () {
   before(function () {
     cy.visit('http://localhost:3000');
@@ -9,12 +6,7 @@ describe('changes price', function () {
     cy.get('[class*=bun]').children().first().as('itemBun');
     cy.get('[class*=panel]').as('dropBox');
 
-    cy.get('@itemBun').trigger('dragstart').trigger('dragleave');
-    cy.get('@dropBox')
-      .trigger('dragenter')
-      .trigger('dragover')
-      .trigger('drop')
-      .trigger('dragend');
+    cy.dnd('@itemBun');
 
     // изменение цены при перетаскивании булки
     let priceBun = 0;
@@ -27,6 +19,7 @@ describe('changes price', function () {
     });
     cy.get('@totalPrice').then(($total) => {
       totalPrice = parseInt($total.text());
+      //@ts-ignore
       expect(totalPrice).to.equal(priceBun * 2);
     });
 
@@ -36,12 +29,7 @@ describe('changes price', function () {
       .first()
       .as('itemConstructor');
 
-    cy.get('@itemConstructor').trigger('dragstart').trigger('dragleave');
-    cy.get('@dropBox')
-      .trigger('dragenter')
-      .trigger('dragover')
-      .trigger('drop')
-      .trigger('dragend');
+    cy.dnd('@itemConstructor');
 
     let priceConstructor = 0;
     cy.get('[class*=burger-components_componentList__]').as(
@@ -58,14 +46,19 @@ describe('changes price', function () {
     });
     cy.get('@totalPrice').then(($total) => {
       totalPrice = parseInt($total.text());
+      //@ts-ignore
       expect(totalPrice).to.equal(priceConstructor + priceBun * 2);
     });
 
-    //изменение цены при удалении 
-    cy.get('@constructor-element').find('[class*=constructor-element__action]').first().click();
+    //изменение цены при удалении
+    cy.get('@constructor-element')
+      .find('[class*=constructor-element__action]')
+      .first()
+      .click();
     cy.get('@totalPrice').then(($total) => {
-        totalPrice = parseInt($total.text());
-        expect(totalPrice).to.equal(priceBun*2);
-      });
+      totalPrice = parseInt($total.text());
+      //@ts-ignore
+      expect(totalPrice).to.equal(priceBun * 2);
+    });
   });
 });

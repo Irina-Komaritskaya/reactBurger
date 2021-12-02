@@ -18,7 +18,8 @@ import './commands'
 declare global {
     namespace Cypress {
       interface Chainable {
-        addBun(): Chainable<Element>
+        dnd(element: string): Chainable<Element>
+        login(user:{email:string, password: string}): Chainable<Element>
       }
     } 
   }

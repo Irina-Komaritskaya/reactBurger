@@ -27,6 +27,7 @@ describe('open modal ingredient', function () {
       .find('[class*=text_type_main-medium]')
       .then(($name) => {
         nameItemModal = $name.text();
+        //@ts-ignore
         expect(nameItemModal).to.equals(nameItem);
       });
 

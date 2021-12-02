@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-// @ts-check
 
 describe('dnd sort constructor', function () {
   before(function () {
@@ -12,19 +10,9 @@ describe('dnd sort constructor', function () {
       .as('itemIngredient');
     cy.get('[class*=panel]').as('dropBox');
 
-    cy.get('@itemIngredient').trigger('dragstart').trigger('dragleave');
-    cy.get('@dropBox')
-      .trigger('dragenter')
-      .trigger('dragover')
-      .trigger('drop')
-      .trigger('dragend');
-
-    cy.get('@itemIngredient').next().trigger('dragstart').trigger('dragleave');
-    cy.get('@dropBox')
-      .trigger('dragenter')
-      .trigger('dragover')
-      .trigger('drop')
-      .trigger('dragend');
+    cy.get('@itemIngredient').next().as('itemIngredientNext')
+    cy.dnd('@itemIngredient')
+    cy.dnd('@itemIngredientNext')
 
     cy.get('[class*=burger-components_componentList__]')
       .find('li')

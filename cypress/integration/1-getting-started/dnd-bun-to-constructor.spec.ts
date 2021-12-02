@@ -4,7 +4,9 @@ describe('dnd bun to constructor', function () {
     cy.visit('http://localhost:3000');
   });
   it('dnd bun', function () {
-cy.addBun()
+    cy.get('[class*=bun]').children().first().as('item');
+    cy.get('[class*=panel]').as('dropBox');
+    cy.dnd('@item')
 
     // счетчик в ингредиентах
     cy.get('@item').find('[class*=counter]').should('contain', '2');
@@ -27,6 +29,7 @@ cy.addBun()
       .find('img')
       .then(($img) => {
         imgUrlTopItemDrop = $img.attr('src')!;
+        // @ts-ignore
         expect(imgUrlItem).to.equal(imgUrlTopItemDrop);
       });
 
@@ -34,7 +37,9 @@ cy.addBun()
       .find('img')
       .then(($img) => {
         imgUrlBottomItemDrop = $img.attr('src')!;
+        // @ts-ignore
         expect(imgUrlItem).to.equal(imgUrlBottomItemDrop);
       });
   });
 });
+
