@@ -1,9 +1,0 @@
-.button{
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: row-reverse;
-}
-
-.form > div{
-  margin-top: calc(var(--offset-base-size)  * 4);
-}
