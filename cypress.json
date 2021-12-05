@@ -1,6 +1,7 @@
 {
   "env": {
     "userName": "test@t.com",
-    "userPassword": "1"
+    "userPassword": "1",
+    "host": "http://localhost:3000"
   }
 }

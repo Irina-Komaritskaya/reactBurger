@@ -1,7 +1,7 @@
 
 describe('dnd sort constructor', function () {
   before(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
   });
   it('dnd sort constructor', function () {
     cy.get('[class^=burger-items_ingredients__]')

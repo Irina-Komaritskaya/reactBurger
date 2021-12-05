@@ -3,7 +3,7 @@
 
 describe('dnd bun to constructor', function () {
   before(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
   });
   it('dnd bun', function () {
     cy.get('[class*=bun]').children().first().as('item');

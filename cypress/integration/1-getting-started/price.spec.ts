@@ -1,6 +1,6 @@
 describe('changes price', function () {
   before(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
   });
   it('changes price', function () {
     cy.get('[class*=bun]').children().first().as('itemBun');

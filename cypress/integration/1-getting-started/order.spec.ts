@@ -1,6 +1,6 @@
 describe('order', function () {
   before(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
   });
   it('send order', function () {
     cy.get('[class^=burger-items_ingredients__]')

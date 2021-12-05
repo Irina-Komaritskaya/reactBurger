@@ -3,7 +3,7 @@
 
 describe('open modal ingredient', function () {
   before(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
   });
   it('show modal', function () {
     cy.get('[class^=burger-item_link]').first().as('item');

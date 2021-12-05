@@ -1,7 +1,7 @@
 
 describe('del item in constructor', function () {
   before(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
   });
   it('del item', function () {
     cy.get('[class^=burger-items_ingredients__]').children().first().as('item');

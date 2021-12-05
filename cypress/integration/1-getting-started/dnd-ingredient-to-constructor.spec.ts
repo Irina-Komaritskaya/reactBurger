@@ -1,6 +1,6 @@
 describe('dnd ingredient to constructor', function () {
   before(function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(Cypress.env('host'));
   });
   it('dnd ingredient', function () {
     cy.get('[class^=burger-items_ingredients__]').children().first().as('item');
@@ -32,7 +32,7 @@ describe('dnd ingredient to constructor', function () {
       });
 
     // перетаскивание второго ингредиента
-    cy.dnd('@item');
+    cy.dnd('@item', '@dropBox');
     // проверка что два элемента в корзине
     cy.get('[class*=burger-components_componentList__]')
       .find('li')
