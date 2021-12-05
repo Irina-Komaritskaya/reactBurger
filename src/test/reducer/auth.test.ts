@@ -93,7 +93,6 @@ describe('auth reducer', () => {
 //#endregion
 
 //#region restoreUser
-// пароль!!!
 describe('auth reducer', () => {
   it('should handle restoreUser', () => {
     expect(
@@ -111,7 +110,6 @@ describe('auth reducer', () => {
       password: 'test' 
      }});
     expect(
-      //???
       authReducer({} as TInitialState, {
         type: RESTORE_USER_FAILED,
       })

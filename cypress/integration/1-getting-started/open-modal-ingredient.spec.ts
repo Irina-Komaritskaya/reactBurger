@@ -34,7 +34,9 @@ describe('open modal ingredient', function () {
     // закрытие
     cy.get('[class*=modal_title__]').find('svg').as('closeIcon');
     cy.get('@closeIcon').click();
+
     cy.get('@item').click();
+    
     cy.get('[class^=modal-overlay_overlay__]').as('closeDiv');
     cy.get('@closeDiv').click('topRight');
     

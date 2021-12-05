@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+// @ts-check
 
 describe('dnd bun to constructor', function () {
   before(function () {
@@ -6,7 +8,7 @@ describe('dnd bun to constructor', function () {
   it('dnd bun', function () {
     cy.get('[class*=bun]').children().first().as('item');
     cy.get('[class*=panel]').as('dropBox');
-    cy.dnd('@item')
+    cy.dnd('@item', '@dropBox')
 
     // счетчик в ингредиентах
     cy.get('@item').find('[class*=counter]').should('contain', '2');

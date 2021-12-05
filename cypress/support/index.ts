@@ -18,8 +18,8 @@ import './commands'
 declare global {
     namespace Cypress {
       interface Chainable {
-        dnd(element: string): Chainable<Element>
-        login(user:{email:string, password: string}): Chainable<Element>
+        dnd(element: string, dropBox: string): Chainable<Element>
+        login(): Chainable<Element>
       }
     } 
   }

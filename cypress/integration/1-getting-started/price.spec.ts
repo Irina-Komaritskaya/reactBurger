@@ -6,7 +6,7 @@ describe('changes price', function () {
     cy.get('[class*=bun]').children().first().as('itemBun');
     cy.get('[class*=panel]').as('dropBox');
 
-    cy.dnd('@itemBun');
+    cy.dnd('@itemBun', '@dropBox');
 
     // изменение цены при перетаскивании булки
     let priceBun = 0;
@@ -29,7 +29,7 @@ describe('changes price', function () {
       .first()
       .as('itemConstructor');
 
-    cy.dnd('@itemConstructor');
+    cy.dnd('@itemConstructor', '@dropBox');
 
     let priceConstructor = 0;
     cy.get('[class*=burger-components_componentList__]').as(

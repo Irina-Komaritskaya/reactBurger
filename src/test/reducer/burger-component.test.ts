@@ -48,6 +48,7 @@ describe('component reducer', () => {
       })
     ).toEqual({ bun, totalSum: 20 });
     expect(
+      //булка должна перезаписываться, а не добавляться
       componentReducer(
         { totalSum: 60, bun: { ...bun, price: 30 } } as TInitialState,
         {
@@ -136,7 +137,6 @@ describe('component reducer', () => {
 });
 //#endregion
 //#region  delComponent
-// isOrder???
 describe('component reducer', () => {
   it('should handle updateComponent', () => {
     expect(

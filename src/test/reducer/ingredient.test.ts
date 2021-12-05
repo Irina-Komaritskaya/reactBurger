@@ -37,6 +37,7 @@ describe('ingredient reducer', () => {
       )
     ).toEqual({ ingredients: [ingredient, ingredient], isLoadingIngredient: false });
     expect(ingredientReducer(
+      //ингредиенты должны перезаписываться, а не добавляться
         {
           isLoadingIngredient: false,
           ingredients: [ingredient, ingredient] as TDataItem[],

@@ -38,10 +38,10 @@ describe('password reducer', () => {
       isResetPassword: true,
     });
     expect(
-      passwordReducer({} as TInitialState, {
+      passwordReducer({isResetPassword: false} as TInitialState, {
         type: RESET_FAILED,
       })
-    ).toEqual({});
+    ).toEqual({isResetPassword: false});
     expect(
       passwordReducer({ isResetPassword: true } as TInitialState, {
         type: CLEAR_RESET_PASSWORD,

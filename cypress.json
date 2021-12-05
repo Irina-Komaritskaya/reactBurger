@@ -1,1 +1,6 @@
-{}
+{
+  "env": {
+    "userName": "test@t.com",
+    "userPassword": "1"
+  }
+}

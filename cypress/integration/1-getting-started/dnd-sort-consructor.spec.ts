@@ -11,8 +11,8 @@ describe('dnd sort constructor', function () {
     cy.get('[class*=panel]').as('dropBox');
 
     cy.get('@itemIngredient').next().as('itemIngredientNext')
-    cy.dnd('@itemIngredient')
-    cy.dnd('@itemIngredientNext')
+    cy.dnd('@itemIngredient', '@dropBox')
+    cy.dnd('@itemIngredientNext', '@dropBox')
 
     cy.get('[class*=burger-components_componentList__]')
       .find('li')
