@@ -7,7 +7,7 @@ export const socketMiddleware = (wsUrl: string, wsActions: typeof wsActionTypes 
         let socket: WebSocket | null = null;
     return next => (action) => {
       const { dispatch } = store;
-      const { type, payload, withToken } = action;
+      const { type, withToken } = action;
       const { wsInit, onOpen, onClose, onError, onMessage } = wsActions;  
       const accessCookie = getCookie('accessToken');
       const token = withToken ? accessCookie : '';

@@ -1,11 +1,11 @@
-import { passwordReducer } from '../../services/reset-password/reducers';
+import { passwordReducer } from './reducers';
 import {
   FORGOT_SUCCESS,
   FORGOT_FAILED,
   RESET_SUCCESS,
   RESET_FAILED,
   CLEAR_RESET_PASSWORD,
-} from '../../services/reset-password/constants';
+} from './constants';
 import { TInitialState } from '../../types/data';
 
 describe('password reducer', () => {

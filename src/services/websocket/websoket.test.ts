@@ -1,10 +1,10 @@
-import { wsReducer } from '../../services/websocket/redusers';
+import { wsReducer } from './redusers';
 import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
-} from '../../services/websocket/constants';
+} from './constants';
 import { TInitialState, TOrders } from '../../types/data';
 
 const orderFromServer = {

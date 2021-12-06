@@ -1,10 +1,10 @@
-import { componentReducer } from '../../services/burger-component/reducers';
+import { componentReducer } from './reducers';
 import {
   ADD_COMPONENT,
   DEL_COMPONENT,
   UPDATE_COMPONENT,
   CLEAR_COMPONENTS,
-} from '../../services/burger-component/constants';
+} from './constants';
 import { TDataItem, TInitialState } from '../../types/data';
 
 const bun = {

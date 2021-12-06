@@ -1,4 +1,4 @@
-import { authReducer } from '../../services/auth/reducers';
+import { authReducer } from './reducers';
 import {
   GET_REG_FAILED,
   GET_REG_SUCCESS,
@@ -8,7 +8,7 @@ import {
   LOGOUT_FAILED,
   RESTORE_USER_SUCCESS,
   RESTORE_USER_FAILED,
-} from '../../services/auth/constants';
+} from './constants';
 import { TInitialState } from '../../types/data';
 
 const defaultAction = {

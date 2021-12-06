@@ -18,7 +18,7 @@ export function Order() {
     return () => {
       dispatch({ type: WS_CONNECTION_CLOSED });
     };
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (message) {

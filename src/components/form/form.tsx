@@ -16,7 +16,7 @@ export const Form: React.FC<IFormProps> = ({
       const button = document.getElementById(idButton);
       button?.children[0].setAttribute('type', 'submit');
     }
-  }, []);
+  }, [idButton]);
   return (
     <div className={styles.wrapper}>
       <form onSubmit={onSubmit} className={styles.form}>

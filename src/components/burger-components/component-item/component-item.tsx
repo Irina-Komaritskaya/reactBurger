@@ -2,7 +2,6 @@ import { useDispatch } from '../../../types/hooks';
 import { useDrop, useDrag } from 'react-dnd';
 import React, { useRef } from 'react';
 import { DEL_COMPONENT } from '../../../services/burger-component/constants';
-import PropTypes, { number } from 'prop-types';
 import { TDataItem } from '../../../types/data';
 import {
   DragIcon,

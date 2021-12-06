@@ -2,7 +2,7 @@ import {
   Input,
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { CLEAR_RESET_PASSWORD } from '../services/reset-password/constants';
 import { resetPasswordUser } from '../services/reset-password/actions';

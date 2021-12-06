@@ -1,4 +1,4 @@
-import { orderReducer } from '../../services/order/reducers';
+import { orderReducer } from './reducers';
 import {
   SEND_ORDER_SUCCESS,
   SEND_ORDER_REQUEST,
@@ -7,7 +7,7 @@ import {
   GET_ORDER_REQUEST,
   GET_ORDER_FAILED,
   CONFIRM_ORDER,
-} from '../../services/order/constants';
+} from './constants';
 import { TInitialState, TOrders, TUser } from '../../types/data';
 
 const orderFromServer = {

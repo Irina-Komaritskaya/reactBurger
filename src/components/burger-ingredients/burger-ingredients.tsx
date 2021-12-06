@@ -28,13 +28,14 @@ const BurgerIngredients: React.FC = () => {
         setCurrent('bun');
       }
     };
+    const ingredientCurrentRef = ingredientRef.current;
     if (ingredientRef != null) {
-      ingredientRef.current!.addEventListener('scroll', handleScroll, {
+      ingredientCurrentRef!.addEventListener('scroll', handleScroll, {
         passive: true,
       });
     }
     return () => {
-      ingredientRef?.current?.removeEventListener('scroll', handleScroll);
+      ingredientCurrentRef?.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

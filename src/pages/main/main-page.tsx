@@ -1,24 +1,16 @@
-import { useSelector, useDispatch } from '../../types/hooks';
-import { useEffect } from 'react';
+import { useSelector } from '../../types/hooks';
 import style from './main.module.css';
 import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients';
 import BurgerComponents from '../../components/burger-components/burger-components';
-import { loadIngredients } from '../../services/ingredient/actions';
 
 export const MainPage: React.FC = () => {
   const isLoadingIngredient = useSelector(
-    store => store.ingredient.isLoadingIngredient
+    (store) => store.ingredient.isLoadingIngredient
   );
   const hasErrorIngredient = useSelector(
-    store => store.ingredient.hasErrorIngredient
+    (store) => store.ingredient.hasErrorIngredient
   );
-  const ingredients = useSelector(store => store.ingredient.ingredients);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadIngredients());
-  }, [dispatch]);
+  const ingredients = useSelector((store) => store.ingredient.ingredients);
 
   return (
     <main className={`mb-6 ${style.main}`}>

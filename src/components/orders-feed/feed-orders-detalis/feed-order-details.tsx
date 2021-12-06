@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 import styles from './feed-order-details.module.css';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useEffect } from 'react';
-import { loadIngredients } from '../../../services/ingredient/actions';
 import { loadOrder } from '../../../services/order/actions';
 import {getFormattedDate} from '../../../utils/formatDate'
 
@@ -15,9 +14,6 @@ export const FeedOrderDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (ingredients.length === 0) {
-      dispatch(loadIngredients());
-    }
     if (!message) {
       dispatch(loadOrder(id));
     }
@@ -28,6 +24,7 @@ export const FeedOrderDetails = () => {
   if (!orders) {
     return null;
   }
+  
   const currentOrder = message
     ? orders.find((x) => x!.number === parseInt(id))
     : orderState;

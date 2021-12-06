@@ -1,8 +1,8 @@
-import { profileReducer } from '../../services/profile/reducers';
+import { profileReducer } from './reducers';
 import {
   UPDATE_PROFILE_FAILED,
   UPDATE_PROFILE_SUCCESS,
-} from '../../services/profile/constants';
+} from './constants';
 import { TInitialState } from '../../types/data';
 
 //#region confirm order

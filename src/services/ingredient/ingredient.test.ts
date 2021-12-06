@@ -1,9 +1,9 @@
-import { ingredientReducer } from '../../services/ingredient/reducers';
+import { ingredientReducer } from './reducers';
 import {
   GET_INGREDIENT_FAILED,
   GET_INGREDIENT_REQUEST,
   GET_INGREDIENT_SUCCESS,
-} from '../../services/ingredient/constants';
+} from './constants';
 import { TDataItem, TInitialState } from '../../types/data';
 
 const ingredient = {
