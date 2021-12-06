@@ -36,7 +36,7 @@ const OrderDetails: React.FC =  () => {
         </p>
         <p className="text text_type_main-medium pt-8">идентификатор заказа</p>
         <p className="pt-15 pb-15">
-          <img src="/images/imageDone.gif" alt="done" />
+          <img src="images/imageDone.gif" alt="done" />
         </p>
         <p className="text text_type_main-small ">Ваш заказ начали готовить</p>
         <p className="text text_type_main-small text_color_inactive pb-15 pt-2">

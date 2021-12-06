@@ -90,7 +90,7 @@ const BurgerComponents: React.FC = () => {
           isLocked={true}
           text={bun ? `${bun.name} (верх)` : 'Пожалуйста, выберите булку'}
           price={bun ? bun.price : 0}
-          thumbnail={bun ? bun.image : '/images/default-bun.svg'}
+          thumbnail={bun ? bun.image : 'images/default-bun.svg'}
         />
 
         <ul className={`pr-8 ${styles.componentList}`}>
@@ -112,7 +112,7 @@ const BurgerComponents: React.FC = () => {
           isLocked={true}
           text={bun ? `${bun.name} (низ)` : 'Пожалуйста, выберите булку'}
           price={bun ? bun.price : 0}
-          thumbnail={bun ? bun.image : '/images/default-bun.svg'}
+          thumbnail={bun ? bun.image : 'images/default-bun.svg'}
         />
         <section className={`mt-5 ${styles.totalPrice}`}>
           <span className="text text_type_digits-medium mr-10">
