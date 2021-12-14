@@ -18,7 +18,7 @@ export const authReducer = (state = initialState, action: TAuth) => {
       const { accessToken, refreshToken } = action;
       setCookie('accessToken', accessToken, { expires: 20 * 60 });
       setCookie('refreshToken', refreshToken, { expires: 30 * 24 * 60 });
-      alert('Вы успешно зарегистрировались');
+      // alert('Вы успешно зарегистрировались');
       return {
         ...state,
         user: {
@@ -28,7 +28,7 @@ export const authReducer = (state = initialState, action: TAuth) => {
       };
     }
     case GET_REG_FAILED: {
-      alert('Что-то пошло не так, регистрация не успешна');
+      //alert('Что-то пошло не так, регистрация не успешна');
       return state;
     }
     case GET_AUTH_SUCCESS: {
@@ -44,7 +44,7 @@ export const authReducer = (state = initialState, action: TAuth) => {
       };
     }
     case GET_AUTH_FAILED: {
-      alert('Что-то пошло не так, авторизация не успешна');
+      //alert('Что-то пошло не так, авторизация не успешна');
       return state;
     }
     case LOGOUT_SUCCESS: {
@@ -56,7 +56,7 @@ export const authReducer = (state = initialState, action: TAuth) => {
       };
     }
     case LOGOUT_FAILED: {
-      alert('Что-то пошло не так, выйти не удалось');
+      //alert('Что-то пошло не так, выйти не удалось');
       return state;
     }
     case RESTORE_USER_SUCCESS: {
@@ -67,7 +67,7 @@ export const authReducer = (state = initialState, action: TAuth) => {
       };
     }
     case RESTORE_USER_FAILED: {
-     console.log('restore user failed')
+     //console.log('restore user failed')
       return state;
     }
     default: {

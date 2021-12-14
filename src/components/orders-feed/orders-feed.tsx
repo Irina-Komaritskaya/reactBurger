@@ -1,25 +1,19 @@
 import React from 'react';
-import { useSelector, useDispatch } from '../../types/hooks';
-import { useEffect } from 'react';
+import { useSelector } from '../../types/hooks';
 import { TDataItem, TOrders } from '../../types/data';
 import styles from './orders-feed.module.css';
-import { loadIngredients } from '../../services/ingredient/actions';
 import { Images } from './images/images';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { getFormattedDate } from '../../utils/formatDate';
 import { formatStatusOrder } from '../../utils/statusOrder';
+
 interface IOrderFeedProps {
   orders: TOrders[];
   url: string;
 }
 export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
   const ingredients = useSelector((store) => store.ingredient.ingredients);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadIngredients());
-  }, [dispatch]);
 
   if (ingredients.length === 0) {
     return null;
@@ -41,7 +35,7 @@ export const OrdersFeed: React.FC<IOrderFeedProps> = ({ orders, url }) => {
   });
   
   orders.sort((a, b) =>
-    a.createdAt == b.createdAt ? 0 : a.createdAt > b.createdAt ? -1 : 1
+    a.createdAt === b.createdAt ? 0 : a.createdAt > b.createdAt ? -1 : 1
   );
 
   return (

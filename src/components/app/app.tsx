@@ -1,5 +1,6 @@
 import style from './app.module.css';
 import AppHeader from '../app-Header/app-Header';
+import {useDispatch } from '../../types/hooks';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
@@ -10,6 +11,8 @@ import { FeedOrderDetails } from '../orders-feed/feed-orders-detalis/feed-order-
 import { ModalIngredient } from '../burger-ingredients/modal-ingredient';
 import { ModalOrderFeed } from '../orders-feed/modal-feed-order';
 import {RedirectAuthRoute} from '../routes/redirect-auth-route';
+import { loadIngredients } from '../../services/ingredient/actions';
+import { useEffect } from 'react';
 import {
   MainPage,
   LoginPage,
@@ -33,6 +36,12 @@ const App: React.FC = () => {
   const action = history.action === 'PUSH' || history.action === 'REPLACE';
   const isModal = action && location.state && location.state.modal;
   
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadIngredients());
+  }, [dispatch]);
+
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style.app}>

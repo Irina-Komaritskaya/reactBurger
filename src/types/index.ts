@@ -7,7 +7,7 @@ import { TIngredient } from '../services/ingredient/action-type';
 import { TOrder } from '../services/order/action-type';
 import { TProfile } from '../services/profile/action-type';
 import { TResetPassword } from '../services/reset-password/action-type';
-import { TWs } from '../services/websoket/action-type';
+import { TWs } from '../services/websocket/action-type';
 import { TInitialState } from './data';
 
 export type RootState = {

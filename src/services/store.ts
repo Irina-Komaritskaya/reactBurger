@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import { rootReducer } from './root-reducer';
-import { socketMiddleware } from './websoket/socketMiddleware';
+import { socketMiddleware } from './websocket/socketMiddleware';
 import thunkMiddleware from 'redux-thunk';
 import {
   WS_CONNECTION_CLOSED,
@@ -8,7 +8,7 @@ import {
   WS_CONNECTION_START,
   WS_CONNECTION_SUCCESS,
   WS_GET_MESSAGE,
-} from './websoket/constants';
+} from './websocket/constants';
 
 const wsUrl = 'wss://norma.nomoreparties.space/orders';
 

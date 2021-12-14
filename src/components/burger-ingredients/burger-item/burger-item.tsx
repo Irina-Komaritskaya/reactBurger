@@ -9,7 +9,8 @@ import {
 import { Link } from 'react-router-dom';
 
 interface IBurgerItem {
-  data: TDataItem
+  data: TDataItem,
+  
 }
 const BurgerItem: React.FC<IBurgerItem> = ({ data }) => {
   const { components, bun } = useSelector(store => store.component);

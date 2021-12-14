@@ -2,7 +2,7 @@ import { OrdersFeed } from '../../components/orders-feed/orders-feed';
 import { OrdersStats } from '../../components/orders-stats/orders-stats';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from '../../types/hooks';
-import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from '../../services/websoket/constants';
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from '../../services/websocket/constants';
 import styles from './feed.module.css';
 import { TOrders } from '../../types/data';
 
@@ -18,7 +18,7 @@ export const FeedPage = () => {
     return ()=> {
       dispatch({type: WS_CONNECTION_CLOSED})
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (message) {

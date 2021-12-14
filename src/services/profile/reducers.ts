@@ -11,7 +11,7 @@ export const profileReducer = (state = initialState, action: TProfile) => {
       };
     }
     case UPDATE_PROFILE_FAILED: {
-      alert('Обновить не удалось');
+      //alert('Обновить не удалось');
       return state;
     }
     default: {
